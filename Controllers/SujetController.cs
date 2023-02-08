@@ -37,9 +37,9 @@ namespace FilRouge_Test_CodeFirst.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult DeleteLevel(Level model)
+        public IActionResult DeleteSujet(Sujet model)
         {
-            sujetRepo.DeleteSujet(model.Id);
+            sujetRepo.DeleteSujet(model.id);
             return RedirectToAction("Index");
         }
     }
