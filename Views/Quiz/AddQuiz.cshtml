@@ -6,17 +6,14 @@
     
 }
 
-@*                  @foreach (var item in Model.AllLevel)
-                {
-                    item.LevelName.ToLower();
-                }*@
+
 <h1>AddQuiz</h1>
 
 <h4>Quiz</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AddQuiz">
+        <form asp-controller="Quiz" asp-action="AddQuiz">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="@Model.Quiz.Name" class="control-label"></label>
@@ -30,19 +27,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Quiz.Average" class="control-label"></label>
+                <label asp-for="@Model.Quiz.Average" class="control-label"></label>
                 <input asp-for="@Model.Quiz.Average" class="form-control" />
                 <span asp-validation-for="@Model.Quiz.Average" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Quiz.Level" class="control-label"></label>
-@*                <select asp-for="@Model.Quiz.Level" asp-items="@Model.AllLevel" class="form-control">
-                    <option value="@Model.Quiz.Level" id="@Model.AllLevel">---- Choix Level ---- </option>
-                </select>*@
-                <select asp-for="@Model.Quiz.Level" name="@Model.Quiz.Level" id="@Model.Quiz.Level">
-                    @foreach(var lvl in Model.AllLevel)
-                    {
-                        <option value="@lvl.Id"name="@Model.Quiz.Level" id="@Model.Quiz.Level">@lvl.LevelName</option>
-                    }
+                <label asp-for="LevelId" class="control-label"></label>
+                <select asp-for="LevelId" asp-items="@Model.AllLevel" class="form-control">
+                    <option value="None" id="Quiz.Level">---- Choix Level ---- </option>
                 </select>
                 <span asp-validation-for="@Model.Quiz.Level" class="text-danger"></span>
             </div>

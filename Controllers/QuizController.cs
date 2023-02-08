@@ -4,9 +4,6 @@ using FilRouge_Test_CodeFirst.Domaine;
 using FilRouge_Test_CodeFirst.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using static FilRouge_Test_CodeFirst.Data.Entity.Level;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace FilRouge_Test_CodeFirst.Controllers
 {
@@ -15,11 +12,10 @@ namespace FilRouge_Test_CodeFirst.Controllers
         
         private readonly IQuizRepository quizRepo;
         private readonly ILevelRepository levelRepo;
-        //private readonly SelectListContext _Context;
+
 
         public QuizController(IQuizRepository quizAdd, ILevelRepository levelRepo)
         {
-            //_Context = context;
             this.quizRepo = quizAdd;
             this.levelRepo = levelRepo;
             
@@ -39,15 +35,14 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
             var test = levelRepo.GetAllLevel();
 
-            //List<SelectListItem> level = test.OrderBy(n => n.LevelName)
-            //    .Select(n => 
-            //        new SelectListItem
-            //        {
-            //            Text= n.LevelName,
-            //            Value = n.Id.ToString()
-            //        }).ToList();
-            QuizViewModel.AllLevel = test;
-           // return Content($"ss {level.Count}");
+            List<SelectListItem> level = test.OrderBy(n => n.LevelName)
+                .Select(n =>
+                    new SelectListItem
+                    {
+                        Text = n.LevelName,
+                        Value = n.Id.ToString()
+                    }).ToList();
+            QuizViewModel.AllLevel = level;
             return View(QuizViewModel);
         }
 
@@ -64,16 +59,14 @@ namespace FilRouge_Test_CodeFirst.Controllers
             };
             var quizAdd = new Quiz()
             {
-                //Name = model.Name,
-                //Average = model.Average,
+                Name = model.Quiz.Name,
+                Average = model.Quiz.Average,
                 Code = model.Quiz.Code,
-                Level = model.Quiz.Level
+               
             };
-            
-            //   var test = model.AllLevel.Count();
-            
-            //quizRepo.CreateQuiz(quizAdd);
-            return Content($"{model.Quiz.Level}");
+
+            quizRepo.CreateQuiz(quizAdd , model.LevelId);
+
             return RedirectToAction("Index");
         }
 

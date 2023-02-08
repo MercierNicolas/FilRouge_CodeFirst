@@ -6,7 +6,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
 {
     public interface IQuizRepository
     {
-        int CreateQuiz(Quiz quiz, Level levelname);
+        int CreateQuiz(Quiz quiz, int levelId);
         IEnumerable<Quiz> GetAllQuiz();
     }
 
@@ -17,8 +17,10 @@ namespace FilRouge_Test_CodeFirst.Domaine
         {
             this._context = context;
         }
-        public int CreateQuiz(Quiz quiz, Level levelname)
+        public int CreateQuiz(Quiz quiz, int levelId)
         {
+            var selectLvl = _context.levels.Where(lvl => lvl.Id == levelId).First();
+            quiz.Level = (Level?)selectLvl;
             _context.Quiz.Add(quiz);
             _context.SaveChanges();
             return quiz.QuizzId;
