@@ -1,0 +1,49 @@
+﻿@model IEnumerable<FilRouge_Test_CodeFirst.Data.Entity.Quiz>
+
+<h1>Page des Quiz</h1>
+
+<a asp-action="AddQuiz">Ajouter un quiz</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Average)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Level.LevelName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Average)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Level.LevelName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.QuizzId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.QuizzId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.QuizzId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
