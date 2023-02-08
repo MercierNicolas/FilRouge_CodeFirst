@@ -6,7 +6,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
 {
     public interface IQuizRepository
     {
-        int CreateQuiz(Quiz quiz, int levelId);
+        int CreateQuiz(Quiz quiz, int levelId, int sujetId);
         IEnumerable<Quiz> GetAllQuiz();
     }
 
@@ -17,10 +17,15 @@ namespace FilRouge_Test_CodeFirst.Domaine
         {
             this._context = context;
         }
-        public int CreateQuiz(Quiz quiz, int levelId)
+        public int CreateQuiz(Quiz quiz, int levelId, int sujetId)
         {
             var selectLvl = _context.levels.Where(lvl => lvl.Id == levelId).First();
             quiz.Level = (Level?)selectLvl;
+
+            var selectSujet = _context.sujets.Where(sujet => sujet.id == sujetId).First();
+            quiz.Sujet = (Sujet?)selectSujet;
+
+
             _context.Quiz.Add(quiz);
             _context.SaveChanges();
             return quiz.QuizzId;
@@ -28,7 +33,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
         public IEnumerable<Quiz> GetAllQuiz()
         {
-            return _context.Quiz.Include(l => l.Level).ToList();
+            return _context.Quiz.Include(l => l.Level).Include(s => s.Sujet).ToList();
         }
     }
 }

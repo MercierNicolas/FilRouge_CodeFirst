@@ -19,6 +19,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Level.LevelName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sujet.SujetName)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -37,6 +40,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Level.LevelName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sujet.SujetName)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.QuizzId">Edit</a> |

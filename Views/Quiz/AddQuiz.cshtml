@@ -39,6 +39,13 @@
                 <span asp-validation-for="@Model.Quiz.Level" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="sujetId" class="control-label"></label>
+                <select asp-for="sujetId" asp-items="@Model.AllSujet" class="form-control">
+                    <option value="None" id="Quiz.Sujet">---- Choix du Sujet ---- </option>
+                </select>
+                <span asp-validation-for="@Model.Quiz.Sujet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" asp-action="AddQuiz" class="btn btn-primary" />
             </div>
         </form>

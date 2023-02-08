@@ -12,13 +12,14 @@ namespace FilRouge_Test_CodeFirst.Controllers
         
         private readonly IQuizRepository quizRepo;
         private readonly ILevelRepository levelRepo;
+        private readonly ISujetRepository sujetRepo;
 
-
-        public QuizController(IQuizRepository quizAdd, ILevelRepository levelRepo)
+        public QuizController(IQuizRepository quizAdd, ILevelRepository levelRepo, ISujetRepository sujetRepo)
         {
             this.quizRepo = quizAdd;
             this.levelRepo = levelRepo;
-            
+            this.sujetRepo = sujetRepo;
+
         }
         public IActionResult Index()
 		{
@@ -33,30 +34,36 @@ namespace FilRouge_Test_CodeFirst.Controllers
             QuizViewModel QuizViewModel = new QuizViewModel();
             QuizViewModel.Quiz = new Quiz();
 
-            var test = levelRepo.GetAllLevel();
+            var allLvl = levelRepo.GetAllLevel();
+            var allSujet = sujetRepo.GetAllSujet();
 
-            List<SelectListItem> level = test.OrderBy(n => n.LevelName)
+            List<SelectListItem> Listlevel = allLvl.OrderBy(n => n.LevelName)
                 .Select(n =>
                     new SelectListItem
                     {
                         Text = n.LevelName,
                         Value = n.Id.ToString()
                     }).ToList();
-            QuizViewModel.AllLevel = level;
+
+            List<SelectListItem> ListSujet = allSujet.OrderBy(n => n.SujetName)
+                .Select(n =>
+                    new SelectListItem
+                    {
+                        Text = n.SujetName,
+                        Value = n.id.ToString()
+                    }).ToList();
+
+
+
+
+            QuizViewModel.AllLevel = Listlevel;
+            QuizViewModel.AllSujet = ListSujet;
             return View(QuizViewModel);
         }
 
         [HttpPost]
         public IActionResult AddQuiz(QuizViewModel model,Level lvl)
         {
-            model.Quiz = new Quiz()
-            {
-                Name = model.Quiz.Name,
-                Average = model.Quiz.Average,
-                
-                Code = model.Quiz.Code,
-                Level = model.Quiz.Level,
-            };
             var quizAdd = new Quiz()
             {
                 Name = model.Quiz.Name,
@@ -65,7 +72,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
                
             };
 
-            quizRepo.CreateQuiz(quizAdd , model.LevelId);
+            quizRepo.CreateQuiz(quizAdd , model.LevelId , model.sujetId);
 
             return RedirectToAction("Index");
         }
