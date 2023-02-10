@@ -1,9 +1,12 @@
 ﻿using FilRouge_Test_CodeFirst.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace FilRouge_Test_CodeFirst.Controllers
 {
+
+	[Authorize]
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
