@@ -77,5 +77,12 @@ namespace FilRouge_Test_CodeFirst.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult DeleteQuiz(int id)
+        {
+            var OneQuiz = quizRepo.GetOneQuiz(id);
+            
+            return View(OneQuiz.First());
+        }
+
     }
 }
