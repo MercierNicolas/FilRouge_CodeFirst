@@ -48,3 +48,12 @@ li {
 .carousel-control-prev {
     filter: invert(100%);
 }
+
+#navbar {
+    display: block;
+}
+
+.login-view #navbar {
+    display: none;
+}
+
