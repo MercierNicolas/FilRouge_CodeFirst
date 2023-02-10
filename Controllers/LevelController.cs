@@ -36,8 +36,8 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
         public IActionResult DeleteLevel(int id)
         {
-           // var oneLevel = levelRepo.GetOneLevel(id);
-            return View();
+            var oneLevel = levelRepo.GetOneLevel(id);
+            return View(oneLevel.First());
         }
         [HttpPost]
         public IActionResult DeleteLevel(Level model)

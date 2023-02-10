@@ -34,7 +34,8 @@ namespace FilRouge_Test_CodeFirst.Controllers
         }
         public IActionResult DeleteSujet(int id)
         {
-            return View();
+            var oneSujet = sujetRepo.GetOneSujet(id);
+            return View(oneSujet.First());
         }
         [HttpPost]
         public IActionResult DeleteSujet(Sujet model)
