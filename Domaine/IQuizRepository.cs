@@ -6,19 +6,32 @@ namespace FilRouge_Test_CodeFirst.Domaine
 {
     public interface IQuizRepository
     {
-        int CreateQuiz(Quiz quiz, Level levelname);
+        int CreateQuiz(Quiz quiz, int levelId, int sujetId);
         IEnumerable<Quiz> GetAllQuiz();
+        IEnumerable<Quiz> GetOneQuiz(int id);
     }
 
     public class DbQuizRepo : IQuizRepository
     {
+        // Permet de vers le lien entre la class DbQuizRepo et le context de l'app (donc la Bdd)
         private readonly ApplicationDbContext _context;
         public DbQuizRepo(ApplicationDbContext context)
         {
             this._context = context;
         }
-        public int CreateQuiz(Quiz quiz, Level levelname)
+        // Methode pour ajoute a la BDD un quiz
+        public int CreateQuiz(Quiz quiz, int levelId, int sujetId)
         {
+            // On recupére l'id de la vue a l'aide du controlleur et on appele de la BDD les level avec le where on recupere le bon id
+            var selectLvl = _context.levels.Where(lvl => lvl.Id == levelId).First();
+            // On ajoute dans la variable quiz l'objet de type Level avec le bon id et le bon nom recupere a la ligne juste en haut
+            quiz.Level = (Level?)selectLvl;
+
+            // Meme fonctionnement que en haut mais la pour le Sujet
+            var selectSujet = _context.sujets.Where(sujet => sujet.id == sujetId).First();
+            quiz.Sujet = (Sujet?)selectSujet;
+
+            // On ajoute le quiz crée dans le context et on sauvegarde
             _context.Quiz.Add(quiz);
             _context.SaveChanges();
             return quiz.QuizzId;
@@ -26,7 +39,12 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
         public IEnumerable<Quiz> GetAllQuiz()
         {
-            return _context.Quiz.Include(l => l.Level).ToList();
+            return _context.Quiz.Include(l => l.Level).Include(s => s.Sujet).ToList();
+        }
+
+        public IEnumerable<Quiz> GetOneQuiz(int Id)
+        {
+            yield return _context.Quiz.Where(q => q.QuizzId == Id).First();
         }
     }
 }

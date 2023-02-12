@@ -9,8 +9,10 @@
     public class QuizViewModel
     {
         public Quiz Quiz { get; set; }
+        public IEnumerable<SelectListItem> AllLevel { get; set; }
+        public int LevelId { get; set; }
 
-        [BindProperty]
-        public IEnumerable<Level> AllLevel { get; set; }
+        public IEnumerable<SelectListItem> AllSujet { get; set; }
+        public int sujetId { get; set; }
     }
 }
