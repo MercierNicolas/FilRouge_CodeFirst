@@ -11,5 +11,7 @@ namespace FilRouge_Test_CodeFirst.Data.Entity
 		public virtual ICollection<Quiz>? Quiz { get; set; }
 		public Sujet Sujet { get; set; }
 		public Level Level { get; set; }
-	}
+        public virtual ICollection<Correction> Correction { get; set; }
+
+    }
 }

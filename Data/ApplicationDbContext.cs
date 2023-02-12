@@ -14,5 +14,10 @@ namespace FilRouge_Test_CodeFirst.Data
 		public DbSet<Question> Questions { get; set; }
 		public DbSet<Sujet> sujets { get; set; }
 		public DbSet<Level> levels { get; set; }
+		public DbSet<Tested> tests { get; set; }	
+		public DbSet<TheAnswer> theAnswers { get; set; }
+		public DbSet<QuestionAnswer> QuestionsAnswers { get; set; }
+		public DbSet<Valided> valides { get; set; }	
+		public DbSet<Correction> corrections { get; set; }
 	}
 }

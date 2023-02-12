@@ -4,6 +4,7 @@ using FilRouge_Test_CodeFirst.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilRougeTestCodeFirst.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230209230344_CreatedValidedEntity")]
+    partial class CreatedValidedEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,38 +24,6 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("CorrectionQuestion", b =>
-                {
-                    b.Property<int>("CorrectionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CorrectionId", "QuestionId");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("CorrectionQuestion");
-                });
-
-            modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Correction", b =>
-                {
-                    b.Property<int>("CorrectionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CorrectionId"));
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CorrectionId");
-
-                    b.ToTable("corrections");
-                });
 
             modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Level", b =>
                 {
@@ -470,21 +441,6 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                     b.HasIndex("QuizzId");
 
                     b.ToTable("QuestionQuiz");
-                });
-
-            modelBuilder.Entity("CorrectionQuestion", b =>
-                {
-                    b.HasOne("FilRouge_Test_CodeFirst.Data.Entity.Correction", null)
-                        .WithMany()
-                        .HasForeignKey("CorrectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FilRouge_Test_CodeFirst.Data.Entity.Question", null)
-                        .WithMany()
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Question", b =>
