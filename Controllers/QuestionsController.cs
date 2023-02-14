@@ -82,10 +82,10 @@ namespace FilRouge_Test_CodeFirst.Controllers
             var questionAdd = new Question()
             {
                 ContentQuestion = model.question.ContentQuestion,
-                Choix1= model.question.Choix1,
-                Choix2= model.question.Choix2,
-                Choix3= model.question.Choix3,
-                Choix4= model.question.Choix4,                                
+                //Choix1= model.question.Choix1,
+                //Choix2= model.question.Choix2,
+                //Choix3= model.question.Choix3,
+                //Choix4= model.question.Choix4,                                
             };
             questionRepo.CreateQuestion(questionAdd, model.LevelId, model.sujetId);
             return RedirectToAction("Index");

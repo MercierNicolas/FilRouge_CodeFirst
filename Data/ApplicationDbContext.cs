@@ -18,6 +18,6 @@ namespace FilRouge_Test_CodeFirst.Data
 		public DbSet<TheAnswer> theAnswers { get; set; }
 		public DbSet<QuestionAnswer> QuestionsAnswers { get; set; }
 		public DbSet<Valided> valides { get; set; }	
-		public DbSet<Correction> corrections { get; set; }
+		public DbSet<AnswerChoice> AnswerChoice { get; set; }
 	}
 }
