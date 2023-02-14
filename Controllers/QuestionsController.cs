@@ -87,7 +87,13 @@ namespace FilRouge_Test_CodeFirst.Controllers
                 //Choix3= model.question.Choix3,
                 //Choix4= model.question.Choix4,                                
             };
-            questionRepo.CreateQuestion(questionAdd, model.LevelId, model.sujetId);
+            Dictionary<string, int> DictionaryChoix = new Dictionary<String, int>();
+            DictionaryChoix.Add(model.Choix1, 1);
+            DictionaryChoix.Add(model.Choix2, 1);
+            DictionaryChoix.Add(model.Choix3, 1);
+            DictionaryChoix.Add(model.Choix4, 1);
+
+            questionRepo.CreateQuestion(questionAdd, model.LevelId, model.sujetId, DictionaryChoix);
             return RedirectToAction("Index");
         }
 
