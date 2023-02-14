@@ -9,6 +9,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
         int CreateQuiz(Quiz quiz, int levelId, int sujetId);
         IEnumerable<Quiz> GetAllQuiz();
         IEnumerable<Quiz> GetOneQuiz(int id);
+        int DeleteQuiz(int id);
     }
 
     public class DbQuizRepo : IQuizRepository
@@ -45,6 +46,15 @@ namespace FilRouge_Test_CodeFirst.Domaine
         public IEnumerable<Quiz> GetOneQuiz(int Id)
         {
             yield return _context.Quiz.Where(q => q.QuizzId == Id).First();
+        }
+
+        public int DeleteQuiz(int Id)
+        {
+            var quizADelete = _context.Quiz.Where(q => q.QuizzId == Id).ToList();
+            _context.Quiz.RemoveRange(quizADelete);
+            _context.SaveChanges();
+            return 0;
+
         }
     }
 }
