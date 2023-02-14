@@ -25,7 +25,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Correction", b =>
+            modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.AnswerChoice", b =>
                 {
                     b.Property<int>("CorrectionId")
                         .ValueGeneratedOnAdd()

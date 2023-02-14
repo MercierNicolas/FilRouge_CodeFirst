@@ -37,7 +37,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                     b.ToTable("CorrectionQuestion");
                 });
 
-            modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Correction", b =>
+            modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.AnswerChoice", b =>
                 {
                     b.Property<int>("CorrectionId")
                         .ValueGeneratedOnAdd()
@@ -490,7 +490,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
 
             modelBuilder.Entity("CorrectionQuestion", b =>
                 {
-                    b.HasOne("FilRouge_Test_CodeFirst.Data.Entity.Correction", null)
+                    b.HasOne("FilRouge_Test_CodeFirst.Data.Entity.AnswerChoice", null)
                         .WithMany()
                         .HasForeignKey("CorrectionId")
                         .OnDelete(DeleteBehavior.Cascade)
