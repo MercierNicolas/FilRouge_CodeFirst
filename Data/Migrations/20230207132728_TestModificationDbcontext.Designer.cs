@@ -50,7 +50,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionId"));
 
-                    b.Property<string>("Content")
+                    b.Property<string>("ContentQuestion")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LevelId")

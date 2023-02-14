@@ -3,7 +3,7 @@
     public class Correction
     {
         public int CorrectionId { get; set; }
-        public string Content { get; set; }
+        public string ContentCorection { get; set; }
         public virtual ICollection<Question> Question { get; set; }
     }
 }
