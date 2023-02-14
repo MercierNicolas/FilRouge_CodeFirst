@@ -4,6 +4,7 @@ using FilRouge_Test_CodeFirst.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilRougeTestCodeFirst.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230209215711_CreatedAnswerEntity")]
+    partial class CreatedAnswerEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,38 +24,6 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("CorrectionQuestion", b =>
-                {
-                    b.Property<int>("CorrectionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CorrectionId", "QuestionId");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("CorrectionQuestion");
-                });
-
-            modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Correction", b =>
-                {
-                    b.Property<int>("CorrectionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CorrectionId"));
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CorrectionId");
-
-                    b.ToTable("corrections");
-                });
 
             modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Level", b =>
                 {
@@ -86,15 +57,6 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                     b.Property<int>("LevelId")
                         .HasColumnType("int");
 
-                    b.Property<string>("QuestionAnswerIdentityUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("QuestionAnswerQuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("QuestionAnswerTheAnswerId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Sujetid")
                         .HasColumnType("int");
 
@@ -104,30 +66,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
 
                     b.HasIndex("Sujetid");
 
-                    b.HasIndex("QuestionAnswerQuestionId", "QuestionAnswerTheAnswerId", "QuestionAnswerIdentityUserId");
-
                     b.ToTable("Questions");
-                });
-
-            modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.QuestionAnswer", b =>
-                {
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TheAnswerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("DateValidation")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("QuestionId", "TheAnswerId", "IdentityUserId");
-
-                    b.HasIndex("IdentityUserId");
-
-                    b.ToTable("QuestionsAnswers");
                 });
 
             modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Quiz", b =>
@@ -213,46 +152,9 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("QuestionAnswerIdentityUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("QuestionAnswerQuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("QuestionAnswerTheAnswerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ValidedIdentityUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("ValidedTheAnswerId")
-                        .HasColumnType("int");
-
                     b.HasKey("TheAnswerId");
 
-                    b.HasIndex("ValidedTheAnswerId", "ValidedIdentityUserId");
-
-                    b.HasIndex("QuestionAnswerQuestionId", "QuestionAnswerTheAnswerId", "QuestionAnswerIdentityUserId");
-
                     b.ToTable("theAnswers");
-                });
-
-            modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Valided", b =>
-                {
-                    b.Property<int>("TheAnswerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("ValidedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("TheAnswerId", "IdentityUserId");
-
-                    b.HasIndex("IdentityUserId");
-
-                    b.ToTable("valides");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -472,21 +374,6 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                     b.ToTable("QuestionQuiz");
                 });
 
-            modelBuilder.Entity("CorrectionQuestion", b =>
-                {
-                    b.HasOne("FilRouge_Test_CodeFirst.Data.Entity.Correction", null)
-                        .WithMany()
-                        .HasForeignKey("CorrectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FilRouge_Test_CodeFirst.Data.Entity.Question", null)
-                        .WithMany()
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Question", b =>
                 {
                     b.HasOne("FilRouge_Test_CodeFirst.Data.Entity.Level", "Level")
@@ -501,24 +388,9 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FilRouge_Test_CodeFirst.Data.Entity.QuestionAnswer", null)
-                        .WithMany("Questions")
-                        .HasForeignKey("QuestionAnswerQuestionId", "QuestionAnswerTheAnswerId", "QuestionAnswerIdentityUserId");
-
                     b.Navigation("Level");
 
                     b.Navigation("Sujet");
-                });
-
-            modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.QuestionAnswer", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("IdentityUser");
                 });
 
             modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Quiz", b =>
@@ -553,28 +425,6 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                     b.Navigation("IdentityUser");
 
                     b.Navigation("Quiz");
-                });
-
-            modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.TheAnswer", b =>
-                {
-                    b.HasOne("FilRouge_Test_CodeFirst.Data.Entity.Valided", null)
-                        .WithMany("TheAnswers")
-                        .HasForeignKey("ValidedTheAnswerId", "ValidedIdentityUserId");
-
-                    b.HasOne("FilRouge_Test_CodeFirst.Data.Entity.QuestionAnswer", null)
-                        .WithMany("TheAnswers")
-                        .HasForeignKey("QuestionAnswerQuestionId", "QuestionAnswerTheAnswerId", "QuestionAnswerIdentityUserId");
-                });
-
-            modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Valided", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -641,18 +491,6 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                         .HasForeignKey("QuizzId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.QuestionAnswer", b =>
-                {
-                    b.Navigation("Questions");
-
-                    b.Navigation("TheAnswers");
-                });
-
-            modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Valided", b =>
-                {
-                    b.Navigation("TheAnswers");
                 });
 #pragma warning restore 612, 618
         }
