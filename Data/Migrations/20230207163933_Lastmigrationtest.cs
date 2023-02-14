@@ -51,7 +51,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                 oldType: "int");
 
             migrationBuilder.AlterColumn<string>(
-                name: "Content",
+                name: "ContentQuestion",
                 table: "Questions",
                 type: "nvarchar(max)",
                 nullable: false,
@@ -157,7 +157,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
-                name: "Content",
+                name: "ContentQuestion",
                 table: "Questions",
                 type: "nvarchar(max)",
                 nullable: true,

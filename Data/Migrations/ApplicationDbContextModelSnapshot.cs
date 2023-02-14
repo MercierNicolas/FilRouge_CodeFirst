@@ -45,7 +45,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CorrectionId"));
 
-                    b.Property<string>("Content")
+                    b.Property<string>("ContentCorection")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -95,7 +95,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Content")
+                    b.Property<string>("ContentQuestion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

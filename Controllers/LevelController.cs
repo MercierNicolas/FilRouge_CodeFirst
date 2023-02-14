@@ -29,6 +29,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
             var levelAjout = new Level()
             {
                 LevelName = model.LevelName,
+
             };
             levelRepo.CreateLevel(levelAjout);
             return RedirectToAction("Index");

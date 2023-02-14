@@ -42,7 +42,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                 {
                     QuestionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContentQuestion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Sujetid = table.Column<int>(type: "int", nullable: false),
                     LevelId = table.Column<int>(type: "int", nullable: false)
                 },

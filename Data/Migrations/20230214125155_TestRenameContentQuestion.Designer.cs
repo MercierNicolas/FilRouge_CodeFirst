@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilRougeTestCodeFirst.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230214101310_AjoutChoixQuestions")]
-    partial class AjoutChoixQuestions
+    [Migration("20230214125155_TestRenameContentQuestion")]
+    partial class TestRenameContentQuestion
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,7 +48,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CorrectionId"));
 
-                    b.Property<string>("Content")
+                    b.Property<string>("ContentCorection")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -98,7 +98,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Content")
+                    b.Property<string>("ContentQuestion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
