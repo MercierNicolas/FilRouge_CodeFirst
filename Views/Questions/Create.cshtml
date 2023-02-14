@@ -15,14 +15,14 @@
             <div class="form-group">
                 <label asp-for="LevelId" class="control-label"></label>
                 <select asp-for="LevelId" asp-items="@Model.AllLevel" class="form-control">
-                    <option value="None" id="Quiz.Level">---- Choix Level ---- </option>
+                    <option value="None" id="Question.Level">---- Choix Level ---- </option>
                 </select>
                 <span asp-validation-for="@Model.question.Level" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="sujetId" class="control-label"></label>
                 <select asp-for="sujetId" asp-items="@Model.AllSujet" class="form-control">
-                    <option value="None" id="Quiz.Sujet">---- Choix du Sujet ---- </option>
+                    <option value="None" id="Question.Sujet">---- Choix du Sujet ---- </option>
                 </select>
                 <span asp-validation-for="@Model.question.Sujet" class="text-danger"></span>
             </div>
