@@ -13,5 +13,6 @@ namespace FilRouge_Test_CodeFirst.Data.Entity
 		public Level Level { get; set; }
         public virtual ICollection<AnswerChoice> AnswerChoice { get; set; }
 
+
     }
 }

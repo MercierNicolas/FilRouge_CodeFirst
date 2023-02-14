@@ -29,12 +29,18 @@
                                     <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Ajouter</span>
                                 </a>
                                 <ul class="collapse nav flex-column ms-5" id="submenu1" data-bs-parent="#menu">
+
+                                    @if(this.User.IsInRole(Roles.Administrator))
+                                    {
                                     <li class="w-100">
-                                        <a href="#" class="nav-link px-0 p-3 "> <span class="d-none d-sm-inline text-white">Candidats</span> </a>
+                                        <a href="#" class="nav-link px-0 p-3 "> <span class="d-none d-sm-inline text-white">Recruteurs</span> </a>
                                     </li>
+                                    }
+
                                     <li>
-                                        <a href="#" class="nav-link px-0 p-3 "> <span class="d-none d-sm-inline text-white">Recruteurs</span></a>
+                                        <a href="#" class="nav-link px-0 p-3 "> <span class="d-none d-sm-inline text-white">Candidats</span></a>
                                     </li>
+
                                 </ul>
                             </li>
                             <li>
@@ -56,14 +62,20 @@
                                     </li>
                                 </ul>
                             </li>
+
                             <li>
                                 <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle" id="hoverWhite">
                                     <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline" id="hoverWhite">Voir</span>
                                 </a>
                                 <ul class="collapse nav flex-column ms-4" id="submenu3" data-bs-parent="#menu">
+
+                                    @if (this.User.IsInRole(Roles.Administrator))
+                                    {
                                     <li class="w-100">
                                         <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white">Recruteur</span> </a>
                                     </li>
+                                    }
+
                                     <li>
                                         <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white">Candidats</span> </a>
                                     </li>
@@ -72,9 +84,9 @@
                                     </li>
                                 </ul>
                             </li>
+
                         </ul>
                         <hr>
-                        <partial name="_LoginPartial" />
                     </div>
                 </div>
                 <div class="col py-3">

@@ -1,5 +1,6 @@
 using FilRouge_Test_CodeFirst.Data;
 using FilRouge_Test_CodeFirst.Domaine;
+using HashidsNet;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+	.AddRoles<IdentityRole>()
 	.AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
@@ -20,7 +22,14 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IQuizRepository, DbQuizRepo>();
 builder.Services.AddScoped<ILevelRepository, DbLevelRepo>();
 builder.Services.AddScoped<ISujetRepository, DbSujetlRepo>();
+
 builder.Services.AddScoped<IQuestionRepository, DbQuestionRepository>();
+
+
+// add middlware hashids
+builder.Services.AddSingleton<IHashids>(_ =>new Hashids("gael", 11));
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

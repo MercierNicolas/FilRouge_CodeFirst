@@ -20,26 +20,17 @@
                 <input asp-for="@Model.Quiz.Name" class="form-control" />
                 <span asp-validation-for="@Model.Quiz.Name" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="@Model.Quiz.Code" class="control-label"></label>
-                <input asp-for="@Model.Quiz.Code" class="form-control" />
-                <span asp-validation-for="@Model.Quiz.Code" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.Quiz.Average" class="control-label"></label>
-                <label asp-for="@Model.Quiz.Average" class="control-label"></label>
-                <input asp-for="@Model.Quiz.Average" class="form-control" />
-                <span asp-validation-for="@Model.Quiz.Average" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LevelId" class="control-label"></label>
+                <label asp-for="LevelId" class="control-label">Level</label>
                 <select asp-for="LevelId" asp-items="@Model.AllLevel" class="form-control">
                     <option value="None" id="Quiz.Level">---- Choix Level ---- </option>
                 </select>
                 <span asp-validation-for="@Model.Quiz.Level" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="sujetId" class="control-label"></label>
+                <label asp-for="sujetId" class="control-label">Sujet</label>
                 <select asp-for="sujetId" asp-items="@Model.AllSujet" class="form-control">
                     <option value="None" id="Quiz.Sujet">---- Choix du Sujet ---- </option>
                 </select>
