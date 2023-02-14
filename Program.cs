@@ -20,6 +20,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IQuizRepository, DbQuizRepo>();
 builder.Services.AddScoped<ILevelRepository, DbLevelRepo>();
 builder.Services.AddScoped<ISujetRepository, DbSujetlRepo>();
+builder.Services.AddScoped<IQuestionRepository, DbQuestionRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
