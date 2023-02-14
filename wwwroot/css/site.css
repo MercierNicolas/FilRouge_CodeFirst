@@ -58,13 +58,19 @@ li {
 }
 
 #border {
-    border-radius: 50px 50px 50px 50px;
-    -moz-border-radius: 50px 50px 50px 50px;
-    -webkit-border-radius: 50px 50px 50px 50px;
-    border: 5px outset #000000;
-    background-color: aliceblue;
+    border-radius: 25px 25px 25px 25px;
+    -moz-border-radius: 25px 25px 25px 25px;
+    -webkit-border-radius: 25px 25px 25px 25px;
+    background: rgba(242,246,248,1);
+    background: -moz-linear-gradient(top, rgba(242,246,248,1) 0%, rgba(216,225,231,0.86) 41%, rgba(181,198,208,0.77) 66%, rgba(224,239,249,0.65) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(242,246,248,1)), color-stop(41%, rgba(216,225,231,0.86)), color-stop(66%, rgba(181,198,208,0.77)), color-stop(100%, rgba(224,239,249,0.65)));
+    background: -webkit-linear-gradient(top, rgba(242,246,248,1) 0%, rgba(216,225,231,0.86) 41%, rgba(181,198,208,0.77) 66%, rgba(224,239,249,0.65) 100%);
+    background: -o-linear-gradient(top, rgba(242,246,248,1) 0%, rgba(216,225,231,0.86) 41%, rgba(181,198,208,0.77) 66%, rgba(224,239,249,0.65) 100%);
+    background: -ms-linear-gradient(top, rgba(242,246,248,1) 0%, rgba(216,225,231,0.86) 41%, rgba(181,198,208,0.77) 66%, rgba(224,239,249,0.65) 100%);
+    background: linear-gradient(to bottom, rgba(242,246,248,1) 0%, rgba(216,225,231,0.86) 41%, rgba(181,198,208,0.77) 66%, rgba(224,239,249,0.65) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9', GradientType=0 );
 }
-
+/*
 #account {
     padding-left: 15px;
     border-right-style: solid;
@@ -72,7 +78,7 @@ li {
     padding-right: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
-}
+}*/
 
 #boxLogIn {
     display: flex;
