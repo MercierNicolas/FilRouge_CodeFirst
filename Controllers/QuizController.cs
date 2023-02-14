@@ -88,6 +88,12 @@ namespace FilRouge_Test_CodeFirst.Controllers
             
             return View(OneQuiz.First());
         }
+        [HttpPost]
+        public IActionResult DeleteQuiz(Quiz model)
+        {
+            quizRepo.DeleteQuiz(model.QuizzId);
+            return RedirectToAction("Index");
+        }
 
     }
 }
