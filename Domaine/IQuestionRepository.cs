@@ -5,7 +5,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
 {
     public interface IQuestionRepository
     {
-        int CreateQuestion(Question question, int levelId, int sujetId);
+        int CreateQuestion(Question question, int levelId, int sujetId ,Dictionary<string, int> DictionaryChoix);
         IEnumerable<Question> GetAllQuestions();
         IEnumerable<Question> GetOneQuestion();
         int DeleteQuestion();
@@ -19,7 +19,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
             this._context = context;
         }
 
-        public int CreateQuestion(Question question, int levelId, int sujetId)
+        public int CreateQuestion(Question question, int levelId, int sujetId ,Dictionary<string,int> DictionaryChoix)
         {
             // On recupére l'id de la vue a l'aide du controlleur et on appele de la BDD les level avec le where on recupere le bon id
             var selectLvl = _context.levels.Where(lvl => lvl.Id == levelId).First();
@@ -29,6 +29,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
             // Meme fonctionnement que en haut mais la pour le Sujet
             var selectSujet = _context.sujets.Where(sujet => sujet.id == sujetId).First();
             question.Sujet = (Sujet?)selectSujet;
+
 
             _context.Questions.Add(question);
             _context.SaveChanges();
