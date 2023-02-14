@@ -32,12 +32,17 @@
                                     <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline text-light hover">Ajouter</span>
                                 </a>
                                 <ul class="collapse nav flex-column ms-5" id="submenu1" data-bs-parent="#menu">
-                                    <li class="w-100">
-                                        <a href="#" class="nav-link px-0 p-3 "> <span class="d-none d-sm-inline text-white hover">Candidats</span> </a>
-                                    </li>
+
+                                    @if(this.User.IsInRole(Roles.Administrator))
+                                    {
                                     <li>
                                         <a href="#" class="nav-link px-0 p-3 "> <span class="d-none d-sm-inline text-white hover">Recruteurs</span></a>
+
+                                        <a href="#" class="nav-link px-0 p-3 "> <span class="d-none d-sm-inline text-white">Candidats</span></a>
                                     </li>
+                                    }
+
+
                                 </ul>
                             </li>
                             <li>
@@ -59,14 +64,20 @@
                                     </li>
                                 </ul>
                             </li>
+
                             <li>
                                 <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-light" id="hoverWhite">
                                     <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline text-light" id="hoverWhite hover">Voir</span>
                                 </a>
                                 <ul class="collapse nav flex-column ms-4" id="submenu3" data-bs-parent="#menu">
+
+                                    @if (this.User.IsInRole(Roles.Administrator))
+                                    {
                                     <li class="w-100">
                                         <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white hover">Recruteur</span> </a>
                                     </li>
+                                    }
+
                                     <li>
                                         <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white hover">Candidats</span> </a>
                                     </li>
@@ -75,9 +86,9 @@
                                     </li>
                                 </ul>
                             </li>
+
                         </ul>
                         <hr>
-                        <partial name="_LoginPartial" />
                     </div>
                 </div>
                 <div class="col py-3">

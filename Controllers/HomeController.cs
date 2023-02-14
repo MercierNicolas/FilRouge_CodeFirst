@@ -5,7 +5,6 @@ using System.Diagnostics;
 
 namespace FilRouge_Test_CodeFirst.Controllers
 {
-
 	[Authorize]
 	public class HomeController : Controller
 	{

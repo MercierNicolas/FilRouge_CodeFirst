@@ -14,5 +14,6 @@
 
         public IEnumerable<SelectListItem> AllSujet { get; set; }
         public int sujetId { get; set; }
+        public string Code { get; set; }
     }
 }
