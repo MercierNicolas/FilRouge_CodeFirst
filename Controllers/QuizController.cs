@@ -14,7 +14,6 @@ namespace FilRouge_Test_CodeFirst.Controllers
         private readonly IQuizRepository quizRepo;
         private readonly ILevelRepository levelRepo;
         private readonly ISujetRepository sujetRepo;
-
         private readonly IQuestionRepository questionRepo;
         private readonly IHashids _hashids;
 
@@ -124,6 +123,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
             var guid = Guid.NewGuid().ToString();
             return guid;
         }
+
 
         public IActionResult EditQuiz(int id)
         {

@@ -10,6 +10,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
         int CreateQuiz(Quiz quiz, int levelId, int sujetId);
         IEnumerable<Quiz> GetAllQuiz();
         IEnumerable<Quiz> GetOneQuiz(int id);
+
         int DeleteQuiz(int id);
 
         int AddQuestionQuiz(int id, List<Question> ListQuestion);
@@ -61,6 +62,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
             return 0;
 
         }
+
         public int AddQuestionQuiz(int id, List<Question> ListQuestion)
         {
             var quizSelect = _context.Quiz.Where(q => q.QuizzId == id).First();
@@ -84,13 +86,8 @@ namespace FilRouge_Test_CodeFirst.Domaine
         }
 
 
-        public int DeleteQuiz(int Id)
-        {
-            var quizADelete = _context.Quiz.Where(q => q.QuizzId == Id).ToList();
-            _context.Quiz.RemoveRange(quizADelete);
-            _context.SaveChanges();
-            return 0;
 
-        }
+
+
     }
 }
