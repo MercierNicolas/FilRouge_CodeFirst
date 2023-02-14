@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilRougeTestCodeFirst.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230214125824_AjoutChoixQuestion")]
-    partial class AjoutChoixQuestion
+    [Migration("20230214152959_ModificationTableCorrection")]
+    partial class ModificationTableCorrection
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CorrectionQuestion", b =>
+            modelBuilder.Entity("AnswerChoiceQuestion", b =>
                 {
                     b.Property<int>("CorrectionId")
                         .HasColumnType("int");
@@ -37,7 +37,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
 
                     b.HasIndex("QuestionId");
 
-                    b.ToTable("CorrectionQuestion");
+                    b.ToTable("AnswerChoiceQuestion");
                 });
 
             modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.AnswerChoice", b =>
@@ -52,9 +52,12 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsCorrect")
+                        .HasColumnType("bit");
+
                     b.HasKey("CorrectionId");
 
-                    b.ToTable("corrections");
+                    b.ToTable("AnswerChoice");
                 });
 
             modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Level", b =>
@@ -491,7 +494,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                     b.ToTable("QuestionQuiz");
                 });
 
-            modelBuilder.Entity("CorrectionQuestion", b =>
+            modelBuilder.Entity("AnswerChoiceQuestion", b =>
                 {
                     b.HasOne("FilRouge_Test_CodeFirst.Data.Entity.AnswerChoice", null)
                         .WithMany()

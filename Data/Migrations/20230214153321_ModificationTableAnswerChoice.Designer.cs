@@ -4,6 +4,7 @@ using FilRouge_Test_CodeFirst.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilRougeTestCodeFirst.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230214153321_ModificationTableAnswerChoice")]
+    partial class ModificationTableAnswerChoice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,6 +74,22 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionId"));
+
+                    b.Property<string>("Choix1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Choix2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Choix3")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Choix4")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ContentQuestion")
                         .IsRequired()
@@ -468,7 +487,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
             modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.AnswerChoice", b =>
                 {
                     b.HasOne("FilRouge_Test_CodeFirst.Data.Entity.Question", "questionId")
-                        .WithMany("AnswerChoice")
+                        .WithMany("Correction")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -634,7 +653,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
 
             modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.Question", b =>
                 {
-                    b.Navigation("AnswerChoice");
+                    b.Navigation("Correction");
                 });
 
             modelBuilder.Entity("FilRouge_Test_CodeFirst.Data.Entity.QuestionAnswer", b =>
