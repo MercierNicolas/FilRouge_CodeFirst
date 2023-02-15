@@ -16,5 +16,10 @@ namespace FilRouge_Test_CodeFirst.Models
         public string Choix3 { get; set; }
         public string Choix4 { get; set; }
 
+        public bool IsCorrectChoix1 { get; set; }
+        public bool IsCorrectChoix2 { get; set; }
+        public bool IsCorrectChoix3 { get; set; }
+        public bool IsCorrectChoix4 { get; set; }
+
     }
 }
