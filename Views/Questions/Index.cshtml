@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ContentQuestion)
+                Intitulée de la question
             </th>
             <th>
                 Choix 1
@@ -28,10 +28,10 @@
                 Choix 4
             </th>
              <th>
-                @Html.DisplayNameFor(model => model.Level.LevelName)
+                Level de la question
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Sujet.SujetName)
+                Sujet de la question
             </th>
             <th></th>
         </tr>
@@ -47,30 +47,19 @@
                 {
                     if(rep.IsCorrect == true)
                     {
-                     <td style="color:aquamarine">
+                     <td style="color:green">
                         @rep.ContentCorection
                      </td>
                     }
                     else
                     {
-                    <td >
+                    <td style="color:red" >
                         @rep.ContentCorection
                      </td> 
                     }
 
                 }
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.AnswerChoice) 
-            </td>
-            <td>
                
-            </td>
-            <td>
-                
-            </td>
-            <td>
-                
-            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Level.LevelName)
             </td>
@@ -79,7 +68,7 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.QuestionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.QuestionId">Details</a> |
+                @*<a asp-action="Details" asp-route-id="@item.QuestionId">Details</a> | *@
                 <a asp-action="Delete" asp-route-id="@item.QuestionId">Delete</a>
             </td>
         </tr>
