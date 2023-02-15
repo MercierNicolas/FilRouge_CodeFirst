@@ -8,8 +8,8 @@ namespace FilRouge_Test_CodeFirst.Domaine
     {
         int CreateQuestion(Question question, int levelId, int sujetId, Dictionary<string, bool> DictionaryChoix);
         IEnumerable<Question> GetAllQuestions();
-        IEnumerable<Question> GetOneQuestion();
-        int DeleteQuestion();
+        IEnumerable<Question> GetOneQuestion(int id);
+        int DeleteQuestion(int id);
     }
 
     public class DbQuestionRepository : IQuestionRepository
@@ -50,7 +50,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
             return question.QuestionId;
         }
 
-        public int DeleteQuestion()
+        public int DeleteQuestion(int id)
         {
             throw new NotImplementedException();
         }
@@ -61,9 +61,9 @@ namespace FilRouge_Test_CodeFirst.Domaine
             return _context.Questions.Include(l => l.Level).Include(s => s.Sujet).Include(rep => rep.AnswerChoice).ToList();
         }
 
-        public IEnumerable<Question> GetOneQuestion()
+        public IEnumerable<Question> GetOneQuestion(int id)
         {
-            throw new NotImplementedException();
+            return _context.Questions.Where(q => q.QuestionId == id).Include(rep => rep.AnswerChoice).ToList();
         }
     }
 }

@@ -41,9 +41,10 @@ namespace FilRouge_Test_CodeFirst.Controllers
         }
 
         // GET: Questions/Details/5
-        public IActionResult Details(int? id)
+        public IActionResult Details(int id)
         {
-            return View();
+            var oneQuestion = questionRepo.GetOneQuestion(id);
+            return View(oneQuestion.First());
         }
 
         // GET: Questions/Create

@@ -16,30 +16,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ContentQuestion)
         </dd>
-@*        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Choix1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Choix1)
+        <dd class="col-sm-10">
+            @foreach(var rep in Model.AnswerChoice)
+            {
+               <dt> @rep.ContentCorection </dt>
+            }
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Choix2)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Choix2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Choix3)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Choix3)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Choix4)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Choix4)
-        </dd>*@
     </dl>
 </div>
 <div>
