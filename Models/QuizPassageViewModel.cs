@@ -1,18 +1,22 @@
-﻿namespace FilRouge_Test_CodeFirst.Models
+﻿using FilRouge_Test_CodeFirst.Data.Entity;
+
+namespace FilRouge_Test_CodeFirst.Models
 {
     public class QuizPassageViewModel
     {
         public string ContentQuestion { get; set; }
+        public string ContentCorection { get; set; }
+        public bool IsCorrect { get; set; }
 
-        public List<QuizzOptionViewModel> Checkboxes { get; set; }
+        public string Answers { get; set; }
 
+        public  IEnumerable<AnswerChoice> AnswerChoice { get; set; } 
 
-        public string Choix1 { get; set; }
-        public string Choix2 { get; set; }
-        public string Choix3 { get; set; }
-        public string Choix4 { get; set; }
+        public int QuestionId { get; set; } 
+        public string? Name { get; set; }
+        public string? Code { get; set; }
+        public int? Average { get; set; }
 
-       
 
 
     }
