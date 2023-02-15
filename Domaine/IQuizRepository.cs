@@ -9,7 +9,6 @@ namespace FilRouge_Test_CodeFirst.Domaine
         int CreateQuiz(Quiz quiz, int levelId, int sujetId);
         IEnumerable<Quiz> GetAllQuiz();
         IEnumerable<Quiz> GetOneQuiz(int id);
-
         int DeleteQuiz(int id);
 
     }
@@ -59,6 +58,5 @@ namespace FilRouge_Test_CodeFirst.Domaine
             return 0;
 
         }
-
     }
 }

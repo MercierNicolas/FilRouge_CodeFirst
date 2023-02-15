@@ -1,12 +1,13 @@
 ﻿using FilRouge_Test_CodeFirst.Data;
 using FilRouge_Test_CodeFirst.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace FilRouge_Test_CodeFirst.Domaine
 {
     public interface IQuestionRepository
     {
         int CreateQuestion(Question question, int levelId, int sujetId ,Dictionary<string, int> DictionaryChoix);
-        IEnumerable<Question> GetAllQuestions();
+        List<Question> GetAllQuestions();
         IEnumerable<Question> GetOneQuestion();
         int DeleteQuestion();
     }
@@ -41,9 +42,9 @@ namespace FilRouge_Test_CodeFirst.Domaine
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Question> GetAllQuestions()
+        public List<Question> GetAllQuestions()
         {
-            return _context.Questions;
+            return _context.Questions.Include(rep => rep.AnswerChoice).ToList();
         }
 
         public IEnumerable<Question> GetOneQuestion()
