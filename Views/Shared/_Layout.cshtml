@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FilRouge.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 </head>
 <body>
@@ -74,6 +74,7 @@
                     </div>
                 </div>
                 <div class="col py-3">
+                    
                     @RenderBody()
                 </div>
             </div>
@@ -96,6 +97,28 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "My First Chart in ASP.NET MVC"
+                },
+                data: [
+                    {
+                        // Change type to "doughnut", "line", "splineArea", etc.
+                        type: "doughnut",
+                        dataPoints: [
+                            { label: "apple", y: 10 },
+                            { label: "orange", y: 15 },
+                            { label: "banana", y: 25 },
+                            { label: "mango", y: 30 },
+                            { label: "grape", y: 28 }
+                        ]
+                    }
+                ]
+            });
+            chart.render();
+        }</script>
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>

@@ -1,12 +1,22 @@
 ﻿@model IEnumerable<FilRouge_Test_CodeFirst.Data.Entity.Quiz>
 
-<h1>Page des Quiz</h1>
+<h1 style ="text-align : center">Page des Quiz</h1>
 
-<a asp-action="AddQuiz">Ajouter un quiz</a>
+@*<button type="button" class="myButton mb-6">
 
-<table class="table">
+    <a asp-action="AddQuiz" class="text-white">Ajouter un quiz</a>
+
+</button>*@
+
+<button type="button" class="myButton mb-6" onclick="window.location.href='@Url.Action("AddQuiz")'">
+    Ajouter un quiz
+</button>
+
+
+<div class="d-flex justify-content-center ">
+    <table class="table table-hover table-striped table-responsive table-light">
     <thead>
-        <tr>
+        <tr class="table-primary">
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -28,7 +38,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+                <tr class="table">
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
@@ -47,9 +57,10 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.QuizzId">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.QuizzId">Details</a> |
-                    <a asp-action="DeleteQuiz" asp-route-id="@item.QuizzId">Delete</a>
+                    <a asp-action="DeleteQuiz" asp-route-id="@item.QuizzId">Supprimer</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+</div>
