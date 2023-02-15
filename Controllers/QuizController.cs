@@ -14,6 +14,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
         private readonly IQuizRepository quizRepo;
         private readonly ILevelRepository levelRepo;
         private readonly ISujetRepository sujetRepo;
+
         private readonly IQuestionRepository questionRepo;
         private readonly IHashids _hashids;
 
@@ -138,6 +139,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
             return View(DetailQuiz.First());
         }
+
 
         public IActionResult AddQuestionQuiz(int id)
         {

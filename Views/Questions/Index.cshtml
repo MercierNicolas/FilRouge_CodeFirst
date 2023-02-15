@@ -13,22 +13,7 @@
     <thead>
         <tr>
             <th>
-<<<<<<< HEAD
-                @Html.DisplayNameFor(model => model.ContentQuestion)
-            </th>
-  @*          <th>
-                @Html.DisplayNameFor(model => model.Choix1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Choix2)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Choix3)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Choix4)
-            </th>*@
-=======
+
                 Intitulée de la question
             </th>
             <th>
@@ -49,7 +34,7 @@
             <th>
                 Sujet de la question
             </th>
->>>>>>> 80a4d066103dc3f0d8cf1b71c1308f80b5b8eaf7
+ 
             <th></th>
         </tr>
     </thead>
@@ -59,23 +44,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ContentQuestion)
             </td>
-<<<<<<< HEAD
-       @*     <td>
-                @Html.DisplayFor(modelItem => item.Choix1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Choix2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Choix3)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Choix4)
-            </td>*@
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.QuestionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.QuestionId">Details</a> |
-=======
 
                 @foreach(var rep in item.AnswerChoice)
                 {
@@ -102,8 +70,9 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.QuestionId">Edit</a> |
+ 
                 <a asp-action="Details" asp-route-id="@item.QuestionId">Details</a> | 
->>>>>>> 80a4d066103dc3f0d8cf1b71c1308f80b5b8eaf7
+
                 <a asp-action="Delete" asp-route-id="@item.QuestionId">Delete</a>
             </td>
         </tr>
