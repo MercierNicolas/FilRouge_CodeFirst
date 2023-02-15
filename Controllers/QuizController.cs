@@ -119,5 +119,19 @@ namespace FilRouge_Test_CodeFirst.Controllers
             var guid = Guid.NewGuid().ToString();
             return guid;
         }
+
+        public IActionResult EditQuiz(int id)
+        {
+            var editQuiz = quizRepo.GetOneQuiz(id);
+            
+            return View(editQuiz.First()); 
+        }
+
+        public IActionResult DetailQuiz (int id)
+        {
+            var DetailQuiz = quizRepo.GetOneQuiz(id);
+
+            return View(DetailQuiz.First());
+        }
     }
 }
