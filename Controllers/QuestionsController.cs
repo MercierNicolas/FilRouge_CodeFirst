@@ -82,16 +82,16 @@ namespace FilRouge_Test_CodeFirst.Controllers
             var questionAdd = new Question()
             {
                 ContentQuestion = model.question.ContentQuestion,
-                //Choix1= model.question.Choix1,
-                //Choix2= model.question.Choix2,
-                //Choix3= model.question.Choix3,
-                //Choix4= model.question.Choix4,                                
+                           
             };
-            Dictionary<string, int> DictionaryChoix = new Dictionary<String, int>();
-            DictionaryChoix.Add(model.Choix1, 1);
-            DictionaryChoix.Add(model.Choix2, 1);
-            DictionaryChoix.Add(model.Choix3, 1);
-            DictionaryChoix.Add(model.Choix4, 1);
+            Dictionary<string, bool> DictionaryChoix = new Dictionary<string, bool>();
+            DictionaryChoix.Add(model.Choix1, model.IsCorrectChoix1);
+            DictionaryChoix.Add(model.Choix2, model.IsCorrectChoix2);
+            DictionaryChoix.Add(model.Choix3, model.IsCorrectChoix3);
+            DictionaryChoix.Add(model.Choix4, model.IsCorrectChoix4);
+
+            var testListe = new List<string>();
+
 
             questionRepo.CreateQuestion(questionAdd, model.LevelId, model.sujetId, DictionaryChoix);
             return RedirectToAction("Index");
