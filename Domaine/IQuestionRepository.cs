@@ -1,5 +1,6 @@
 ﻿using FilRouge_Test_CodeFirst.Data;
 using FilRouge_Test_CodeFirst.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace FilRouge_Test_CodeFirst.Domaine
 {
@@ -56,7 +57,8 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
         public IEnumerable<Question> GetAllQuestions()
         {
-            return _context.Questions;
+            // return _context.Quiz.Include(l => l.Level).Include(s => s.Sujet).ToList();
+            return _context.Questions.Include(l => l.Level).Include(s => s.Sujet).Include(rep => rep.AnswerChoice).ToList();
         }
 
         public IEnumerable<Question> GetOneQuestion()
