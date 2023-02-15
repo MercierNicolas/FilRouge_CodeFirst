@@ -15,8 +15,6 @@ namespace FilRouge_Test_CodeFirst.Domaine
         int UpdateQuestion(int id, Question question /*, Dictionary<string, bool> DictionaryChoix*/);
         List<Question> GetQuestionWithSujet(Sujet sujet);
         List<Question> GetQuestionWithIds(List<int> ids);
-
-
     }
 
     public class DbQuestionRepository : IQuestionRepository
@@ -64,7 +62,6 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
         public IEnumerable<Question> GetAllQuestions()
         {
-            // return _context.Quiz.Include(l => l.Level).Include(s => s.Sujet).ToList();
             return _context.Questions.Include(l => l.Level).Include(s => s.Sujet).Include(rep => rep.AnswerChoice).ToList();
         }
 

@@ -88,7 +88,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
         [HttpPost]
         public IActionResult AddQuiz(QuizViewModel model)
         {
-            string testCOde = "55";
+           
             // On crée une variable de type quiz que stock le nom le code et l'Averrage
             var quizAdd = new Quiz()
             {

@@ -1,0 +1,37 @@
+﻿
+@using FilRouge_Test_CodeFirst.Data.Entity
+
+
+@model List<Question>;
+
+
+
+<form asp-controller="Passage" asp-action="PassageQuiz" method="post">
+    @foreach (var test in Model)
+    {
+        <div>
+            <h4>@test.ContentQuestion</h4>
+        </div>
+        foreach (var checkanwers in test.AnswerChoice)
+        {
+            <div class="form-check">
+                <input class="from-check-input"
+                   type="checkbox"
+                   value="@checkanwers.ContentCorection"
+                   name=""
+                   id="@checkanwers.CorrectionId"
+
+                    />
+            <label class="form-check-label" for="">
+                @checkanwers.ContentCorection
+            </label>
+
+
+        </div>
+        }
+    }
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Valider</button>
+    </div>
+
+</form>
