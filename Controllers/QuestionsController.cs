@@ -33,6 +33,9 @@ namespace FilRouge_Test_CodeFirst.Controllers
         public IActionResult Index()
         {
             var listQuestion = questionRepo.GetAllQuestions();
+            
+
+
 
             return View(listQuestion);
         }
@@ -46,7 +49,6 @@ namespace FilRouge_Test_CodeFirst.Controllers
         // GET: Questions/Create
         public IActionResult Create()
         {
-            // On crée un QuizViewModel qui comprend les contenue d'un quiz
             QuestionViewModel QuestionViewModel = new QuestionViewModel();
             QuestionViewModel.question = new Question();
             // Recuper tout les sujet et level 
