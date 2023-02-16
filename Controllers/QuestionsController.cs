@@ -100,5 +100,24 @@ namespace FilRouge_Test_CodeFirst.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Edit(int id)
+        {
+            var oneQuestion = questionRepo.GetOneQuestion(id);
+            return View(oneQuestion.First());
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Question model ,AnswerChoice answerChoice)
+        {
+            
+            //Dictionary<string, bool> DictionaryChoix = new Dictionary<string, bool>();
+            //foreach(var rep in model.AnswerChoice)
+            //{
+            //    DictionaryChoix.Add(rep.ContentCorection, rep.IsCorrect);
+            //}
+            questionRepo.UpdateQuestion(model.QuestionId, model/*DictionaryChoix*/);
+            return RedirectToAction("Index");
+        }
+
     }
 }

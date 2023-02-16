@@ -12,7 +12,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
         IEnumerable<Quiz> GetOneQuiz(int id);
 
         int DeleteQuiz(int id);
-
+        int AddQuestionQuiz(int id, List<Question> ListQuestion);
     }
 
     public class DbQuizRepo : IQuizRepository
@@ -59,6 +59,27 @@ namespace FilRouge_Test_CodeFirst.Domaine
             _context.SaveChanges();
             return 0;
 
+        }
+        public int AddQuestionQuiz(int id, List<Question> ListQuestion)
+        {
+            var quizSelect = _context.Quiz.Where(q => q.QuizzId == id).First();
+
+            // var i = 0;
+            //// List<Question> ListQuestionSelect;
+            // foreach (var questionIdSelect in ListIdQuestion)
+            // {
+            //    var ListQuestionSelect = _context.Questions.Where(q => q.QuestionId == questionIdSelect).ToList();
+
+            //     quizSelect.Questions = (ICollection<Question>?)ListQuestionSelect;
+
+
+
+            // }
+            quizSelect.Questions = ListQuestion;
+            _context.Quiz.Update(quizSelect);
+            _context.SaveChanges();
+
+            return 0;
         }
 
     }
