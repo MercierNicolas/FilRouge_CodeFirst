@@ -1,6 +1,8 @@
 ﻿using FilRouge_Test_CodeFirst.Data;
 using FilRouge_Test_CodeFirst.Data.Entity;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace FilRouge_Test_CodeFirst.Domaine
 {
@@ -10,6 +12,11 @@ namespace FilRouge_Test_CodeFirst.Domaine
         IEnumerable<Question> GetAllQuestions();
         IEnumerable<Question> GetOneQuestion(int id);
         int DeleteQuestion(int id);
+        int UpdateQuestion(int id, Question question /*, Dictionary<string, bool> DictionaryChoix*/);
+        List<Question> GetQuestionWithSujet(Sujet sujet);
+        List<Question> GetQuestionWithIds(List<int> ids);
+
+
     }
 
     public class DbQuestionRepository : IQuestionRepository
@@ -65,5 +72,41 @@ namespace FilRouge_Test_CodeFirst.Domaine
         {
             return _context.Questions.Where(q => q.QuestionId == id).Include(rep => rep.AnswerChoice).ToList();
         }
+        public int UpdateQuestion(int id, Question question/*, Dictionary<string, bool> DictionaryChoix*/)
+        {
+            _context.Questions.Update(question);
+            //foreach(var rep in DictionaryChoix)
+            //{
+            //    var saveChoice = new AnswerChoice { ContentCorection = rep.Key, IsCorrect = rep.Value, questionId = question };
+            //    _context.AnswerChoice.Update(saveChoice);
+            //}
+           
+            _context.SaveChanges();
+            return 0;
+        }
+
+        public List<Question> GetQuestionWithSujet(Sujet sujet)
+        {
+            return _context.Questions.Where(q => q.Sujet == sujet).Include(rep => rep.AnswerChoice).Include(s => s.Sujet).ToList();
+        }
+
+        public List<Question> GetQuestionWithIds(List<int> ids) 
+        {
+            var allQuestion = GetAllQuestions();
+            List<Question> result = new List<Question>();
+            foreach (var question in allQuestion)
+            {
+                foreach(var id in ids)
+                {
+                    if(id == question.QuestionId)
+                    {
+                        result.Add(question);
+                    }
+                }
+            }
+            return result;
+        }
+
+
     }
 }

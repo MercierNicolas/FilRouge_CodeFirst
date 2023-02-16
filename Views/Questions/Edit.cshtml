@@ -1,4 +1,5 @@
 ﻿@model FilRouge_Test_CodeFirst.Data.Entity.Question
+@using static FilRouge_Test_CodeFirst.Models.QuestionViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -18,6 +19,20 @@
                 <input asp-for="ContentQuestion" class="form-control" />
                 <span asp-validation-for="ContentQuestion" class="text-danger"></span>
             </div>
+            <input type="hidden" asp-for="@Model.AnswerChoice">
+            @foreach(var rep in Model.AnswerChoice)
+            {
+                
+                <div class="form-group">
+                    <input type="hidden" asp-for="@rep.CorrectionId" />
+
+                    <label asp-for="@rep.ContentCorection" class="control-label"> Choix :</label>
+                    <input asp-for="@rep.ContentCorection" class="form-control" />
+                    <input asp-for="@rep.IsCorrect" class="form-controle" />
+                    <span asp-validation-for="@rep.ContentCorection" class="text-danger"></span>
+                  
+            </div> 
+            }
 @*            <div class="form-group">
                 <label asp-for="Choix1" class="control-label"></label>
                 <input asp-for="Choix1" class="form-control" />

@@ -14,16 +14,17 @@ namespace FilRouge_Test_CodeFirst.Controllers
         private readonly IQuizRepository quizRepo;
         private readonly ILevelRepository levelRepo;
         private readonly ISujetRepository sujetRepo;
+        private readonly IQuestionRepository questionRepo;
         private readonly IHashids _hashids;
 
         // Permet d'apeller les Interface ou ce trouve les methodes qui permet le CRUD
-        public QuizController(IQuizRepository quizAdd, ILevelRepository levelRepo, ISujetRepository sujetRepo, IHashids hashids)
+        public QuizController(IQuizRepository quizAdd, ILevelRepository levelRepo, ISujetRepository sujetRepo, IHashids hashids, IQuestionRepository questionRepo)
         {
             // Permet d'affecter à la variable l'interface afin de pouvoir utiliser les méthode
             this.quizRepo = quizAdd;
             this.levelRepo = levelRepo;
             this.sujetRepo = sujetRepo;
-
+            this.questionRepo = questionRepo;
             _hashids = hashids;
 
         }
@@ -133,5 +134,34 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
             return View(DetailQuiz.First());
         }
+
+        public IActionResult AddQuestionQuiz(int id)
+        {
+            var OneQuiz = quizRepo.GetOneQuiz(id).ToList().First();
+            var questionList = questionRepo.GetQuestionWithSujet(OneQuiz.Sujet);
+            var addQuestionQuiz = new AddQuestionQuizViewModel
+            {
+                QuizAddQuestion = (Quiz)OneQuiz,
+                QuestionList = questionList,
+
+            };
+            return View(addQuestionQuiz);
+        }
+
+        [HttpPost]
+        public IActionResult AddQuestionQuiz(AddQuestionQuizViewModel model)
+        {
+            var listQuestion = model.IsCheckedQuestionID;
+            var idQuiz = model.QuizAddQuestion.QuizzId;
+
+            var questionList = questionRepo.GetQuestionWithIds(listQuestion);
+
+
+
+
+            quizRepo.AddQuestionQuiz(idQuiz, questionList);
+            return RedirectToAction("Index");
+        }
+
     }
 }

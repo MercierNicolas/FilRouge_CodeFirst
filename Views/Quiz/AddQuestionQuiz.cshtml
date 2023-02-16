@@ -1,0 +1,48 @@
+﻿@using static FilRouge_Test_CodeFirst.Data.Entity.Quiz
+@model AddQuestionQuizViewModel
+
+<h1>@Model.QuizAddQuestion.Name </h1>
+<h2>Sujet : @Model.QuizAddQuestion.Sujet.SujetName</h2>
+
+<h2>Liste des question avec le sujet : @Model.QuizAddQuestion.Sujet.SujetName</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Intitulé de la question
+            </th>
+            <th>
+                Level de la question
+            </th>
+            <th>
+                Ajouter
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <form asp-controller="Quiz" asp-action="AddQuestionQuiz">
+        @foreach (var ques in Model.QuestionList)
+        {
+                <tr>
+                    <td>
+                    @Html.DisplayFor(modelItem => ques.ContentQuestion)
+                    </td>
+                   <td>
+                    @Html.DisplayFor(modelItem => ques.Level.LevelName)
+                    </td>
+
+                    <td>
+                    <input type="hidden" value="@Model.QuizAddQuestion.QuizzId" asp-for="@Model.QuizAddQuestion.QuizzId">
+                    <input type="checkbox" value="@ques.QuestionId" name="IsCheckedQuestionID" id="@ques.QuestionId"/>
+                    </td>
+                </tr>
+            }
+        <input type="submit" value="Validée" class="btn btn-primary" />
+       
+        </form>
+
+    </tbody>
+</table>
+
+<a asp-action="Index">Back to List</a>
