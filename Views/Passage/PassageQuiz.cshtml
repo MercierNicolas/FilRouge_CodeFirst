@@ -2,13 +2,12 @@
 @using FilRouge_Test_CodeFirst.Models
 
 
-@model List<QuizPassageViewModel>;
+@model QuizPassageViewModel;
 
 
 
-<form asp-controller="Passage" asp-action="PassageQuiz" method="post">
+@*<form asp-controller="Passage" asp-action="PassageQuiz" method="post">
 
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     @foreach (var question in @Model) 
     {
@@ -26,19 +25,13 @@
              </label>
 
 
-
                 <br />
-
-            <input type="hidden" asp-for="@question.AnswerChoice[checkanwers].ContentCorection" />
-            <input type="hidden" asp-for="@question.AnswerChoice[checkanwers].CorrectionId" />
-
+         
         }
 
         <button type="button" class="btn btn-dark">Suivant>></button>
 
 
-            <input type="hidden" asp-for="@question.ContentQuestion" />
-            <input type="hidden" asp-for="@question.QuestionId" />
     }       
     
     <div class="mb-3">
@@ -47,3 +40,37 @@
 
 
 </form>
+*@
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h3>Questions @Model.ContentQuestion</h3>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index" asp-route-id="@Model.QuizzId" asp-route-questionId="@Model.QuestionId">
+            @foreach(var reponse in Model.AnswerChoice)
+            {
+                <div class="form-group">
+                    <input type="checkbox" name="@reponse.CorrectionId" checked="@reponse.IsCorrect">
+                    <label for="@reponse.CorrectionId" class="control-label">@reponse.ContentCorection</label>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Suivant" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
