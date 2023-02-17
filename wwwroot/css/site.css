@@ -87,8 +87,8 @@ li {
     padding: 7px 25px;
     text-decoration: none;
     text-shadow: 0px 1px 0px #528ecc;
-    margin-top: 20px;
-    margin-bottom: 20px
+    margin-top: 50px;
+    margin-bottom: 50px
 }
 
     .myButton:hover {
@@ -234,4 +234,36 @@ h3 {
         top: 1px;
     }
 
+.hover {
+    --c: linear-gradient(#FFF 0 0); /* update the color here */
 
+    padding-bottom: .15em;
+    background: var(--c), var(--c);
+    background-size: .3em .1em;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    transition: .3s linear, background-size .3s .2s linear;
+}
+
+    .hover:hover {
+        background-size: 40% .1em;
+        background-position: 10% 100%, 90% 100%;
+    }
+
+#addQ {
+    border-radius: 15px 15px 15px 15px;
+    -moz-border-radius: 15px 15px 15px 15px;
+    -webkit-border-radius: 15px 15px 15px 15px;
+    background: rgba(227,227,227,1);
+    background: -moz-linear-gradient(left, rgba(227,227,227,1) 0%, rgba(247,247,247,1) 34%, rgba(254,254,254,1) 66%, rgba(227,227,227,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(227,227,227,1)), color-stop(34%, rgba(247,247,247,1)), color-stop(66%, rgba(254,254,254,1)), color-stop(100%, rgba(227,227,227,1)));
+    background: -webkit-linear-gradient(left, rgba(227,227,227,1) 0%, rgba(247,247,247,1) 34%, rgba(254,254,254,1) 66%, rgba(227,227,227,1) 100%);
+    background: -o-linear-gradient(left, rgba(227,227,227,1) 0%, rgba(247,247,247,1) 34%, rgba(254,254,254,1) 66%, rgba(227,227,227,1) 100%);
+    background: -ms-linear-gradient(left, rgba(227,227,227,1) 0%, rgba(247,247,247,1) 34%, rgba(254,254,254,1) 66%, rgba(227,227,227,1) 100%);
+    background: linear-gradient(to right, rgba(227,227,227,1) 0%, rgba(247,247,247,1) 34%, rgba(254,254,254,1) 66%, rgba(227,227,227,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e3e3e3', endColorstr='#e3e3e3', GradientType=1 );
+}
+
+#gros{
+    font-size:30px;
+}

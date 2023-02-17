@@ -4,14 +4,18 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 style="text-align : center"> Sujet</h1>
+<div class="container">
 
-<p>
-    <a asp-action="AddSujet">Create New Sujet</a>
-</p>
+    <button type="button" class="myButton mb-6" onclick="window.location.href='@Url.Action("AddSujet")'">
+    @*<a asp-action="AddSujet">Crée un nouveau sujet</a>*@
+        Crée un nouveau sujet
+    </button>
+
+    <div class="row align-items-center">
 <table class="table">
     <thead>
-        <tr>
+        <tr class="table-primary">
             <th>
                 @Html.DisplayNameFor(model => model.SujetName)
             </th>
@@ -24,10 +28,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.SujetName)
             </td>
-            <td>
-                <a asp-action="DeleteSujet" asp-route-id="@item.id">Delete</a>
+                        <td class="text-right">
+                            <a asp-action="DeleteSujet" asp-route-id="@item.id"> <div class="buttonAjout3">Supprimer </div> </a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+    </div>
+</div>

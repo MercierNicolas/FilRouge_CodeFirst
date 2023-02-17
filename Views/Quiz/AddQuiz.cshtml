@@ -7,12 +7,13 @@
 }
 
 
-<h1>AddQuiz</h1>
+<h1 style="text-align : center">Ajout d'un Quiz</h1>
 
-<h4>Quiz</h4>
+@*<h4 style="text-align : center">Quiz</h4>*@
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="container w-50" style="margin-top: 100px;" id="addQ">
+    <div class="row align-items-center justify-content-center" >
+    <div @*class="col-md-4"*@>
         <form asp-controller="Quiz" asp-action="AddQuiz">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -45,15 +46,19 @@
                 </select>
                 <span asp-validation-for="@Model.Quiz.Sujet" class="text-danger"></span>
             </div>
-            <div class="form-group">
+                <div class="form-group d-flex justify-content-between">
                 <input type="submit" asp-action="AddQuiz" class="btn btn-primary" />
+                    <div>
+                        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                    </div>
             </div>
+              
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+
+
 </div>
 
 @section Scripts {
