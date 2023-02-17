@@ -1,39 +1,49 @@
 ﻿
-@using FilRouge_Test_CodeFirst.Data.Entity
+@using FilRouge_Test_CodeFirst.Models
 
 
-@model List<Question>;
+@model List<QuizPassageViewModel>;
 
 
 
 <form asp-controller="Passage" asp-action="PassageQuiz" method="post">
-    @foreach (var test in Model)
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    @foreach (var question in @Model) 
     {
         <div>
-            <h4>@test.ContentQuestion</h4>
+            <h4>@question.ContentQuestion</h4>
         </div>
-        foreach (var checkanwers in test.AnswerChoice)
+
+        for (var checkanwers = 0; checkanwers < question.AnswerChoice.Count(); checkanwers++)
         {
-            <div class="form-check">
-                <input class="from-check-input"
-                   type="checkbox"
-                   value="@checkanwers.ContentCorection"
-                   name=""
-                   id="@checkanwers.CorrectionId"
-
-                    />
-            <label class="form-check-label" for="">
-                @checkanwers.ContentCorection
-            </label>
+            <input type="checkbox" asp-for="@question.IsCorrect" class="form-check-input"  name="ListCheckChoice"   />
 
 
-        </div>
+            <label class="form-check-label" asp-for="@question.IsCorrect" >
+                @question.AnswerChoice[checkanwers].ContentCorection
+             </label>
+
+
+
+                <br />
+
+            <input type="hidden" asp-for="@question.AnswerChoice[checkanwers].ContentCorection" />
+            <input type="hidden" asp-for="@question.AnswerChoice[checkanwers].CorrectionId" />
+
         }
 
-            <button type="button" class="btn btn-dark">Suivant>></button>
-    }
+        <button type="button" class="btn btn-dark">Suivant>></button>
+
+
+            <input type="hidden" asp-for="@question.ContentQuestion" />
+            <input type="hidden" asp-for="@question.QuestionId" />
+    }       
+    
     <div class="mb-3">
-        <button type="submit" asp-action="PassageQuiz" class="btn btn-primary">Valider</button>
+        <input type="submit" class="btn btn-primary" value="Valider" asp-action="PassageQuiz" />
     </div>
+
 
 </form>

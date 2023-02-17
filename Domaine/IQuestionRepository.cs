@@ -1,5 +1,6 @@
 ﻿using FilRouge_Test_CodeFirst.Data;
 using FilRouge_Test_CodeFirst.Data.Entity;
+using FilRouge_Test_CodeFirst.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;

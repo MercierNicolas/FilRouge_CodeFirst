@@ -21,27 +21,45 @@ namespace FilRouge_Test_CodeFirst.Controllers
             return View();
         }
 
+        
         public IActionResult PassageQuiz()
         {
             var fourAnswers = questionRepo.GetAllQuestions();
+            
+            List<QuizPassageViewModel> listViewModel = new List<QuizPassageViewModel>();
+            
+            foreach (Question questions in fourAnswers)
+            {
+                var questionViewModel = new QuizPassageViewModel
+                {
+                    ContentQuestion = questions.ContentQuestion,
+                    QuestionId = questions.QuestionId,
+                    AnswerChoice= questions.AnswerChoice.ToList(),
+                };
 
-
-            return View(fourAnswers);
+                listViewModel.Add(questionViewModel);
+            }
+            return View(listViewModel);
         }
 
         [HttpPost]
-        public IActionResult PassageQuiz(Question model)
+        [ValidateAntiForgeryToken]
+        public IActionResult PassageQuiz(QuizPassageViewModel model)
         {
-            var resultat = new QuizPassageViewModel
+
+
+            var resultat = new TheAnswer
             {
-                ContentQuestion = model.ContentQuestion,
-                AnswerChoice= model.AnswerChoice,
-                
+
+            Answers = model.AnswerChoice.Where(x => x.IsCorrect).ToString(),
+
             };
 
-            answerRepo.CreateResalt(resultat);
+            return Content($"{resultat.Answers}");
 
-            return RedirectToAction("Index");
+            //answerRepo.CreateResalt(resultat);
+
+            //return RedirectToAction("Index");
         }
 
     }
