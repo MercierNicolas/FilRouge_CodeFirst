@@ -32,7 +32,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
         [Route("/Passage/{id:int}")]
         public IActionResult Welcome(int id, int? questionId)
         {
-            var dataId = passageRepo.GetAllId(id, questionId);
+            var dataId = passageRepo.GetAllId(id, questionId).Where(q => q.QuizzId == id);
 
             return View(dataId.FirstOrDefault());
         }
@@ -52,37 +52,6 @@ namespace FilRouge_Test_CodeFirst.Controllers
         }
 
 
-        //var questionViewModel = new QuizPassageViewModel();
-
-        //foreach (var dataAnswer in dataAnswers.Question)
-        //{
-        //    questionViewModel.QuizzId = id;
-        //    questionViewModel.QuestionId = questionId;
-        //    questionViewModel.ContentQuestion = dataAnswer.ContentQuestion;
-        //    questionViewModel.AnswerChoice = dataAnswer.AnswerChoice.ToList();
-        //}
-
-
-        //public IActionResult PassageQuiz()
-        //{
-        //    var fourAnswers = questionRepo.GetAllQuestions();
-
-        //    List<QuizPassageViewModel> listViewModel = new List<QuizPassageViewModel>();
-
-        //    foreach (Question questions in fourAnswers)
-        //    {
-        //        var questionViewModel = new QuizPassageViewModel
-        //        {
-        //            ContentQuestion = questions.ContentQuestion,
-        //            QuestionId = questions.QuestionId,
-        //            AnswerChoice= questions.AnswerChoice.ToList(),
-        //        };
-
-        //        listViewModel.Add(questionViewModel);
-        //    }
-        //    return View(listViewModel);
-        //}
-
         [HttpPost]
         [Route("/Passage/{id}/{questionId?}")]
         public IActionResult PassageQuiz(int id, int? questionId, IFormCollection input)
@@ -92,32 +61,21 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
             var responseIds = dataAnswers.AnswerChoice.Where(responseId => input.ContainsKey(responseId.CorrectionId.ToString())).Select(i => i.CorrectionId);
 
-            if (dataAnswers.NextQuestionId == null)
+            if (questionId == null)
             {
                 return View("Thank");
             }
 
-            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.NextQuestionId });
+            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.QuestionId });
         }
 
 
-        //public IActionResult PassageQuiz(QuizPassageViewModel model)
-        // {
-        //    var resultat = new TheAnswer
-        //    {
-
-        //    Answers = model.AnswerChoice.Where(x => x.IsCorrect).ToString(),
-
-        //    };
-
-        //    return Content($"{resultat.Answers}");
-
-        //    answerRepo.CreateResalt(resultat);
-
-        //    return RedirectToAction("Index");
-        //}
-
         public IActionResult Thank()
+        {
+            return View();
+        }
+
+        public IActionResult ActionResult(int id)
         {
             return View();
         }

@@ -42,6 +42,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
             return listId;
         }
 
+
         public QuizPassageViewModel GetQuizPassage(int quizzId, int? questionId)
         {
 
@@ -50,10 +51,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
                 .ThenInclude(a => a.AnswerChoice)
                 .Include(l => l.Level)
                 .Include(s => s.Sujet)
-                .ToList()
                 .FirstOrDefault(fq => fq.QuizzId == quizzId);
-
-
 
 
             var questionViewModel = new QuizPassageViewModel();
@@ -62,7 +60,6 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
             int current = 0;
 
-
             foreach (var dataAnswer in quizPassage.Questions)
             {
                 questionViewModel.QuizzId = quizzId;
@@ -70,18 +67,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
                 questionViewModel.ContentQuestion = dataAnswer.ContentQuestion;
                 questionViewModel.AnswerChoice = dataAnswer.AnswerChoice.ToList();
 
-                if (current != 0)
-                {
-                    questionViewModel.QuizzId = quizzId;
-                    questionViewModel.QuestionId = dataAnswer.QuestionId;
-                    questionViewModel.ContentQuestion = dataAnswer.ContentQuestion;
-                    questionViewModel.AnswerChoice = dataAnswer.AnswerChoice.ToList();
-                    questionViewModel.NextQuestionId = current;
-                }
-                current++;
-
             }
-
 
             return questionViewModel;
         }
