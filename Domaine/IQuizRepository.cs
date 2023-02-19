@@ -1,6 +1,7 @@
 ﻿using FilRouge_Test_CodeFirst.Data;
 using FilRouge_Test_CodeFirst.Data.Entity;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace FilRouge_Test_CodeFirst.Domaine
 {
@@ -10,6 +11,8 @@ namespace FilRouge_Test_CodeFirst.Domaine
         IEnumerable<Quiz> GetAllQuiz();
         IEnumerable<Quiz> GetOneQuiz(int id);
         int DeleteQuiz(int id);
+
+        int AddQuestionQuiz(int id, List<Question> ListQuestion);
 
     }
 
@@ -41,12 +44,43 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
         public IEnumerable<Quiz> GetAllQuiz()
         {
-            return _context.Quiz.Include(l => l.Level).Include(s => s.Sujet).ToList();
+            return _context.Quiz.Include(l => l.Level).Include(s => s.Sujet).Include(q => q.Questions).ToList();
         }
 
         public IEnumerable<Quiz> GetOneQuiz(int Id)
         {
-            yield return _context.Quiz.Where(q => q.QuizzId == Id).First();
+            return _context.Quiz.Where(q => q.QuizzId == Id).Include(l => l.Level).Include(s => s.Sujet).Include(q => q.Questions).ToList();
+        }
+
+
+        public int DeleteQuiz(int Id)
+        {
+            var quizADelete = _context.Quiz.Where(q => q.QuizzId == Id).ToList();
+            _context.Quiz.RemoveRange(quizADelete);
+            _context.SaveChanges();
+            return 0;
+
+        }
+        public int AddQuestionQuiz(int id, List<Question> ListQuestion)
+        {
+            var quizSelect = _context.Quiz.Where(q => q.QuizzId == id).First();
+
+            // var i = 0;
+            //// List<Question> ListQuestionSelect;
+            // foreach (var questionIdSelect in ListIdQuestion)
+            // {
+            //    var ListQuestionSelect = _context.Questions.Where(q => q.QuestionId == questionIdSelect).ToList();
+
+            //     quizSelect.Questions = (ICollection<Question>?)ListQuestionSelect;
+
+
+
+            // }
+            quizSelect.Questions = ListQuestion;
+            _context.Quiz.Update(quizSelect);
+            _context.SaveChanges();
+
+            return 0;
         }
 
 

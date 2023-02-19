@@ -1,0 +1,60 @@
+﻿@model FilRouge_Test_CodeFirst.Data.Entity.Quiz
+
+@{
+    ViewData["Title"] = "EditQuiz";
+}
+
+<h1>EditQuiz</h1>
+
+<h4>Quiz</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditQuiz">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="QuizzId" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sujet.SujetName" class="control-label"></label>
+                <input asp-for="Sujet.SujetName" class="form-control" />
+                <span asp-validation-for="Sujet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Level.LevelName" class="control-label"></label>
+                <input asp-for="Level.LevelName" class="form-control" />
+                <span asp-validation-for="Level" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Questions">Nombre de question :</label>
+                @Model.Questions.Count();
+       
+            </div>
+@*            <div class="form-group">
+                <label asp-for="Code" class="control-label"></label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Average" class="control-label"></label>
+                <input asp-for="Average" class="form-control" />
+                <span asp-validation-for="Average" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="AddQuestionQuiz" asp-route-id="@Model?.QuizzId">Ajouter des Questions</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

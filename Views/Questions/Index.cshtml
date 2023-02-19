@@ -13,6 +13,7 @@
     <thead>
         <tr>
             <th>
+<<<<<<< HEAD
                 @Html.DisplayNameFor(model => model.ContentQuestion)
             </th>
   @*          <th>
@@ -27,6 +28,28 @@
             <th>
                 @Html.DisplayNameFor(model => model.Choix4)
             </th>*@
+=======
+                Intitulée de la question
+            </th>
+            <th>
+                Choix 1
+            </th>
+            <th>
+                Choix 2
+            </th>
+            <th>
+                Choix 3
+            </th>
+            <th>
+                Choix 4
+            </th>
+             <th>
+                Level de la question
+            </th>
+            <th>
+                Sujet de la question
+            </th>
+>>>>>>> 80a4d066103dc3f0d8cf1b71c1308f80b5b8eaf7
             <th></th>
         </tr>
     </thead>
@@ -36,6 +59,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ContentQuestion)
             </td>
+<<<<<<< HEAD
        @*     <td>
                 @Html.DisplayFor(modelItem => item.Choix1)
             </td>
@@ -51,6 +75,35 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.QuestionId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.QuestionId">Details</a> |
+=======
+
+                @foreach(var rep in item.AnswerChoice)
+                {
+                    if(rep.IsCorrect == true)
+                    {
+                     <td style="color:green">
+                        @rep.ContentCorection
+                     </td>
+                    }
+                    else
+                    {
+                    <td style="color:red" >
+                        @rep.ContentCorection
+                     </td> 
+                    }
+
+                }
+               
+            <td>
+                @Html.DisplayFor(modelItem => item.Level.LevelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sujet.SujetName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.QuestionId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.QuestionId">Details</a> | 
+>>>>>>> 80a4d066103dc3f0d8cf1b71c1308f80b5b8eaf7
                 <a asp-action="Delete" asp-route-id="@item.QuestionId">Delete</a>
             </td>
         </tr>

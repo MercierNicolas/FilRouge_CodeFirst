@@ -7,8 +7,11 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FilRouge.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -16,7 +19,7 @@
     <header>
         <div class="container-fluid">
             <div class="row flex-nowrap">
-                <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark rounded-lg" style="border-top-right-radius: 50px;border-bottom-right-radius: 50px;">
+                <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 rounded-lg" id="navbarBG">
                     <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                             <span class="fs-5 d-none d-sm-inline">Menu</span>
@@ -25,13 +28,14 @@
                         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                             <li><partial name="_LoginPartial" /> </li>
                             <li>
-                                <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle" id="hoverWhite">
-                                    <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Ajouter</span>
+                                <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-light">
+                                    <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline text-light hover">Ajouter</span>
                                 </a>
                                 <ul class="collapse nav flex-column ms-5" id="submenu1" data-bs-parent="#menu">
 
                                     @if(this.User.IsInRole(Roles.Administrator))
                                     {
+<<<<<<< HEAD
                                     <li class="w-100">
                                         <a href="#" class="nav-link px-0 p-3 "> <span class="d-none d-sm-inline text-white">Recruteurs</span> </a>
                                     </li>
@@ -40,19 +44,28 @@
                                     <li>
                                         <a href="#" class="nav-link px-0 p-3 "> <span class="d-none d-sm-inline text-white">Candidats</span></a>
                                     </li>
+=======
+                                    <li>
+                                        <a href="#" class="nav-link px-0 p-3 "> <span class="d-none d-sm-inline text-white hover">Recruteurs</span></a>
+
+                                        <a href="#" class="nav-link px-0 p-3 "> <span class="d-none d-sm-inline text-white">Candidats</span></a>
+                                    </li>
+                                    }
+
+>>>>>>> 80a4d066103dc3f0d8cf1b71c1308f80b5b8eaf7
 
                                 </ul>
                             </li>
                             <li>
-                                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle" id="hoverWhite">
-                                    <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Créations</span>
+                                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-light">
+                                    <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline text-light hover">Créations</span>
                                 </a>
                                 <ul class="collapse nav flex-column ms-4" id="submenu2" data-bs-parent="#menu">
                                     <li class="w-100">
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Sujet" asp-action="AddSujet"> <span class="d-none d-sm-inline text-white">Sujet</span> </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white">Question</span> </a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Questions" asp-action="Create"><span class="d-none d-sm-inline text-white hover">Question</span></a>
                                     </li>
                                     <li>
                                        <a class="nav-link text-dark" asp-area="" asp-controller="Quiz" asp-action="AddQuiz"><span class="d-none d-sm-inline text-white">Quiz</span></a>
@@ -64,23 +77,25 @@
                             </li>
 
                             <li>
-                                <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle" id="hoverWhite">
-                                    <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline" id="hoverWhite">Voir</span>
+                                <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-light" id="hoverWhite">
+                                    <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline text-light hover">Voir</span>
                                 </a>
                                 <ul class="collapse nav flex-column ms-4" id="submenu3" data-bs-parent="#menu">
 
                                     @if (this.User.IsInRole(Roles.Administrator))
                                     {
                                     <li class="w-100">
-                                        <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white">Recruteur</span> </a>
+                                        <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white hover">Recruteur</span> </a>
                                     </li>
                                     }
 
                                     <li>
-                                        <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white">Candidats</span> </a>
+                                        <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white hover">Candidats</span> </a>
                                     </li>
+                                    }
+
                                     <li>
-                                        <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white">Quiz</span> </a>
+                                        <a class="nav-link px-0 p-3" asp-controller="Quiz"> <span class="d-none d-sm-inline text-white hover">Quiz</span> </a>
                                     </li>
                                     <li>
                                         <a class="nav-link px-0 p-3" asp-area="" asp-controller="Passage" asp-action="PassageQuiz"> <span class="d-none d-sm-inline text-white">Passage</span> </a>
@@ -93,6 +108,7 @@
                     </div>
                 </div>
                 <div class="col py-3">
+                    
                     @RenderBody()
                 </div>
             </div>
@@ -115,6 +131,28 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "My First Chart in ASP.NET MVC"
+                },
+                data: [
+                    {
+                        // Change type to "doughnut", "line", "splineArea", etc.
+                        type: "doughnut",
+                        dataPoints: [
+                            { label: "apple", y: 10 },
+                            { label: "orange", y: 15 },
+                            { label: "banana", y: 25 },
+                            { label: "mango", y: 30 },
+                            { label: "grape", y: 28 }
+                        ]
+                    }
+                ]
+            });
+            chart.render();
+        }</script>
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>
