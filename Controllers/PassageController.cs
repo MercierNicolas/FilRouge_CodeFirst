@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-﻿using FilRouge_Test_CodeFirst.Data.Entity;
-using FilRouge_Test_CodeFirst.Domaine;
-using FilRouge_Test_CodeFirst.Models;
-using Microsoft.AspNetCore.Mvc;
-=======
+
 ﻿using FilRouge_Test_CodeFirst.Data;
 using FilRouge_Test_CodeFirst.Data.Entity;
 using FilRouge_Test_CodeFirst.Domaine;
@@ -12,20 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using static System.Runtime.InteropServices.JavaScript.JSType;
->>>>>>> 80a4d066103dc3f0d8cf1b71c1308f80b5b8eaf7
+
 
 namespace FilRouge_Test_CodeFirst.Controllers
 {
     public class PassageController : Controller
     {
         private readonly IQuestionRepository questionRepo;
-<<<<<<< HEAD
-        private readonly IAnswerRepository answerRepo;
 
-        public PassageController(IQuestionRepository questionRepo, IAnswerRepository answerRepo)
-        {
-            this.questionRepo = questionRepo;
-=======
         private readonly IAnswerRepository passageRepo;
         private readonly IAnswerRepository answerRepo;
 
@@ -33,7 +22,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
         {
             this.questionRepo = questionRepo;
             this.passageRepo = passageRepo;
->>>>>>> 80a4d066103dc3f0d8cf1b71c1308f80b5b8eaf7
+
             this.answerRepo = answerRepo;
         }
 
@@ -42,9 +31,9 @@ namespace FilRouge_Test_CodeFirst.Controllers
             return View();
         }
 
-<<<<<<< HEAD
         public IActionResult PassageQuiz()
         {
+
             var fourAnswers = questionRepo.GetAllQuestions();
 
 
@@ -66,7 +55,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
             return RedirectToAction("Index");
         }
 
-=======
+
 
         [HttpGet]
         [Route("/Passage/{id:int}")]
@@ -83,7 +72,8 @@ namespace FilRouge_Test_CodeFirst.Controllers
         public IActionResult PassageQuiz(int id, int? questionId)
         {
 
-            
+            id = 2;
+
 
             var dataAnswers = passageRepo.GetQuizPassage(id, questionId);
 
@@ -161,6 +151,6 @@ namespace FilRouge_Test_CodeFirst.Controllers
         {
             return View();
         }
->>>>>>> 80a4d066103dc3f0d8cf1b71c1308f80b5b8eaf7
+
     }
 }

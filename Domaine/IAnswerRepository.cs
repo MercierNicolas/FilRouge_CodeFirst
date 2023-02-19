@@ -2,6 +2,7 @@
 using FilRouge_Test_CodeFirst.Data.Entity;
 using FilRouge_Test_CodeFirst.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 
 namespace FilRouge_Test_CodeFirst.Domaine
@@ -52,14 +53,15 @@ namespace FilRouge_Test_CodeFirst.Domaine
                 .Include(qs => qs.Questions)
                 .ThenInclude(a => a.AnswerChoice)
                 .Include(l => l.Level)
-                .Include(s => s.Sujet)
-                .ToList()
+                .Include(s => s.Sujet)                
                 .FirstOrDefault(fq => fq.QuizzId == quizzId);
 
+            
 
 
 
             var questionViewModel = new QuizPassageViewModel();
+
 
             var nbQuestion = quizPassage.Questions.Count();
 
@@ -68,10 +70,34 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
             foreach (var dataAnswer in quizPassage.Questions)
             {
-                questionViewModel.QuizzId = quizzId;
-                questionViewModel.QuestionId = dataAnswer.QuestionId;
-                questionViewModel.ContentQuestion = dataAnswer.ContentQuestion;
-                questionViewModel.AnswerChoice = dataAnswer.AnswerChoice.ToList();
+                var element = quizPassage.Questions.GetEnumerator();
+                while (element.MoveNext())
+                {
+                    var elementCurrent = element.Current;
+
+                    
+                    questionViewModel.QuizzId = quizzId; 
+                    questionViewModel.QuestionId = elementCurrent.QuestionId;
+                    questionViewModel.ContentQuestion = elementCurrent.ContentQuestion;
+                    questionViewModel.AnswerChoice = elementCurrent.AnswerChoice.ToList();
+
+                    if (element.MoveNext())
+                    {
+                        var elementSuivant = element.Current;
+                        questionViewModel.NextQuestionId = elementSuivant.QuestionId;
+                    }
+                }
+
+                //var elementSuivant = quizPassage.Questions.ElementAtOrDefault();
+                //if(elementSuivant != null)
+                //{
+                //    questionViewModel.NextQuestionId = elementSuivant.QuestionId;
+                    
+                //}
+                //else
+                //{
+                //    questionViewModel.NextQuestionId = null;
+                //}
 
                 if (current != 0)
                 {
@@ -84,7 +110,6 @@ namespace FilRouge_Test_CodeFirst.Domaine
                 current++;
 
             }
-
 
             return questionViewModel;
         }
