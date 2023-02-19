@@ -6,45 +6,8 @@
 
 
 
-@*<form asp-controller="Passage" asp-action="PassageQuiz" method="post">
-
-
-    @foreach (var question in @Model) 
-    {
-        <div>
-            <h4>@question.ContentQuestion</h4>
-        </div>
-
-        for (var checkanwers = 0; checkanwers < question.AnswerChoice.Count(); checkanwers++)
-        {
-            <input type="checkbox" asp-for="@question.IsCorrect" class="form-check-input"  name="ListCheckChoice"   />
-
-
-            <label class="form-check-label" asp-for="@question.IsCorrect" >
-                @question.AnswerChoice[checkanwers].ContentCorection
-             </label>
-
-
-                <br />
-         
-        }
-
-        <button type="button" class="btn btn-dark">Suivant>></button>
-
-
-    }       
-    
-    <div class="mb-3">
-        <input type="submit" class="btn btn-primary" value="Valider" asp-action="PassageQuiz" />
-    </div>
-
-
-</form>
-*@
-
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Passage";
 }
 
 
@@ -54,7 +17,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Index" asp-route-id="@Model.QuizzId" asp-route-questionId="@Model.QuestionId">
+        <form asp-controller="Passage" asp-action="PassageQuiz" asp-route-id="@Model.QuizzId" asp-route-questionId="@Model.QuestionId.">
             @foreach(var reponse in Model.AnswerChoice)
             {
                 <div class="form-group">

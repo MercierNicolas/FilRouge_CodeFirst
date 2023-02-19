@@ -2,12 +2,6 @@
 
 <h1 style ="text-align : center">Page des Quiz</h1>
 
-@*<button type="button" class="myButton mb-6">
-
-    <a asp-action="AddQuiz" class="text-white">Ajouter un quiz</a>
-
-</button>*@
-
 
 
 
@@ -45,7 +39,9 @@
         {
                 <tr class="table">
                 <td>
+                    <a asp-controller="Passage" asp-action="Welcome" asp-route-id="@item.QuizzId">
                     @Html.DisplayFor(modelItem => item.Name)
+                    </a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Code)
@@ -60,7 +56,7 @@
                     @Html.DisplayFor(modelItem => item.Sujet.SujetName)
                 </td>
                 <td>
-                        <a asp-action="EditQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout">Edit </div></a> |
+                            <a asp-action="EditQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout">Edit </div></a> |
                             <a asp-action="DetailQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout2">Details</div></a> |
                             <a asp-action="DeleteQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout3">Supprimer</div></a>
 

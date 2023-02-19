@@ -1,6 +1,10 @@
-﻿using FilRouge_Test_CodeFirst.Domaine;
+﻿using FilRouge_Test_CodeFirst.Data;
+using FilRouge_Test_CodeFirst.Data.Entity;
+using FilRouge_Test_CodeFirst.Domaine;
 using FilRouge_Test_CodeFirst.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FilRouge_Test_CodeFirst.Controllers
@@ -23,32 +27,42 @@ namespace FilRouge_Test_CodeFirst.Controllers
             return View();
         }
 
-        [HttpGet]
 
-        public IActionResult PassageQuiz(int id, int questionId)
+        [HttpGet]
+        [Route("/Passage/{id:int}")]
+        public IActionResult Welcome(int id, int? questionId)
         {
-            id = 1;
-            questionId = 3;
+            var dataId = passageRepo.GetAllId(id, questionId);
+
+            return View(dataId.FirstOrDefault());
+        }
+
+
+        [HttpGet]
+        [Route("/Passage/{id:int}/{questionId:int}")]
+        public IActionResult PassageQuiz(int id, int? questionId)
+        {
+
+            
 
             var dataAnswers = passageRepo.GetQuizPassage(id, questionId);
-
-            //var questionViewModel = new QuizPassageViewModel();
-           
-
-            //foreach (var dataAnswer in dataAnswers.Question)
-            //{
-            //    questionViewModel.QuizzId = id;
-            //    questionViewModel.QuestionId = questionId;
-            //    questionViewModel.ContentQuestion = dataAnswer.ContentQuestion;
-            //    questionViewModel.AnswerChoice = dataAnswer.AnswerChoice.ToList();
-
-
-
-            //}
 
 
             return View(dataAnswers);
         }
+
+
+        //var questionViewModel = new QuizPassageViewModel();
+
+        //foreach (var dataAnswer in dataAnswers.Question)
+        //{
+        //    questionViewModel.QuizzId = id;
+        //    questionViewModel.QuestionId = questionId;
+        //    questionViewModel.ContentQuestion = dataAnswer.ContentQuestion;
+        //    questionViewModel.AnswerChoice = dataAnswer.AnswerChoice.ToList();
+        //}
+
+
         //public IActionResult PassageQuiz()
         //{
         //    var fourAnswers = questionRepo.GetAllQuestions();
@@ -70,20 +84,20 @@ namespace FilRouge_Test_CodeFirst.Controllers
         //}
 
         [HttpPost]
-
-        public IActionResult PassageQuiz(int id, int questionId, IFormCollection input)
+        [Route("/Passage/{id}/{questionId?}")]
+        public IActionResult PassageQuiz(int id, int? questionId, IFormCollection input)
         {
 
             var dataAnswers = passageRepo.GetQuizPassage(id, questionId);
-            
+
             var responseIds = dataAnswers.AnswerChoice.Where(responseId => input.ContainsKey(responseId.CorrectionId.ToString())).Select(i => i.CorrectionId);
 
             if (dataAnswers.NextQuestionId == null)
             {
-                return Content("Résultats");
+                return View("Thank");
             }
 
-            return Content("resultat2");
+            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.NextQuestionId });
         }
 
 
@@ -103,5 +117,9 @@ namespace FilRouge_Test_CodeFirst.Controllers
         //    return RedirectToAction("Index");
         //}
 
+        public IActionResult Thank()
+        {
+            return View();
+        }
     }
 }
