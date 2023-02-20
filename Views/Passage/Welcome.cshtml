@@ -1,10 +1,16 @@
 ﻿@using FilRouge_Test_CodeFirst.Models
 
+@{
+    Layout = "passageWelcome.cshtml";
+}
 
 @model QuizPassageViewModel;
+<div class="d-flex vh-100" id="boxLogIn">
+    <div class="col-md-4">
+        <section id="bienvenuBorder" class="shadow-lg p-4">
+            
 
-<div>
-    <h2>Bienvenue sur votre teste de compétence</h2>
+<h1 style="text-align : center"> Bienvenue sur votre teste de compétence</h1>
     <br />
     <p>
         L'évaluation SkillCheck est un outil de validation de vos connaissances de base des différents langages numérique. Participer à SkillCheck vous permettra de créer une base de référence de vos connaissances numérique actuelles, à partir de laquelle vous pourrez commencer à vous améliorer immédiatement. Il est gratuit et ne comprend aucune certification.
@@ -12,19 +18,20 @@
 
 
 
-    <div class="form-group">
+            <div class="form-group text-center">
 
 
         <a asp-controller="Passage" asp-action="PassageQuiz" asp-route-id="@Model.QuizzId" asp-route-questionid="@Model.QuestionId">
 
 
-                <input type="button" value="Suivant" class="btn btn-primary" />
+                    <input type="button" value="Suivant" class="buttonAjout " />
 
             </a>
 
 
         </div>
-
-
+       
+        </section>
     </div>
+</div>
 
