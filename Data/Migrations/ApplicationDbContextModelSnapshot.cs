@@ -215,13 +215,11 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                     b.Property<int?>("QuestionAnswerTheAnswerId")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
-=======
                     b.Property<string>("Questions")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
->>>>>>> 80a4d066103dc3f0d8cf1b71c1308f80b5b8eaf7
+
                     b.Property<string>("ValidedIdentityUserId")
                         .HasColumnType("nvarchar(450)");
 

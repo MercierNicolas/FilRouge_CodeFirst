@@ -1,44 +1,4 @@
 ﻿
-<<<<<<< HEAD
-@using FilRouge_Test_CodeFirst.Data.Entity
-
-
-@model List<Question>;
-
-
-
-<form asp-controller="Passage" asp-action="PassageQuiz" method="post">
-    @foreach (var test in Model)
-    {
-        <div>
-            <h4>@test.ContentQuestion</h4>
-        </div>
-        foreach (var checkanwers in test.AnswerChoice)
-        {
-            <div class="form-check">
-                <input class="from-check-input"
-                   type="checkbox"
-                   value="@checkanwers.ContentCorection"
-                   name=""
-                   id="@checkanwers.CorrectionId"
-
-                    />
-            <label class="form-check-label" for="">
-                @checkanwers.ContentCorection
-            </label>
-
-
-        </div>
-        }
-
-            <button type="button" class="btn btn-dark">Suivant>></button>
-    }
-    <div class="mb-3">
-        <button type="submit" asp-action="PassageQuiz" class="btn btn-primary">Valider</button>
-    </div>
-
-</form>
-=======
 @using FilRouge_Test_CodeFirst.Models
 
 
@@ -52,20 +12,23 @@
 
 
 <h3>Questions @Model.ContentQuestion</h3>
+<h3>@Model.QuestionId</h3>
+<h3>@Model.NextQuestionId</h3>
 
 <hr />
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-controller="Passage" asp-action="PassageQuiz" asp-route-id="@Model.QuizzId" asp-route-questionId="@Model.QuestionId.">
+        <form asp-controller="Passage" asp-action="PassageQuiz" asp-route-id="@Model.QuizzId" asp-route-questionId="@Model.QuestionId">
             @foreach(var reponse in Model.AnswerChoice)
             {
                 <div class="form-group">
-                    <input type="checkbox" name="@reponse.CorrectionId" checked="@reponse.IsCorrect">
+                    <input type="checkbox" name="@reponse.CorrectionId">
                     <label for="@reponse.CorrectionId" class="control-label">@reponse.ContentCorection</label>
                 </div>
             }
             <div class="form-group">
+                <input type="hidden" name="@Model.NextQuestionId" value="@Model.NextQuestionId"/>
                 <input type="submit" value="Suivant" class="btn btn-primary" />
             </div>
         </form>
@@ -77,4 +40,4 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
->>>>>>> 80a4d066103dc3f0d8cf1b71c1308f80b5b8eaf7
+

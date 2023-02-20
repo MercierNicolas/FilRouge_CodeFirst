@@ -1,8 +1,10 @@
-﻿using FilRouge_Test_CodeFirst.Data;
+﻿using Azure.Core;
+using FilRouge_Test_CodeFirst.Data;
 using FilRouge_Test_CodeFirst.Data.Entity;
 using FilRouge_Test_CodeFirst.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Xml.Linq;
 
 
 namespace FilRouge_Test_CodeFirst.Domaine
@@ -11,7 +13,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
     {
         int CreateResalt(TheAnswer theAnswer);
         QuizPassageViewModel GetQuizPassage(int quizzId, int? questionId);
-        List<QuizPassageViewModel> GetAllId(int quizzId, int? questionId);
+        List<QuizPassageViewModel> GetAllId(int quizzId, int? questionIdControlleur);
 
     }
 
@@ -46,72 +48,43 @@ namespace FilRouge_Test_CodeFirst.Domaine
             return listId;
         }
 
-        public QuizPassageViewModel GetQuizPassage(int quizzId, int? questionId)
+        public QuizPassageViewModel GetQuizPassage(int quizzId, int? questionIdControlleur)
         {
+            var PassageQuizViewModel = new QuizPassageViewModel();
 
             var quizPassage = _context.Quiz
-                .Include(qs => qs.Questions)
-                .ThenInclude(a => a.AnswerChoice)
-                .Include(l => l.Level)
-                .Include(s => s.Sujet)                
-                .FirstOrDefault(fq => fq.QuizzId == quizzId);
+               .Include(qs => qs.Questions)
+               .ThenInclude(a => a.AnswerChoice)
+               .Include(l => l.Level)
+               .Include(s => s.Sujet)
+               .FirstOrDefault(fq => fq.QuizzId == quizzId);
+               
+            List<int> listQuestionId = new List<int>();
 
-            
-
-
-
-            var questionViewModel = new QuizPassageViewModel();
-
-
-            var nbQuestion = quizPassage.Questions.Count();
-
-            int current = 0;
-
-
-            foreach (var dataAnswer in quizPassage.Questions)
+            foreach(var question in quizPassage.Questions)
             {
-                var element = quizPassage.Questions.GetEnumerator();
-                while (element.MoveNext())
-                {
-                    var elementCurrent = element.Current;
-
-                    
-                    questionViewModel.QuizzId = quizzId; 
-                    questionViewModel.QuestionId = elementCurrent.QuestionId;
-                    questionViewModel.ContentQuestion = elementCurrent.ContentQuestion;
-                    questionViewModel.AnswerChoice = elementCurrent.AnswerChoice.ToList();
-
-                    if (element.MoveNext())
-                    {
-                        var elementSuivant = element.Current;
-                        questionViewModel.NextQuestionId = elementSuivant.QuestionId;
-                    }
-                }
-
-                //var elementSuivant = quizPassage.Questions.ElementAtOrDefault();
-                //if(elementSuivant != null)
-                //{
-                //    questionViewModel.NextQuestionId = elementSuivant.QuestionId;
-                    
-                //}
-                //else
-                //{
-                //    questionViewModel.NextQuestionId = null;
-                //}
-
-                if (current != 0)
-                {
-                    questionViewModel.QuizzId = quizzId;
-                    questionViewModel.QuestionId = dataAnswer.QuestionId;
-                    questionViewModel.ContentQuestion = dataAnswer.ContentQuestion;
-                    questionViewModel.AnswerChoice = dataAnswer.AnswerChoice.ToList();
-                    questionViewModel.NextQuestionId = current;
-                }
-                current++;
-
+                listQuestionId.Add(question.QuestionId);
             }
+            listQuestionId.Add(-1);
+            if (listQuestionId.Contains((int)questionIdControlleur))
+            {
+                var oneQuiestion = quizPassage.Questions.Where(q => q.QuestionId == questionIdControlleur);
+                PassageQuizViewModel.QuizzId = quizzId;
+                PassageQuizViewModel.QuestionId = oneQuiestion.FirstOrDefault().QuestionId;
+                PassageQuizViewModel.ContentQuestion = oneQuiestion.FirstOrDefault().ContentQuestion;
+                PassageQuizViewModel.AnswerChoice = oneQuiestion.First().AnswerChoice.ToList();
+                var indexID = listQuestionId.IndexOf((int)questionIdControlleur);
 
-            return questionViewModel;
+
+               PassageQuizViewModel.NextQuestionId = listQuestionId[indexID + 1];
+                
+
+              
+
+                return PassageQuizViewModel;
+            }
+            return PassageQuizViewModel;
+
         }
 
 
