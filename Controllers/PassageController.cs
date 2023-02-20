@@ -1,12 +1,6 @@
-
-﻿using FilRouge_Test_CodeFirst.Data;
-using FilRouge_Test_CodeFirst.Data.Entity;
 using FilRouge_Test_CodeFirst.Domaine;
 using FilRouge_Test_CodeFirst.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace FilRouge_Test_CodeFirst.Controllers
@@ -46,8 +40,8 @@ namespace FilRouge_Test_CodeFirst.Controllers
         [Route("/Passage/{id:int}/{questionId:int}")]
         public IActionResult PassageQuiz(int id, int? questionId)
         {
-            
-             var dataAnswers = passageRepo.GetQuizPassage(id, questionId);
+
+            var dataAnswers = passageRepo.GetQuizPassage(id, questionId);
 
 
             return View(dataAnswers);
@@ -57,25 +51,29 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
         [HttpPost]
         [Route("/Passage/{id}/{questionId?}")]
-        public IActionResult PassageQuiz(int id, int? questionId, IFormCollection input , QuizPassageViewModel model)
+        public IActionResult PassageQuiz(int id, int? questionId, IFormCollection input, QuizPassageViewModel model)
         {
-           
+
             var dataAnswers = passageRepo.GetQuizPassage(id, questionId);
 
-           // var responseIds = dataAnswers.AnswerChoice.Where(responseId => input.ContainsKey(responseId.CorrectionId.ToString())).Select(i => i.CorrectionId);
+            // var responseIds = dataAnswers.AnswerChoice.Where(responseId => input.ContainsKey(responseId.CorrectionId.ToString())).Select(i => i.CorrectionId);
+
 
             if (dataAnswers.NextQuestionId == -1)
             {
-                return View("Thank");
+
+
+                //=======
+                //            if (questionId == null)
+                //>>>>>>> 4aba78afc29b16f7ddf829dd17a76b6b01f85a60
+                {
+                    return View("Thank");
+                }
             }
-
-            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.NextQuestionId });
+            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.QuestionId });
         }
 
-        public IActionResult Thank()
-        {
-            return View();
-        }
+
 
     }
 }
