@@ -2,6 +2,12 @@
 using FilRouge_Test_CodeFirst.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 
+using FilRouge_Test_CodeFirst.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Collections;
+using System.Collections.Generic;
+
+
 namespace FilRouge_Test_CodeFirst.Domaine
 {
     public interface IQuestionRepository
@@ -10,6 +16,11 @@ namespace FilRouge_Test_CodeFirst.Domaine
         IEnumerable<Question> GetAllQuestions();
         IEnumerable<Question> GetOneQuestion(int id);
         int DeleteQuestion(int id);
+
+        int UpdateQuestion(int id, Question question /*, Dictionary<string, bool> DictionaryChoix*/);
+        List<Question> GetQuestionWithSujet(Sujet sujet);
+        List<Question> GetQuestionWithIds(List<int> ids);
+
     }
 
     public class DbQuestionRepository : IQuestionRepository
@@ -20,7 +31,9 @@ namespace FilRouge_Test_CodeFirst.Domaine
             this._context = context;
         }
 
+
         public int CreateQuestion(Question question, int levelId, int sujetId ,Dictionary<string,bool> DictionaryChoix)
+
         {
             // On recupére l'id de la vue a l'aide du controlleur et on appele de la BDD les level avec le where on recupere le bon id
             var selectLvl = _context.levels.Where(lvl => lvl.Id == levelId).First();
@@ -55,9 +68,9 @@ namespace FilRouge_Test_CodeFirst.Domaine
             throw new NotImplementedException();
         }
 
+
         public IEnumerable<Question> GetAllQuestions()
         {
-            // return _context.Quiz.Include(l => l.Level).Include(s => s.Sujet).ToList();
             return _context.Questions.Include(l => l.Level).Include(s => s.Sujet).Include(rep => rep.AnswerChoice).ToList();
         }
 
@@ -65,5 +78,42 @@ namespace FilRouge_Test_CodeFirst.Domaine
         {
             return _context.Questions.Where(q => q.QuestionId == id).Include(rep => rep.AnswerChoice).ToList();
         }
+        public int UpdateQuestion(int id, Question question/*, Dictionary<string, bool> DictionaryChoix*/)
+        {
+            _context.Questions.Update(question);
+            //foreach(var rep in DictionaryChoix)
+            //{
+            //    var saveChoice = new AnswerChoice { ContentCorection = rep.Key, IsCorrect = rep.Value, questionId = question };
+            //    _context.AnswerChoice.Update(saveChoice);
+            //}
+           
+            _context.SaveChanges();
+            return 0;
+        }
+
+        public List<Question> GetQuestionWithSujet(Sujet sujet)
+        {
+            return _context.Questions.Where(q => q.Sujet == sujet).Include(rep => rep.AnswerChoice).Include(s => s.Sujet).ToList();
+        }
+
+        public List<Question> GetQuestionWithIds(List<int> ids) 
+        {           
+            var allQuestion = GetAllQuestions();
+            List<Question> result = new List<Question>();
+            foreach (var question in allQuestion)
+            {
+                foreach(var id in ids)
+                {
+                    if(id == question.QuestionId)
+                    {
+                        result.Add(question);
+                    }
+                }
+            }
+            return result;
+        }
+
+
+
     }
 }

@@ -4,12 +4,13 @@
     ViewData["Title"] = "AddSujet";
 }
 
-<h1>AddSujet</h1>
+<h1 style="text-align : center">Rajouter un sujet</h1>
 
-<h4>Sujet</h4>
+
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="container w-50" style="margin-top: 100px;" id="addQ">
+    <div class="row align-items-center justify-content-center">
+   @* <div class="col-md-4">*@
         <form asp-action="AddSujet">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -17,15 +18,14 @@
                 <input asp-for="SujetName" class="form-control" />
                 <span asp-validation-for="SujetName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group d-flex justify-content-between">
                 <input type="submit" value="Create" class="btn btn-primary" />
+                <div>
+                    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                </div>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

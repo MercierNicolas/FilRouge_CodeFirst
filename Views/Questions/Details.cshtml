@@ -16,12 +16,14 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ContentQuestion)
         </dd>
+
         <dd class="col-sm-10">
             @foreach(var rep in Model.AnswerChoice)
             {
                <dt> @rep.ContentCorection </dt>
             }
         </dd>
+
     </dl>
 </div>
 <div>

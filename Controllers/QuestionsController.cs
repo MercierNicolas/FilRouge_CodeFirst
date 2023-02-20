@@ -41,15 +41,18 @@ namespace FilRouge_Test_CodeFirst.Controllers
         }
 
         // GET: Questions/Details/5
+
         public IActionResult Details(int id)
         {
             var oneQuestion = questionRepo.GetOneQuestion(id);
             return View(oneQuestion.First());
+
         }
 
         // GET: Questions/Create
         public IActionResult Create()
         {
+
             QuestionViewModel QuestionViewModel = new QuestionViewModel();
             QuestionViewModel.question = new Question();
             // Recuper tout les sujet et level 
@@ -96,7 +99,28 @@ namespace FilRouge_Test_CodeFirst.Controllers
             var testListe = new List<string>();
 
 
+
             questionRepo.CreateQuestion(questionAdd, model.LevelId, model.sujetId, DictionaryChoix);
+            return RedirectToAction("Index");
+        }
+
+
+        public IActionResult Edit(int id)
+        {
+            var oneQuestion = questionRepo.GetOneQuestion(id);
+            return View(oneQuestion.First());
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Question model ,AnswerChoice answerChoice)
+        {
+            
+            //Dictionary<string, bool> DictionaryChoix = new Dictionary<string, bool>();
+            //foreach(var rep in model.AnswerChoice)
+            //{
+            //    DictionaryChoix.Add(rep.ContentCorection, rep.IsCorrect);
+            //}
+            questionRepo.UpdateQuestion(model.QuestionId, model/*DictionaryChoix*/);
             return RedirectToAction("Index");
         }
 

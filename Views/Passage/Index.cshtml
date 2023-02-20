@@ -1,0 +1,43 @@
+<<<<<<< HEAD
+﻿@using FilRouge_Test_CodeFirst.Data.Entity
+=======
+﻿@*@using FilRouge_Test_CodeFirst.Data.Entity
+>>>>>>> 80a4d066103dc3f0d8cf1b71c1308f80b5b8eaf7
+
+
+@model List<Question>;
+
+
+
+<form asp-controller="Passage" asp-action="PassageQuiz" method="post">
+    @foreach (var test in Model)
+    {
+        <div>
+            <h4>@test.ContentQuestion</h4>
+        </div>
+        foreach (var checkanwers in test.AnswerChoice)
+        {
+            <div class="form-check">
+                <input class="from-check-input"
+                       type="checkbox"
+                       value="@checkanwers.ContentCorection"
+                       name=""
+                       id="@checkanwers.CorrectionId"
+                       checked="@checkanwers.IsCorrect"
+               />
+
+
+                <label class="form-check-label" for="">
+                    @checkanwers.ContentCorection
+                </label>
+
+            </div>
+        }    
+    }
+
+
+<<<<<<< HEAD
+</form>
+=======
+</form>*@
+>>>>>>> 80a4d066103dc3f0d8cf1b71c1308f80b5b8eaf7
