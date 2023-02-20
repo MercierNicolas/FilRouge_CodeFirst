@@ -1,7 +1,6 @@
 ﻿using FilRouge_Test_CodeFirst.Data;
 using FilRouge_Test_CodeFirst.Data.Entity;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace FilRouge_Test_CodeFirst.Domaine
 {

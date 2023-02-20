@@ -10,22 +10,22 @@
     <h4>Quiz</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Code)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Code)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Sujet)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Sujet.SujetName)
         </dd>
         <dt class="col-sm-2">
@@ -44,22 +44,19 @@
             @Html.DisplayNameFor(model => model.Questions)
         </dt>
         <ul>
-        @foreach(var question in Model.Questions)
-        {
+            @foreach (var question in Model.Questions)
+            {
                 <li> @question.ContentQuestion </li>
                 <li><a asp-controller="Questions" asp-action="Index">Voir</a> |</li>
-        }
+            }
         </ul>
 
 
     </dl>
 </div>
 <div>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
+
     <a asp-action="EditQuiz" asp-route-id="@Model?.QuizzId">Edit</a> |
-    <a asp-action="AddQuestionQuiz" asp-route-id="@Model?.QuizzId">Ajouter des Questions</a> | 
+    <a asp-action="AddQuestionQuiz" asp-route-id="@Model?.QuizzId">Ajouter des Questions</a> |
     <a asp-action="Index">Back to List</a>
 </div>
