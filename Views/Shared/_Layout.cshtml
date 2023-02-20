@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FilRouge</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+   
     <link rel="stylesheet" href="~/FilRouge.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
 </head>
 <body>
@@ -20,12 +21,12 @@
         <div class="container-fluid">
             <div class="row flex-nowrap">
                 <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 rounded-lg" id="navbarBG">
-                    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100" >
                         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                             <span class="fs-5 d-none d-sm-inline">Menu</span>
                         </a>
 
-                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start pl-3 ml-3 mt-5" id="menu">
                             <li><partial name="_LoginPartial" /> </li>
                             <li>
                                 <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-light">
@@ -72,7 +73,9 @@
                             </li>
 
                             <li>
-                                <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-light" id="hoverWhite">
+
+                                <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-light">
+
                                     <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline text-light hover">Voir</span>
                                 </a>
                                 <ul class="collapse nav flex-column ms-4" id="submenu3" data-bs-parent="#menu">
@@ -124,28 +127,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script type="text/javascript">
-        window.onload = function () {
-            var chart = new CanvasJS.Chart("chartContainer", {
-                title: {
-                    text: "My First Chart in ASP.NET MVC"
-                },
-                data: [
-                    {
-                        // Change type to "doughnut", "line", "splineArea", etc.
-                        type: "doughnut",
-                        dataPoints: [
-                            { label: "apple", y: 10 },
-                            { label: "orange", y: 15 },
-                            { label: "banana", y: 25 },
-                            { label: "mango", y: 30 },
-                            { label: "grape", y: 28 }
-                        ]
-                    }
-                ]
-            });
-            chart.render();
-        }</script>
+
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>
