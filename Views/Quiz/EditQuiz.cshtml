@@ -33,16 +33,7 @@
                 @Model.Questions.Count();
        
             </div>
-@*            <div class="form-group">
-                <label asp-for="Code" class="control-label"></label>
-                <input asp-for="Code" class="form-control" />
-                <span asp-validation-for="Code" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Average" class="control-label"></label>
-                <input asp-for="Average" class="form-control" />
-                <span asp-validation-for="Average" class="text-danger"></span>
-            </div>*@
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -51,7 +42,9 @@
 </div>
 
 <div>
+
     <a asp-action="AddQuestionQuiz" asp-route-id="@Model?.QuizzId">Ajouter des Questions</a> |
+
     <a asp-action="Index">Back to List</a>
 </div>
 

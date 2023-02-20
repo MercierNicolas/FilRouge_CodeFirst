@@ -11,15 +11,19 @@ namespace FilRouge_Test_CodeFirst.Models
 
         public IEnumerable<SelectListItem> AllSujet { get; set; }
         public int sujetId { get; set; }
+
+     
         public string Choix1 { get; set; }
         public string Choix2 { get; set; }
         public string Choix3 { get; set; }
         public string Choix4 { get; set; }
 
+
         public bool IsCorrectChoix1 { get; set; }
         public bool IsCorrectChoix2 { get; set; }
         public bool IsCorrectChoix3 { get; set; }
         public bool IsCorrectChoix4 { get; set; }
+
 
     }
 }

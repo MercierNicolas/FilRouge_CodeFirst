@@ -14,17 +14,20 @@ namespace FilRouge_Test_CodeFirst.Controllers
         private readonly IQuizRepository quizRepo;
         private readonly ILevelRepository levelRepo;
         private readonly ISujetRepository sujetRepo;
+
         private readonly IQuestionRepository questionRepo;
         private readonly IHashids _hashids;
 
         // Permet d'apeller les Interface ou ce trouve les methodes qui permet le CRUD
         public QuizController(IQuizRepository quizAdd, ILevelRepository levelRepo, ISujetRepository sujetRepo, IHashids hashids, IQuestionRepository questionRepo)
+
         {
             // Permet d'affecter à la variable l'interface afin de pouvoir utiliser les méthode
             this.quizRepo = quizAdd;
             this.levelRepo = levelRepo;
             this.sujetRepo = sujetRepo;
             this.questionRepo = questionRepo;
+
             _hashids = hashids;
 
         }
@@ -88,7 +91,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
         [HttpPost]
         public IActionResult AddQuiz(QuizViewModel model)
         {
-            string testCOde = "55";
+           
             // On crée une variable de type quiz que stock le nom le code et l'Averrage
             var quizAdd = new Quiz()
             {

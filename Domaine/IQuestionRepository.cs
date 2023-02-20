@@ -4,10 +4,17 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;
 
+using FilRouge_Test_CodeFirst.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Collections;
+using System.Collections.Generic;
+
+
 namespace FilRouge_Test_CodeFirst.Domaine
 {
     public interface IQuestionRepository
     {
+
         int CreateQuestion(Question question, int levelId, int sujetId, Dictionary<string, bool> DictionaryChoix);
         IEnumerable<Question> GetAllQuestions();
         IEnumerable<Question> GetOneQuestion(int id);
@@ -27,7 +34,9 @@ namespace FilRouge_Test_CodeFirst.Domaine
             this._context = context;
         }
 
+
         public int CreateQuestion(Question question, int levelId, int sujetId ,Dictionary<string,bool> DictionaryChoix)
+
         {
             // On recupére l'id de la vue a l'aide du controlleur et on appele de la BDD les level avec le where on recupere le bon id
             var selectLvl = _context.levels.Where(lvl => lvl.Id == levelId).First();
@@ -58,13 +67,15 @@ namespace FilRouge_Test_CodeFirst.Domaine
         }
 
         public int DeleteQuestion(int id)
+
         {
             throw new NotImplementedException();
         }
 
+
         public IEnumerable<Question> GetAllQuestions()
         {
-            // return _context.Quiz.Include(l => l.Level).Include(s => s.Sujet).ToList();
+
             return _context.Questions.Include(l => l.Level).Include(s => s.Sujet).Include(rep => rep.AnswerChoice).ToList();
         }
 
@@ -106,6 +117,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
             }
             return result;
         }
+
 
 
     }

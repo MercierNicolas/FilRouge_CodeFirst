@@ -41,15 +41,18 @@ namespace FilRouge_Test_CodeFirst.Controllers
         }
 
         // GET: Questions/Details/5
+
         public IActionResult Details(int id)
         {
             var oneQuestion = questionRepo.GetOneQuestion(id);
             return View(oneQuestion.First());
+
         }
 
         // GET: Questions/Create
         public IActionResult Create()
         {
+
             QuestionViewModel QuestionViewModel = new QuestionViewModel();
             QuestionViewModel.question = new Question();
             // Recuper tout les sujet et level 
@@ -99,6 +102,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
             questionRepo.CreateQuestion(questionAdd, model.LevelId, model.sujetId, DictionaryChoix);
             return RedirectToAction("Index");
         }
+
 
         public IActionResult Edit(int id)
         {

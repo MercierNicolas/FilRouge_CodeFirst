@@ -4,13 +4,14 @@
     ViewData["Title"] = "DeleteSujet";
 }
 
-<h1>DeleteSujet</h1>
+<h1 style="text-align : center">Supprimer sujet</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 style="text-align : center">Êtes vous sur de supprimer ce Sujet ?</h3>
 <div>
-    <h4>Sujet</h4>
+   
     <hr />
-    <dl class="row">
+    <div class="container w-50 display-5" style="margin-top: 100px;" id="addQ">
+        <dl class="row align-items-center justify-content-center text-center">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.SujetName)
         </dt>
@@ -18,10 +19,12 @@
             @Html.DisplayFor(model => model.SujetName)
         </dd>
     </dl>
-    
-    <form asp-action="DeleteSujet">
+
+        <form asp-action="DeleteSujet" class="text-center">
         <input type="hidden" asp-for="id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+            <input type="submit" value="Delete" class="btn btn-danger" id="gros" /> |
+            <a asp-action="Index" id="gros" class="btn btn-primary">Back to List</a>
     </form>
 </div>
+</div>
+

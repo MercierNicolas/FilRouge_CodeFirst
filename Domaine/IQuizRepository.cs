@@ -12,7 +12,11 @@ namespace FilRouge_Test_CodeFirst.Domaine
         IEnumerable<Quiz> GetOneQuiz(int id);
 
         int DeleteQuiz(int id);
+
+
         int AddQuestionQuiz(int id, List<Question> ListQuestion);
+
+
     }
 
     public class DbQuizRepo : IQuizRepository
@@ -81,6 +85,11 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
             return 0;
         }
+
+
+
+
+
 
     }
 }
