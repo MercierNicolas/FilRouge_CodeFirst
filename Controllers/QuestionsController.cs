@@ -41,15 +41,27 @@ namespace FilRouge_Test_CodeFirst.Controllers
         }
 
         // GET: Questions/Details/5
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
         public IActionResult Details(int id)
         {
             var oneQuestion = questionRepo.GetOneQuestion(id);
             return View(oneQuestion.First());
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
         }
 
         // GET: Questions/Create
         public IActionResult Create()
         {
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
             QuestionViewModel QuestionViewModel = new QuestionViewModel();
             QuestionViewModel.question = new Question();
             // Recuper tout les sujet et level 
@@ -95,11 +107,19 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
             var testListe = new List<string>();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
 
             questionRepo.CreateQuestion(questionAdd, model.LevelId, model.sujetId, DictionaryChoix);
             return RedirectToAction("Index");
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
         public IActionResult Edit(int id)
         {
             var oneQuestion = questionRepo.GetOneQuestion(id);

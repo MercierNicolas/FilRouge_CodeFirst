@@ -4,10 +4,20 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;
 
+using FilRouge_Test_CodeFirst.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Collections;
+using System.Collections.Generic;
+
+
 namespace FilRouge_Test_CodeFirst.Domaine
 {
     public interface IQuestionRepository
     {
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
         int CreateQuestion(Question question, int levelId, int sujetId, Dictionary<string, bool> DictionaryChoix);
         IEnumerable<Question> GetAllQuestions();
         IEnumerable<Question> GetOneQuestion(int id);
@@ -16,7 +26,10 @@ namespace FilRouge_Test_CodeFirst.Domaine
         List<Question> GetQuestionWithSujet(Sujet sujet);
         List<Question> GetQuestionWithIds(List<int> ids);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
     }
 
     public class DbQuestionRepository : IQuestionRepository
@@ -27,7 +40,13 @@ namespace FilRouge_Test_CodeFirst.Domaine
             this._context = context;
         }
 
+<<<<<<< HEAD
         public int CreateQuestion(Question question, int levelId, int sujetId ,Dictionary<string,bool> DictionaryChoix)
+=======
+
+        public int CreateQuestion(Question question, int levelId, int sujetId ,Dictionary<string,bool> DictionaryChoix)
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
         {
             // On recupére l'id de la vue a l'aide du controlleur et on appele de la BDD les level avec le where on recupere le bon id
             var selectLvl = _context.levels.Where(lvl => lvl.Id == levelId).First();
@@ -58,13 +77,21 @@ namespace FilRouge_Test_CodeFirst.Domaine
         }
 
         public int DeleteQuestion(int id)
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
         {
             throw new NotImplementedException();
         }
 
+
         public IEnumerable<Question> GetAllQuestions()
         {
+<<<<<<< HEAD
             // return _context.Quiz.Include(l => l.Level).Include(s => s.Sujet).ToList();
+=======
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
             return _context.Questions.Include(l => l.Level).Include(s => s.Sujet).Include(rep => rep.AnswerChoice).ToList();
         }
 
@@ -91,7 +118,11 @@ namespace FilRouge_Test_CodeFirst.Domaine
         }
 
         public List<Question> GetQuestionWithIds(List<int> ids) 
+<<<<<<< HEAD
         {
+=======
+        {           
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
             var allQuestion = GetAllQuestions();
             List<Question> result = new List<Question>();
             foreach (var question in allQuestion)
@@ -108,5 +139,9 @@ namespace FilRouge_Test_CodeFirst.Domaine
         }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
     }
 }

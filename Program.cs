@@ -25,6 +25,7 @@ builder.Services.AddScoped<ISujetRepository, DbSujetlRepo>();
 
 builder.Services.AddScoped<IQuestionRepository, DbQuestionRepository>();
 
+builder.Services.AddScoped<IAnswerRepository, DbTheAnswerRepo>();
 
 // add middlware hashids
 builder.Services.AddSingleton<IHashids>(_ =>new Hashids("gael", 11));

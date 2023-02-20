@@ -14,17 +14,30 @@ namespace FilRouge_Test_CodeFirst.Controllers
         private readonly IQuizRepository quizRepo;
         private readonly ILevelRepository levelRepo;
         private readonly ISujetRepository sujetRepo;
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
         private readonly IQuestionRepository questionRepo;
         private readonly IHashids _hashids;
 
         // Permet d'apeller les Interface ou ce trouve les methodes qui permet le CRUD
         public QuizController(IQuizRepository quizAdd, ILevelRepository levelRepo, ISujetRepository sujetRepo, IHashids hashids, IQuestionRepository questionRepo)
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
         {
             // Permet d'affecter à la variable l'interface afin de pouvoir utiliser les méthode
             this.quizRepo = quizAdd;
             this.levelRepo = levelRepo;
             this.sujetRepo = sujetRepo;
             this.questionRepo = questionRepo;
+<<<<<<< HEAD
+=======
+            _hashids = hashids;
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
             _hashids = hashids;
 
         }
@@ -88,7 +101,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
         [HttpPost]
         public IActionResult AddQuiz(QuizViewModel model)
         {
-            string testCOde = "55";
+           
             // On crée une variable de type quiz que stock le nom le code et l'Averrage
             var quizAdd = new Quiz()
             {
@@ -121,6 +134,10 @@ namespace FilRouge_Test_CodeFirst.Controllers
             return guid;
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
         public IActionResult EditQuiz(int id)
         {
             var editQuiz = quizRepo.GetOneQuiz(id);
@@ -135,6 +152,10 @@ namespace FilRouge_Test_CodeFirst.Controllers
             return View(DetailQuiz.First());
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
         public IActionResult AddQuestionQuiz(int id)
         {
             var OneQuiz = quizRepo.GetOneQuiz(id).ToList().First();
@@ -163,5 +184,9 @@ namespace FilRouge_Test_CodeFirst.Controllers
             return RedirectToAction("Index");
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae4399c48f0650e2ba0511a41cff6dc61c50adaa
     }
 }
