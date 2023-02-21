@@ -93,9 +93,9 @@ namespace FilRouge_Test_CodeFirst.Controllers
             var dataAnswers = passageRepo.GetQuizPassage(id, questionId);
 
             var responseIds = dataAnswers.AnswerChoice.Where(responseId => input.ContainsKey(responseId.CorrectionId.ToString())).Select(i => i.CorrectionId);
-
-            answerRepo.SaveBddAnswerUser(responseIds, (int)questionId, id);
-
+            answerRepo.SaveBddAnswerUser(responseIds, (int)questionId , id);
+            //Save en bdd
+  
             if (dataAnswers.NextQuestionId == -1)
             {
                 return View("Thank");
