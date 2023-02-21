@@ -100,7 +100,6 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
             answerRepo.SaveBddAnswerUser(responseIds, (int)questionId, id);
 
-
             if (dataAnswers.NextQuestionId == -1)
             {
                 return View("Thank");
