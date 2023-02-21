@@ -55,7 +55,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
             var rep = _context.theAnswers.Where(q => q.QuizId == id);
             var quiz = _context.Quiz.Where(q => q.QuizzId == id).Include(ques => ques.Questions).ThenInclude(a => a.AnswerChoice);
             
-
+            
             quizMake.answerUser = rep.ToList();
             quizMake.Quiz = quiz.ToList().First();
             return quizMake;

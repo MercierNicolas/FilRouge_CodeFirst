@@ -66,7 +66,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
             var responseIds = dataAnswers.AnswerChoice.Where(responseId => input.ContainsKey(responseId.CorrectionId.ToString())).Select(i => i.CorrectionId);
             answerRepo.SaveBddAnswerUser(responseIds, (int)questionId , id);
-            //Save en bdd
+            
            
             if (dataAnswers.NextQuestionId == -1)
             {

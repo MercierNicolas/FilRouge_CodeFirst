@@ -1,7 +1,7 @@
 ﻿@model QuizMakeViewModel
 
 <h1>Resulat du quiz : @Model.Quiz.Name</h1>
-
+<h2>Note obtenue : @Model.Note / 20</h2>
 @foreach(var question in Model.Quiz.Questions)
 {
     <div style="background-color:blanchedalmond">
@@ -27,16 +27,16 @@
         {
         @foreach (var repUser in Model.answerUser)
         {
-            if (rep.CorrectionId == repUser.choiceIdUser && rep.IsCorrect)
-            {
-                    <p style="color:blue">@rep.ContentCorection <input type="checkbox" checked="@rep.IsCorrect" disabled="disabled" /> </p>
-                }
-                else if (rep.CorrectionId == repUser.choiceIdUser)
+                if (rep.CorrectionId == repUser.choiceIdUser)
                 {
-                    <p style="color:firebrick">@rep.ContentCorection </p>
+                    <p>@rep.ContentCorection </p>
+                    if (repUser.IsBonnrep)
+                    {
+                        <p>Bonne reponse +1 pts</p>
+                    }
                 }
 
-            }
+        }
         }
     </div>
 

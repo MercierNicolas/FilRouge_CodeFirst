@@ -11,7 +11,7 @@ namespace FilRouge_Test_CodeFirst.Data.Entity
 
         public int choiceIdUser { get; set; }
         public int QuizId { get; set; }
-        
+        public bool IsBonnrep { get; set; }
         
     }
 }
