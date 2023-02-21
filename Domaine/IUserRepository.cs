@@ -14,7 +14,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
         string Edit(string id, IdentityUser user);
         IEnumerable<IdentityUser> GetOneUser(string IdUser);
     }
-
+    
     public class DbUserRepo : IUserRepository
     {
         private readonly ApplicationDbContext _context;
@@ -25,8 +25,14 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
         public string AddUser(IdentityUser user)
         {
+            var pw = user.UserName + "QUIZ_2023!";
+            var hash = new PasswordHasher<IdentityUser>();
+            var passwordHash = hash.HashPassword(user, pw);
+            user.PasswordHash = passwordHash;
+            user.NormalizedUserName = user.Email.ToLower();
             _context.Users.Add(user);
             _context.SaveChanges();
+           
             return user.Id;
 
         }

@@ -62,16 +62,9 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
             if (dataAnswers.NextQuestionId == -1)
             {
-
-
-                //=======
-                //            if (questionId == null)
-                //>>>>>>> 4aba78afc29b16f7ddf829dd17a76b6b01f85a60
-                {
-                    return View("Thank");
-                }
+                return View("Thank");
             }
-            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.QuestionId });
+            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.NextQuestionId });
         }
 
 
