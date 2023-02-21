@@ -11,7 +11,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
     public interface IUserRepository
     {
         string AddUser(IdentityUser user);
-        string AddCandidat(IdentityUser user);
+        string AddCandidat(IdentityUser user, int idQuiz);
         string DeleteUser(string IdUser);
         IEnumerable<IdentityUser> GetAllUser();
         string Edit(string id, IdentityUser user);
@@ -26,7 +26,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
         {
             this._context = context;
         }
-        public string AddCandidat(IdentityUser user)
+        public string AddCandidat(IdentityUser user, int idQuiz)
         {
 
             var role = _context.Roles.Where(r => r.Name == "Candidats").First();
@@ -40,7 +40,14 @@ namespace FilRouge_Test_CodeFirst.Domaine
             _context.UserRoles.Add(newUserRole);
             _context.Users.Add(user);
             _context.SaveChanges();
-
+            var tested = new Tested
+            {
+                QuizzId = idQuiz,
+                IdentityUserId = user.Id,
+                TestedDate = DateTime.Now,
+            };
+            _context.tests.Add(tested);
+            _context.SaveChanges();
             return user.Id;
         }
 

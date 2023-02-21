@@ -57,7 +57,8 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
             if (quizcode.Code == checkcode.Code)
             {
-                userRepo.AddCandidat(AddCandidat);
+                userRepo.AddCandidat(AddCandidat, id);
+                model.IdentityCandidat = AddCandidat;
                 //return Content(AddCandidat.Email);
                 return View("Welcome", dataId.FirstOrDefault());
             }
@@ -106,7 +107,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
             {
                 return View("Thank");
             }
-
+            dataAnswers.IdentityCandidat = model.IdentityCandidat;
             return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.NextQuestionId });
 
         }

@@ -1,10 +1,9 @@
-﻿using Azure.Core;
-using FilRouge_Test_CodeFirst.Data;
+﻿using FilRouge_Test_CodeFirst.Data;
 using FilRouge_Test_CodeFirst.Data.Entity;
 using FilRouge_Test_CodeFirst.Models;
+
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Xml.Linq;
+
 
 
 namespace FilRouge_Test_CodeFirst.Domaine
@@ -14,7 +13,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
         int CreateResalt(TheAnswer theAnswer);
         QuizPassageViewModel GetQuizPassage(int quizzId, int? questionId);
         List<QuizPassageViewModel> GetAllId(int quizzId, int? questionIdControlleur);
-
+        int AddPassage(QuizPassageViewModel candidat);
         int SaveBddAnswerUser (IEnumerable<int> IdCheck ,int questionIdControlleur, int quizId);
 
     }
@@ -83,7 +82,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
 
                PassageQuizViewModel.NextQuestionId = listQuestionId[indexID + 1];
-                
+     
                 return PassageQuizViewModel;
             }
             return PassageQuizViewModel;
@@ -117,6 +116,14 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
             }
             _context.SaveChanges();
+            return 0;
+        }
+
+        public int AddPassage(QuizPassageViewModel candidat)
+        {
+            var CandidatId = candidat.IdentityCandidat.Id;
+            var t = _context.Users.Where(i => i.Id == CandidatId).FirstOrDefault();
+
             return 0;
         }
     }
