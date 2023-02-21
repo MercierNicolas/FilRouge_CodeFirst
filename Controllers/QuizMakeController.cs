@@ -38,7 +38,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
         public IActionResult Details(int id)
         {
-            
+        
             var oneQuizMake = quizMakeRepository.GetOneQuizMake(id);
             var note = 0;
             var nbQues = oneQuizMake.Quiz.Questions.Count();
@@ -51,7 +51,6 @@ namespace FilRouge_Test_CodeFirst.Controllers
             }
             double noteFianl = (note * 20) / nbQues;
             oneQuizMake.Note = noteFianl;
-
             return View(oneQuizMake);
         }
     }
