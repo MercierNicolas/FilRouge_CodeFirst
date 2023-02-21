@@ -51,6 +51,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
             }
             double noteFianl = (note * 20) / nbQues;
             oneQuizMake.Note = noteFianl;
+
             return View(oneQuizMake);
         }
     }

@@ -1,9 +1,7 @@
 ﻿@model QuizMakeViewModel
 
 <h1>Resulat du quiz : @Model.Quiz.Name</h1>
-
 <h2>Note obtenue : @Model.Note / 20</h2>
-
 @foreach(var question in Model.Quiz.Questions)
 {
     <div style="background-color:blanchedalmond">
@@ -29,7 +27,6 @@
         {
         @foreach (var repUser in Model.answerUser)
         {
-
                 if (rep.CorrectionId == repUser.choiceIdUser)
                 {
                     <p>@rep.ContentCorection </p>
