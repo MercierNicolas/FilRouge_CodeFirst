@@ -1,12 +1,15 @@
 ﻿using FilRouge_Test_CodeFirst.Data;
 using FilRouge_Test_CodeFirst.Data.Entity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace FilRouge_Test_CodeFirst.Domaine
 {
     public interface IQuizRepository
     {
-        int CreateQuiz(Quiz quiz, int levelId, int sujetId);
+        int CreateQuiz(Quiz quiz, int levelId, int sujetId ,HttpContext httpContext);
         IEnumerable<Quiz> GetAllQuiz();
         IEnumerable<Quiz> GetOneQuiz(int id);
 
@@ -20,12 +23,14 @@ namespace FilRouge_Test_CodeFirst.Domaine
     {
         // Permet de vers le lien entre la class DbQuizRepo et le context de l'app (donc la Bdd)
         private readonly ApplicationDbContext _context;
-        public DbQuizRepo(ApplicationDbContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        public DbQuizRepo(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             this._context = context;
+            _userManager = userManager;
         }
         // Methode pour ajoute a la BDD un quiz
-        public int CreateQuiz(Quiz quiz, int levelId, int sujetId)
+        public int CreateQuiz(Quiz quiz, int levelId, int sujetId, HttpContext httpContext)
         {
             // On recupére l'id de la vue a l'aide du controlleur et on appele de la BDD les level avec le where on recupere le bon id
             var selectLvl = _context.levels.Where(lvl => lvl.Id == levelId).First();
@@ -35,6 +40,16 @@ namespace FilRouge_Test_CodeFirst.Domaine
             // Meme fonctionnement que en haut mais la pour le Sujet
             var selectSujet = _context.sujets.Where(sujet => sujet.id == sujetId).First();
             quiz.Sujet = (Sujet?)selectSujet;
+
+            // Récupérer l'ID de l'utilisateur
+            //string userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var name ="";
+            foreach (var userName in httpContext.User.Claims)
+            {
+                name = userName.Subject.Name;                
+            }
+            var userId = _context.Users.Where(u => u.UserName== name).First();
+            quiz.RecruterId = userId;
 
             // On ajoute le quiz crée dans le context et on sauvegarde
             _context.Quiz.Add(quiz);

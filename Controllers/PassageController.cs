@@ -57,7 +57,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
             if (quizcode.Code == checkcode.Code)
             {
-                userRepo.AddUser(AddCandidat);
+                userRepo.AddCandidat(AddCandidat);
                 //return Content(AddCandidat.Email);
                 return View("Welcome", dataId.FirstOrDefault());
             }

@@ -2,6 +2,7 @@
 
 <h1>Resulat du quiz : @Model.Quiz.Name</h1>
 <h2>Note obtenue : @Model.Note / 20</h2>
+<a asp-action="FilePdf" >PDF</a>
 @foreach(var question in Model.Quiz.Questions)
 {
     <div style="background-color:blanchedalmond">

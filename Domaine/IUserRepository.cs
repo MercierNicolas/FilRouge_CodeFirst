@@ -1,14 +1,17 @@
-﻿using FilRouge_Test_CodeFirst.Data;
+﻿using Azure.Core;
+using FilRouge_Test_CodeFirst.Data;
 using FilRouge_Test_CodeFirst.Data.Entity;
 using FilRouge_Test_CodeFirst.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace FilRouge_Test_CodeFirst.Domaine
 {
     public interface IUserRepository
     {
         string AddUser(IdentityUser user);
+        string AddCandidat(IdentityUser user);
         string DeleteUser(string IdUser);
         IEnumerable<IdentityUser> GetAllUser();
         string Edit(string id, IdentityUser user);
@@ -18,10 +21,29 @@ namespace FilRouge_Test_CodeFirst.Domaine
     public class DbUserRepo : IUserRepository
     {
         private readonly ApplicationDbContext _context;
+
         public DbUserRepo(ApplicationDbContext context)
         {
             this._context = context;
         }
+        public string AddCandidat(IdentityUser user)
+        {
+
+            var role = _context.Roles.Where(r => r.Name == "Candidats").First();
+
+            var newUserRole = new IdentityUserRole<String>
+            {
+                UserId = user.Id,
+                RoleId = role.Id,
+            };
+
+            _context.UserRoles.Add(newUserRole);
+            _context.Users.Add(user);
+            _context.SaveChanges();
+
+            return user.Id;
+        }
+
         public string AddUser(IdentityUser user)
         {
             var pw = user.UserName + "QUIZ_2023!";
@@ -29,9 +51,18 @@ namespace FilRouge_Test_CodeFirst.Domaine
             var passwordHash = hash.HashPassword(user, pw);
             user.PasswordHash = passwordHash;
             user.NormalizedUserName = user.Email.ToLower();
+            var role = _context.Roles.Where(r => r.Name == "Recruiter").First();
+
+            var newUserRole = new IdentityUserRole<String>
+            {
+                UserId = user.Id,
+                RoleId = role.Id,
+            };
+
+            _context.UserRoles.Add(newUserRole);
             _context.Users.Add(user);
             _context.SaveChanges();
-           
+            
             return user.Id;
 
         }

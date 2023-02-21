@@ -57,7 +57,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
             // Recuper tout les sujet et level 
             var allLvl = levelRepo.GetAllLevel();
             var allSujet = sujetRepo.GetAllSujet();
-
+            
             List<SelectListItem> Listlevel = allLvl
                 .OrderBy(n => n.LevelName)
                 .Select(n =>
@@ -97,9 +97,11 @@ namespace FilRouge_Test_CodeFirst.Controllers
                 Average = model.Quiz.Average,
                 Code = generateGuid(),
             };
-            // On envoie la variable quizAdd et le level et sujet ID recupére dans le select a la méthode CreateQuiz de l'interface
-            quizRepo.CreateQuiz(quizAdd, model.LevelId, model.sujetId);
+            var httpContext = HttpContext;
 
+            // On envoie la variable quizAdd et le level et sujet ID recupére dans le select a la méthode CreateQuiz de l'interface
+            quizRepo.CreateQuiz(quizAdd, model.LevelId, model.sujetId, httpContext);
+            
             return RedirectToAction("Index");
         }
 

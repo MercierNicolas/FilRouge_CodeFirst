@@ -1,7 +1,9 @@
 ﻿using FilRouge_Test_CodeFirst.Data.Entity;
 using FilRouge_Test_CodeFirst.Domaine;
 using FilRouge_Test_CodeFirst.Models;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace FilRouge_Test_CodeFirst.Controllers
 {
@@ -49,9 +51,11 @@ namespace FilRouge_Test_CodeFirst.Controllers
                 }
             }
             double noteFianl = (note * 20) / nbQues;
-            oneQuizMake.Note = noteFianl;
+            oneQuizMake.Note = noteFianl;            
 
             return View(oneQuizMake);
         }
+
+
     }
 }
