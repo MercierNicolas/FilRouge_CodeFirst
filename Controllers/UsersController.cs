@@ -25,12 +25,11 @@ namespace FilRouge_Test_CodeFirst.Controllers
         [HttpPost]
         public ActionResult CreateUser(UserViewModel identity)
         {
-
+             
             var AddUser = new IdentityUser
             {
                 Id = Guid.NewGuid().ToString(),
                 UserName = identity.UserName,
-                PasswordHash =  identity.PasswordHash/*Convert.ToBase64String(RandomNumberGenerator.GetBytes(128 / 8))*/,
                 Email = identity.Email,
                 EmailConfirmed = identity.EmailConfirmed,
                 PhoneNumber = identity.PhoneNumber,
