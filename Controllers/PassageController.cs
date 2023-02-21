@@ -8,7 +8,6 @@ namespace FilRouge_Test_CodeFirst.Controllers
     public class PassageController : Controller
     {
         private readonly IQuestionRepository questionRepo;
-
         private readonly IAnswerRepository passageRepo;
         private readonly IAnswerRepository answerRepo;
 
@@ -16,12 +15,13 @@ namespace FilRouge_Test_CodeFirst.Controllers
         {
             this.questionRepo = questionRepo;
             this.passageRepo = passageRepo;
-
             this.answerRepo = answerRepo;
+            
         }
 
         public IActionResult Index()
         {
+            
             return View();
         }
 
