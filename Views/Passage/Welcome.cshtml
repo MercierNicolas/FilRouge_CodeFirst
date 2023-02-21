@@ -1,5 +1,6 @@
-﻿@using FilRouge_Test_CodeFirst.Models
-
+﻿@using Microsoft.AspNetCore.Identity
+@using FilRouge_Test_CodeFirst.Data
+@using FilRouge_Test_CodeFirst.Models
 
 @model QuizPassageViewModel;
 
@@ -7,24 +8,18 @@
     <h2>Bienvenue sur votre teste de compétence</h2>
     <br />
     <p>
-        L'évaluation SkillCheck est un outil de validation de vos connaissances de base des différents langages numérique. Participer à SkillCheck vous permettra de créer une base de référence de vos connaissances numérique actuelles, à partir de laquelle vous pourrez commencer à vous améliorer immédiatement. Il est gratuit et ne comprend aucune certification.
+        L'évaluation SkillCheck est un outil de validation de vos connaissances de base des différents langages numérique.
+        Participer à SkillCheck vous permettra de créer une base de référence de vos connaissances numérique actuelles,
+        à partir de laquelle vous pourrez commencer à vous améliorer immédiatement. Il est gratuit et ne comprend aucune certification.
     </p>
 
-
-
     <div class="form-group">
-
-
         <a asp-controller="Passage" asp-action="PassageQuiz" asp-route-id="@Model.QuizzId" asp-route-questionid="@Model.QuestionId">
-
-
-                <input type="button" value="Suivant" class="btn btn-primary" />
-
-            </a>
-
-
-        </div>
-
-
+            <input type="button" value="Suivant" class="btn btn-primary" />
+        </a>
     </div>
+
+
+
+</div>
 

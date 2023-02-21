@@ -24,10 +24,12 @@ builder.Services.AddScoped<ILevelRepository, DbLevelRepo>();
 builder.Services.AddScoped<ISujetRepository, DbSujetlRepo>();
 
 builder.Services.AddScoped<IQuestionRepository, DbQuestionRepository>();
+builder.Services.AddScoped<IQuizMakeRepository, DbQuizMakeRepository>();
 
 builder.Services.AddScoped<IAnswerRepository, DbTheAnswerRepo>();
+builder.Services.AddScoped<IUserRepository, DbUserRepo>();
 
-// add middlware hashids
+// add middlware hashids   IQuizMakeRepository
 builder.Services.AddSingleton<IHashids>(_ =>new Hashids("gael", 11));
 
 

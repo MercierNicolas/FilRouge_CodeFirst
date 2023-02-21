@@ -1,0 +1,44 @@
+﻿@model QuizMakeViewModel
+
+<h1>Resulat du quiz : @Model.Quiz.Name</h1>
+<h2>Note obtenue : @Model.Note / 20</h2>
+@foreach(var question in Model.Quiz.Questions)
+{
+    <div style="background-color:blanchedalmond">
+        <h3>@question.ContentQuestion</h3>
+        <h5>Bonne réponse :</h5>
+        <ul>
+        @foreach(var rep in @question.AnswerChoice)
+        {
+        
+                if (rep.IsCorrect)
+                {
+                    <li style="color:green">@rep.ContentCorection <input type="checkbox" checked="@rep.IsCorrect" disabled="disabled" /> </li>
+                }
+                else
+                {
+                    <li style="color:red"> @rep.ContentCorection</li>
+                }
+      
+         }
+        </ul>
+        <h5>Les réponse du candidat</h5>
+        @foreach(var rep in @question.AnswerChoice)
+        {
+        @foreach (var repUser in Model.answerUser)
+        {
+                if (rep.CorrectionId == repUser.choiceIdUser)
+                {
+                    <p>@rep.ContentCorection </p>
+                    if (repUser.IsBonnrep)
+                    {
+                        <p>Bonne reponse +1 pts</p>
+                    }
+                }
+
+        }
+        }
+    </div>
+
+}
+

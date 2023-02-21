@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using FilRouge_Test_CodeFirst.Data
+@using FilRouge_Test_CodeFirst.Models
+
+@model QuizPassageViewModel;  
+ 
+<div class="row">
+        <div class="col-md-4">
+        <form asp-controller="Passage" asp-action="Validation" >
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="IdentityCandidat.UserName" class="control-label">Votre nom</label>
+                    <input asp-for="IdentityCandidat.UserName" class="form-control" />
+                    <span asp-validation-for="IdentityCandidat.UserName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="IdentityCandidat.Email" class="control-label">Votre email</label>
+                    <input asp-for="IdentityCandidat.Email" class="form-control" />
+                    <span asp-validation-for="IdentityCandidat.Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Code" class="control-label">Votre code de validation</label>
+                    <input asp-for="Code" class="form-control" />
+                    <span asp-validation-for="Code" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+
+                <input type="submit" class="btn btn-primary" asp-route-id="@Model.QuizzId" asp-route-questionid="@Model.QuestionId" />
+               
+
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
