@@ -39,16 +39,19 @@ namespace FilRouge_Test_CodeFirst.Controllers
         public IActionResult Details(int id)
         {
             var oneQuizMake = quizMakeRepository.GetOneQuizMake(id);
-            double nbBonneReponse = 0;
-            //foreach (var rep in oneQuizMake.Quiz.Questions)
-            //{
-            //    foreach (var repUser in oneQuizMake.answerUser)
-            //    {
-                    
-            //    }
-            //}
+            var note = 0;
+            var nbQues = oneQuizMake.Quiz.Questions.Count();
+            foreach(var rep in oneQuizMake.answerUser)
+            {
+                if (rep.IsBonnrep)
+                {
+                    note++;
+                }
+            }
+            double noteFianl = (note * 20) / nbQues;
+            oneQuizMake.Note = noteFianl;
 
-                    return View(oneQuizMake);
+            return View(oneQuizMake);
         }
     }
 }
