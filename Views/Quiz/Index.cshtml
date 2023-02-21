@@ -42,8 +42,6 @@
 
                             <a asp-controller="Passage" asp-action="Validation" asp-route-id="@item.QuizzId">
 
-                            <a asp-controller="Passage" asp-action="Welcome" asp-route-id="@item.QuizzId">
-
                                 @Html.DisplayFor(modelItem => item.Name)
                             </a>
                         </td>
@@ -61,9 +59,8 @@
                         </td>
                         <td>
 
-
+                            <a asp-controller="Passage" asp-action="FakeWelcome" asp-route-id="@item.QuizzId"><div class="buttonAjout2">Fake Passage</div></a> |
                             <a asp-action="EditQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout">Edit </div></a> |
-
                             <a asp-action="DetailQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout2">Details</div></a> |
                             <a asp-action="DeleteQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout3">Supprimer</div></a>
 

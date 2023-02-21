@@ -24,45 +24,51 @@ namespace FilRouge_Test_CodeFirst.Controllers
             this.quizRepo = quizRepo;
 
         }
-
-
-
+        [HttpGet]
+        [Route("/Passage/Validation/{id:int}")]
         public IActionResult Validation(int id, int? questionId)
         {
             var dataId = passageRepo.GetAllId(id, questionId).Where(q => q.QuizzId == id);
 
             return View(dataId.FirstOrDefault());
-          
+
         }
 
         [HttpPost]
-        public IActionResult Validation(int id, int? questionId, UserViewModel identity, Quiz quizcode)
+        [Route("/Passage/Validation/{id:int}")]
+        public IActionResult Validation(int id, int? questionId, QuizPassageViewModel model, Quiz quizcode)
         {
-            
+            var dataId = passageRepo.GetAllId(id, questionId).Where(q => q.QuizzId == id);
             var checkcode = quizRepo.GetOneQuiz(id).First();
 
             var AddCandidat = new IdentityUser
             {
                 Id = Guid.NewGuid().ToString(),
-                UserName = identity.UserName,
-
-                Email = identity.Email,
-                EmailConfirmed = identity.EmailConfirmed,
-                PhoneNumber = identity.PhoneNumber,
-                PhoneNumberConfirmed = identity.PhoneNumberConfirmed,
-                TwoFactorEnabled = identity.TwoFactorEnabled,
-                LockoutEnabled = identity.LockoutEnabled,
-                AccessFailedCount = identity.AccessFailedCount,
+                UserName = model.IdentityCandidat.UserName,
+                Email = model.IdentityCandidat.Email,
+                EmailConfirmed = model.IdentityCandidat.EmailConfirmed,
+                PhoneNumber = model.IdentityCandidat.PhoneNumber,
+                PhoneNumberConfirmed = model.IdentityCandidat.PhoneNumberConfirmed,
+                TwoFactorEnabled = model.IdentityCandidat.TwoFactorEnabled,
+                LockoutEnabled = model.IdentityCandidat.LockoutEnabled,
+                AccessFailedCount = model.IdentityCandidat.AccessFailedCount,
 
             };
 
             if (quizcode.Code == checkcode.Code)
             {
                 userRepo.AddUser(AddCandidat);
-                
+                //return Content(AddCandidat.Email);
+                return View("Welcome", dataId.FirstOrDefault());
             }
-            return Content("je suis ici");
-            return View("Welcome");
+            else
+            {
+                return View(dataId.FirstOrDefault());
+            }
+            //return View(dataId.FirstOrDefault());
+
+            return View("Welcome",dataId.FirstOrDefault());
+            return RedirectToAction("{id:int}");
 
         }
         [HttpGet]
@@ -70,7 +76,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
         public IActionResult Welcome(int id, int? questionId)
         {
             var dataId = passageRepo.GetAllId(id, questionId).Where(q => q.QuizzId == id);
-
+            
             return View(dataId.FirstOrDefault());
         }
 
@@ -105,7 +111,42 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
         }
 
+        [HttpGet]
+        [Route("/Passage/Fake/{id:int}")]
+        public IActionResult FakeWelcome(int id, int? questionId)
+        {
+            var dataId = passageRepo.GetAllId(id, questionId).Where(q => q.QuizzId == id);
 
+            return View(dataId.FirstOrDefault());
+        }
+        [HttpGet]
+        [Route("/Passage/Fake/{id:int}/{questionId:int}")]
+        public IActionResult FakePassageQuiz(int id, int? questionId)
+        {
+
+            var dataAnswers = passageRepo.GetQuizPassage(id, questionId);
+
+
+            return View(dataAnswers);
+        }
+        [HttpPost]
+        [Route("/Passage/Fake/{id}/{questionId?}")]
+        public IActionResult FakePassageQuiz(int id, int? questionId, IFormCollection input, QuizPassageViewModel model)
+        {
+
+            var dataAnswers = passageRepo.GetQuizPassage(id, questionId);
+
+            var responseIds = dataAnswers.AnswerChoice.Where(responseId => input.ContainsKey(responseId.CorrectionId.ToString())).Select(i => i.CorrectionId);
+            //answerRepo.SaveBddAnswerUser(responseIds, (int)questionId, id);
+
+            if (dataAnswers.NextQuestionId == -1)
+            {
+                return View("Thank");
+            }
+
+            return RedirectToAction("FakePassageQuiz", new { id, questionId = dataAnswers.NextQuestionId });
+
+        }
         public IActionResult Thank()
         {
             return View();
