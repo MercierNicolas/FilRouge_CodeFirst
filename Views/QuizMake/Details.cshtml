@@ -1,44 +1,49 @@
 ﻿@model QuizMakeViewModel
 
-<h1>Resulat du quiz : @Model.Quiz.Name</h1>
-<h2>Note obtenue : @Model.Note / 20</h2>
+<h1 style ="text-align : center">Resulat du quiz : @Model.Quiz.Name</h1>
+<h2 style ="text-align : center">Note obtenue : @Model.Note / 20</h2>
+<div class="container">
+    
 @foreach(var question in Model.Quiz.Questions)
 {
-    <div style="background-color:blanchedalmond">
-        <h3>@question.ContentQuestion</h3>
-        <h5>Bonne réponse :</h5>
-        <ul>
-        @foreach(var rep in @question.AnswerChoice)
-        {
-        
+    <div id="quizReponse" class="m-3 p-3 row">
+            <h2>@question.ContentQuestion</h2>
+            <hr style="width: 97%;"/ >
+             <div class="col-md-6">
+            <h5>Réponse possible :</h5>
+            <ul>
+            @foreach(var rep in @question.AnswerChoice)
+            {
                 if (rep.IsCorrect)
                 {
-                    <li style="color:green">@rep.ContentCorection <input type="checkbox" checked="@rep.IsCorrect" disabled="disabled" /> </li>
+                                <li style="color:green">@rep.ContentCorection <input type="checkbox" checked="@rep.IsCorrect" disabled="disabled" /> </li> 
                 }
                 else
                 {
                     <li style="color:red"> @rep.ContentCorection</li>
                 }
-      
-         }
-        </ul>
-        <h5>Les réponse du candidat</h5>
-        @foreach(var rep in @question.AnswerChoice)
-        {
-        @foreach (var repUser in Model.answerUser)
-        {
-                if (rep.CorrectionId == repUser.choiceIdUser)
+            }
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h5>Les réponses du candidat :</h5>
+            @foreach(var rep in @question.AnswerChoice)
+            {
+                @foreach (var repUser in Model.answerUser)
                 {
-                    <p>@rep.ContentCorection </p>
-                    if (repUser.IsBonnrep)
+                    if (rep.CorrectionId == repUser.choiceIdUser)
                     {
-                        <p>Bonne reponse +1 pts</p>
+                        <p>@rep.ContentCorection</p>
+                        @if (repUser.IsBonnrep)
+                        {
+                            <p>Bonne réponse ✅</p>
+                        }
                     }
                 }
-
-        }
-        }
+            }
+        </div>
     </div>
-
 }
+
+</div>
 
