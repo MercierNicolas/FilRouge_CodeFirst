@@ -62,21 +62,22 @@
                     }
 
                 }
+  
+            <td>
+                @Html.DisplayFor(modelItem => item.Level.LevelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sujet.SujetName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.QuestionId">Edit</a> |
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Level.LevelName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sujet.SujetName)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.QuestionId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.QuestionId">Details</a> | 
 
-                    <a asp-action="Details" asp-route-id="@item.QuestionId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.QuestionId">Delete</a>
+            </td>
+        </tr>
+}
 
-                    <a asp-action="Delete" asp-route-id="@item.QuestionId">Delete</a>
-                </td>
-            </tr>
-        }
     </tbody>
 </table>

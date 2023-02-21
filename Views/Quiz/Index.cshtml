@@ -1,10 +1,14 @@
 ﻿@model IEnumerable<FilRouge_Test_CodeFirst.Data.Entity.Quiz>
 
+<<<<<<< HEAD
 
 <h1 style="text-align : center">Page des Quiz</h1>
 
 
 <a asp-controller="QuizMake" asp-action="Index"><div class="buttonAjout">Test </div></a>
+=======
+<h1 style="text-align : center">Page des Quiz</h1>
+>>>>>>> eefeb1c (fixe merge conflixe)
 
 
 <div class="container">
@@ -16,7 +20,6 @@
 
 
         <table class="table table-hover table-striped table-light">
-
             <thead>
                 <tr class="table-primary">
                     <th>
@@ -42,7 +45,11 @@
                 {
                     <tr class="table">
                         <td>
+
                             <a asp-controller="Passage" asp-action="Validation" asp-route-id="@item.QuizzId">
+
+                            <a asp-controller="Passage" asp-action="Welcome" asp-route-id="@item.QuizzId">
+
                                 @Html.DisplayFor(modelItem => item.Name)
                             </a>
                         </td>
@@ -64,7 +71,6 @@
                             <a asp-action="EditQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout">Edit </div></a> |
                             <a asp-action="DetailQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout2">Details</div></a> |
                             <a asp-action="DeleteQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout3">Supprimer</div></a>
-
 
                         </td>
                     </tr>

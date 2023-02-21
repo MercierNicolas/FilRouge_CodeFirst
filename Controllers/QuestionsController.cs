@@ -30,7 +30,6 @@ namespace FilRouge_Test_CodeFirst.Controllers
         }
 
         // GET: Questions/Details/5
-
         public IActionResult Details(int id)
         {
             var oneQuestion = questionRepo.GetOneQuestion(id);
