@@ -51,13 +51,13 @@ namespace FilRouge_Test_CodeFirst.Domaine
         }
 
 
+
         public QuizPassageViewModel GetQuizPassage(int quizzId, int? questionIdControlleur)
 
         {
             var PassageQuizViewModel = new QuizPassageViewModel();
 
             var quizPassage = _context.Quiz
-
                .Include(qs => qs.Questions)
                .ThenInclude(a => a.AnswerChoice)
                .Include(l => l.Level)
@@ -66,6 +66,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
                
             List<int> listQuestionId = new List<int>();
 
+<<<<<<< HEAD
             foreach(var question in quizPassage.Questions)
             {
                 listQuestionId.Add(question.QuestionId);
@@ -88,8 +89,6 @@ namespace FilRouge_Test_CodeFirst.Domaine
                 return PassageQuizViewModel;
             }
             return PassageQuizViewModel;
-
-
         }
 
         public int CreateResalt(TheAnswer theAnswer)

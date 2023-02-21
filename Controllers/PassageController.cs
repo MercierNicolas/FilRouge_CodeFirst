@@ -85,9 +85,6 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
             return View(dataAnswers);
         }
-
-
-
         [HttpPost]
         [Route("/Passage/{id}/{questionId?}")]
         public IActionResult PassageQuiz(int id, int? questionId, IFormCollection input, QuizPassageViewModel model)
@@ -104,15 +101,19 @@ namespace FilRouge_Test_CodeFirst.Controllers
                 return View("Thank");
             }
 
-            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.NextQuestionId });
+            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.QuestionId });
         }
 
 
-        //public IActionResult Thank()
-        //{
-        //    return View();
-        //}
+        public IActionResult Thank()
+        {
+            return View();
+        }
 
+        public IActionResult ActionResult(int id)
+        {
+            return View();
+        }
 
     }
 }
