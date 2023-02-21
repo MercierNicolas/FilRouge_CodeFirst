@@ -8,6 +8,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
 {
     public interface IUserRepository
     {
+
         string AddUser(IdentityUser user);
         string DeleteUser(string IdUser);
         IEnumerable<IdentityUser> GetAllUser();
@@ -22,6 +23,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
         {
             this._context = context;
         }
+
 
         public string AddUser(IdentityUser user)
         {

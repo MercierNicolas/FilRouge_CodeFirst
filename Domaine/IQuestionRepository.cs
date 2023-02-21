@@ -31,10 +31,8 @@ namespace FilRouge_Test_CodeFirst.Domaine
             this._context = context;
         }
 
-
-
-
         public int CreateQuestion(Question question, int levelId, int sujetId ,Dictionary<string,bool> DictionaryChoix)
+
 
         {
             // On recupére l'id de la vue a l'aide du controlleur et on appele de la BDD les level avec le where on recupere le bon id
@@ -102,6 +100,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
 
         public List<Question> GetQuestionWithIds(List<int> ids)
+
 
 
         {
