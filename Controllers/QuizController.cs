@@ -139,6 +139,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
             return View(DetailQuiz.First());
         }
 
+
         public IActionResult AddQuestionQuiz(int id)
         {
             var OneQuiz = quizRepo.GetOneQuiz(id).ToList().First();
@@ -166,6 +167,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
             quizRepo.AddQuestionQuiz(idQuiz, questionList);
             return RedirectToAction("Index");
         }
+
 
     }
 }
