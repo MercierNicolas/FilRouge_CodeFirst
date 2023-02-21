@@ -21,7 +21,8 @@ namespace FilRouge_Test_CodeFirst.Models
         public int AccessFailedCount { get; set; }
         public int QuizzId { get; set; }
         public List<IdentityUser> IdentityUser { get; set; }
-        public List<Quiz> ?Quiz { get; set; }
+        public List<Quiz> ?Quizs { get; set; }
+        public Quiz Quiz { get; set; }
     }
 
 

@@ -1,12 +1,8 @@
-
-﻿using FilRouge_Test_CodeFirst.Data;
 using FilRouge_Test_CodeFirst.Data.Entity;
 using FilRouge_Test_CodeFirst.Domaine;
 using FilRouge_Test_CodeFirst.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace FilRouge_Test_CodeFirst.Controllers
@@ -16,21 +12,58 @@ namespace FilRouge_Test_CodeFirst.Controllers
         private readonly IQuestionRepository questionRepo;
         private readonly IAnswerRepository passageRepo;
         private readonly IAnswerRepository answerRepo;
+        private readonly IUserRepository userRepo;
+        private readonly IQuizRepository quizRepo;
 
-        public PassageController(IQuestionRepository questionRepo, IAnswerRepository passageRepo, IAnswerRepository answerRepo)
+        public PassageController(IQuestionRepository questionRepo, IAnswerRepository passageRepo, IAnswerRepository answerRepo, IUserRepository userRepo, IQuizRepository quizRepo)
         {
             this.questionRepo = questionRepo;
             this.passageRepo = passageRepo;
             this.answerRepo = answerRepo;
-            
+            this.userRepo = userRepo;
+            this.quizRepo = quizRepo;
         }
 
-        public IActionResult Index()
+
+
+        public IActionResult Validation(int id, int? questionId)
+        {
+            var dataId = passageRepo.GetAllId(id, questionId).Where(q => q.QuizzId == id);
+
+            return View(dataId.FirstOrDefault());
+          
+        }
+
+        [HttpPost]
+        public IActionResult Validation(int id, int? questionId, UserViewModel identity, Quiz quizcode)
         {
             
-            return View();
-        }
+            var checkcode = quizRepo.GetOneQuiz(id).First();
 
+            var AddCandidat = new IdentityUser
+            {
+                Id = Guid.NewGuid().ToString(),
+                UserName = identity.UserName,
+
+                Email = identity.Email,
+                EmailConfirmed = identity.EmailConfirmed,
+                PhoneNumber = identity.PhoneNumber,
+                PhoneNumberConfirmed = identity.PhoneNumberConfirmed,
+                TwoFactorEnabled = identity.TwoFactorEnabled,
+                LockoutEnabled = identity.LockoutEnabled,
+                AccessFailedCount = identity.AccessFailedCount,
+
+            };
+
+            if (quizcode.Code == checkcode.Code)
+            {
+                userRepo.AddUser(AddCandidat);
+                
+            }
+            return Content("je suis ici");
+            return View("Welcome");
+
+        }
 
         [HttpGet]
         [Route("/Passage/{id:int}")]
@@ -41,13 +74,14 @@ namespace FilRouge_Test_CodeFirst.Controllers
             return View(dataId.FirstOrDefault());
         }
 
+        
 
         [HttpGet]
         [Route("/Passage/{id:int}/{questionId:int}")]
         public IActionResult PassageQuiz(int id, int? questionId)
         {
-            
-             var dataAnswers = passageRepo.GetQuizPassage(id, questionId);
+
+            var dataAnswers = passageRepo.GetQuizPassage(id, questionId);
 
 
             return View(dataAnswers);
@@ -57,22 +91,22 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
         [HttpPost]
         [Route("/Passage/{id}/{questionId?}")]
-        public IActionResult PassageQuiz(int id, int? questionId, IFormCollection input , QuizPassageViewModel model)
+        public IActionResult PassageQuiz(int id, int? questionId, IFormCollection input, QuizPassageViewModel model)
         {
-           
+
             var dataAnswers = passageRepo.GetQuizPassage(id, questionId);
 
             var responseIds = dataAnswers.AnswerChoice.Where(responseId => input.ContainsKey(responseId.CorrectionId.ToString())).Select(i => i.CorrectionId);
 
-            answerRepo.SaveBddAnswerUser(responseIds, (int)questionId , id);
-            
-           
+            answerRepo.SaveBddAnswerUser(responseIds, (int)questionId, id);
+
+
             if (dataAnswers.NextQuestionId == -1)
             {
                 return View("Thank");
             }
 
-            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.QuestionId });
+            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.NextQuestionId });
         }
 
 
