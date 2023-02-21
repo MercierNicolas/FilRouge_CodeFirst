@@ -4,6 +4,7 @@ using FilRouge_Test_CodeFirst.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilRougeTestCodeFirst.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230220110429_RefonteBddReponseCandidat")]
+    partial class RefonteBddReponseCandidat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -198,7 +201,7 @@ namespace FilRougeTestCodeFirst.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TheAnswerId"));
 
-                    b.Property<bool>("IsBonnrep")
+                    b.Property<bool>("IsCheck")
                         .HasColumnType("bit");
 
                     b.Property<string>("QuestionAnswerIdentityUserId")
@@ -211,9 +214,6 @@ namespace FilRougeTestCodeFirst.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("QuestionsIdQuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuizId")
                         .HasColumnType("int");
 
                     b.Property<string>("ValidedIdentityUserId")
