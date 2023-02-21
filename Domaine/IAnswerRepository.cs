@@ -15,6 +15,8 @@ namespace FilRouge_Test_CodeFirst.Domaine
         QuizPassageViewModel GetQuizPassage(int quizzId, int? questionId);
         List<QuizPassageViewModel> GetAllId(int quizzId, int? questionIdControlleur);
 
+        int SaveBddAnswerUser (IEnumerable<int> IdCheck ,int questionIdControlleur, int quizId);
+
     }
 
     public class DbTheAnswerRepo : IAnswerRepository
@@ -97,6 +99,16 @@ namespace FilRouge_Test_CodeFirst.Domaine
             return theAnswer.TheAnswerId;
         }
 
-
+        public int SaveBddAnswerUser(IEnumerable<int> IdCheck, int questionIdControlleur , int quizId)
+        {
+            var questionSelect = _context.Questions.Where(qId => qId.QuestionId == questionIdControlleur).FirstOrDefault();  
+            foreach(var idCheck in IdCheck)
+            {
+                var saveAnswer = new TheAnswer { QuestionsId = questionSelect, choiceIdUser = idCheck , QuizId = quizId };
+                _context.theAnswers.Add(saveAnswer);   
+            }
+            _context.SaveChanges();
+            return 0;
+        }
     }
 }
