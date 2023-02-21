@@ -55,11 +55,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Sujet.SujetName)
                 </td>
-                <td>
+                <td >
 
-                        <a asp-action="EditQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout">Edit </div></a> |
-                            <a asp-action="DetailQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout2">Details</div></a> |
-                            <a asp-action="DeleteQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout3">Supprimer</div></a>
+
+                        <a asp-action="EditQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout ms-2">Edit </div></a> 
+                            <a asp-action="DetailQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout2 ms-2">Détails</div></a> 
+                            <a asp-action="DeleteQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout3 ms-2">Supprimer</div></a>
+
 
                 </td>
             </tr>

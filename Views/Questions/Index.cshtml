@@ -4,14 +4,20 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 style="text-align : center">Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+@*<p>
+    <a asp-action="Create">Création d'une nouvelle question</a>
+</p>*@
+<div class="container">
+<button type="button" class="myButton mb-6" onclick="window.location.href='@Url.Action("Create")'">
+    Création d'une nouvelle question
+</button>
+    <div class="row align-items-center">
+
+<table class="table table-hover table-striped table-light">
     <thead>
-        <tr>
+                <tr class="table table-primary">
             <th>
                 Intitulée de la question
             </th>
@@ -73,9 +79,12 @@
                 <a asp-action="Details" asp-route-id="@item.QuestionId">Details</a> | 
 
 
-                <a asp-action="Delete" asp-route-id="@item.QuestionId">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.QuestionId">Supprimer</a>
+
             </td>
         </tr>
 }
     </tbody>
 </table>
+    </div>
+</div>

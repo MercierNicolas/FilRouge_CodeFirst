@@ -4,12 +4,12 @@
     ViewData["Title"] = "DetailQuiz";
 }
 
-<h1>DetailQuiz</h1>
+<h1 style="text-align : center">DetailQuiz</h1>
 
 <div>
-    <h4>Quiz</h4>
-    <hr />
-    <dl class="row">
+
+    <div class="container w-50" style="margin-top: 100px;" id="addQ">
+        <div class="row align-items-center justify-content-center">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
@@ -43,21 +43,22 @@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Questions)
         </dt>
-        <ul>
+            <ul class="ms-5">
         @foreach(var question in Model.Questions)
         {
                 <li> @question.ContentQuestion </li>
-                <li><a asp-controller="Questions" asp-action="Index">Voir</a> |</li>
+                <li><a asp-controller="Questions" asp-action="Index">Voir les choix</a></li>
         }
         </ul>
 
 
     </dl>
 </div>
-<div>
+        <div class="form-group d-flex justify-content-around">
 
-    <a asp-action="EditQuiz" asp-route-id="@Model?.QuizzId">Edit</a> |
-    <a asp-action="AddQuestionQuiz" asp-route-id="@Model?.QuizzId">Ajouter des Questions</a> | 
+            <a asp-action="EditQuiz" asp-route-id="@Model?.QuizzId" class="buttonAjout  mb-3">Edit</a>
+            <a asp-action="AddQuestionQuiz" asp-route-id="@Model?.QuizzId" class="ajoutButton  mb-3">Ajouter des Questions</a>
+            <a asp-action="Index" class="backButton mb-3">Retour à la liste</a>
 
-    <a asp-action="Index">Back to List</a>
 </div>
+    </div>

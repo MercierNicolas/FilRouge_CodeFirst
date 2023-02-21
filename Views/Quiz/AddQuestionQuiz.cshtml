@@ -1,14 +1,20 @@
 ﻿@using static FilRouge_Test_CodeFirst.Data.Entity.Quiz
 @model AddQuestionQuizViewModel
 
-<h1>@Model.QuizAddQuestion.Name </h1>
-<h2>Sujet : @Model.QuizAddQuestion.Sujet.SujetName</h2>
+<h1 style="text-align : center">@Model.QuizAddQuestion.Name </h1>
+<h2 style="text-align : center">
+    Sujet : @Model.QuizAddQuestion.Sujet.SujetName</h2>
 
-<h2>Liste des question avec le sujet : @Model.QuizAddQuestion.Sujet.SujetName</h2>
+<h2 style="text-align : center">Liste des question avec le sujet : @Model.QuizAddQuestion.Sujet.SujetName</h2>
 
-<table class="table">
+<div class="container">
+    <input type="submit" value="Validée" class="myButton mb-6">
+       
+<div class="row align-items-center">
+
+<table class="table table-hover table-striped table-light">
     <thead>
-        <tr>
+        <tr class="table table-primary">
             <th>
                 Intitulé de la question
             </th>
@@ -24,7 +30,7 @@
         <form asp-controller="Quiz" asp-action="AddQuestionQuiz">
         @foreach (var ques in Model.QuestionList)
         {
-                <tr>
+                    <tr class="table">
                     <td>
                     @Html.DisplayFor(modelItem => ques.ContentQuestion)
                     </td>
@@ -38,11 +44,15 @@
                     </td>
                 </tr>
             }
-        <input type="submit" value="Validée" class="btn btn-primary" />
+     
        
         </form>
 
     </tbody>
-</table>
+</table> 
 
-<a asp-action="Index">Back to List</a>
+</div>
+
+    <a asp-action="Index" class="backButton">Retour à la liste</a>
+
+</div>
