@@ -63,6 +63,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
             var dataAnswers = passageRepo.GetQuizPassage(id, questionId);
 
             var responseIds = dataAnswers.AnswerChoice.Where(responseId => input.ContainsKey(responseId.CorrectionId.ToString())).Select(i => i.CorrectionId);
+
             answerRepo.SaveBddAnswerUser(responseIds, (int)questionId , id);
             
            
@@ -71,13 +72,15 @@ namespace FilRouge_Test_CodeFirst.Controllers
                 return View("Thank");
             }
 
-            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.NextQuestionId });
+            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.QuestionId });
         }
 
-        public IActionResult Thank()
-        {
-            return View();
-        }
+
+        //public IActionResult Thank()
+        //{
+        //    return View();
+        //}
+
 
     }
 }
