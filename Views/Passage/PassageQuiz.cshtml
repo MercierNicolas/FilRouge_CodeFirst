@@ -1,6 +1,9 @@
 ﻿
 @using FilRouge_Test_CodeFirst.Models
 
+@{
+    Layout = "passageWelcome.cshtml";
+}
 
 @model QuizPassageViewModel;
 
@@ -9,9 +12,14 @@
 @{
     ViewData["Title"] = "Passage";
 }
-
+<div class="d-flex vh-100" id="boxLogIn">
+    <div class="col-md-4">
+        <section id="bienvenuBorder" class="shadow-lg p-4">
 
 <h3>Questions @Model.ContentQuestion</h3>
+
+@*<h3>@Model.QuestionId</h3>
+<h3>@Model.NextQuestionId</h3>*@
 
 
 <hr />
@@ -30,6 +38,10 @@
                 <input type="submit" value="Suivant" class="btn btn-primary" />
             </div>
         </form>
+    </div>
+</div>
+
+        </section>
     </div>
 </div>
 
