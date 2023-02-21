@@ -58,9 +58,11 @@
                 <td >
 
 
-                        <a asp-action="EditQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout ms-2">Edit </div></a> 
-                            <a asp-action="DetailQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout2 ms-2">Détails</div></a> 
-                            <a asp-action="DeleteQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout3 ms-2">Supprimer</div></a>
+                            <a asp-action="EditQuiz" asp-route-id="@item.QuizzId" class="buttonAjout ms-2">Edit </a>
+
+                            <a asp-action="DetailQuiz" asp-route-id="@item.QuizzId" class="buttonAjout2 ms-2">Détails</a>
+
+                            <a asp-action="DeleteQuiz" asp-route-id="@item.QuizzId" class="buttonAjout3 ms-2">Supprimer</a>
 
 
                 </td>

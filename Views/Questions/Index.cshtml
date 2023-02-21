@@ -74,12 +74,11 @@
                 @Html.DisplayFor(modelItem => item.Sujet.SujetName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.QuestionId">Edit</a> |
+                            <a asp-action="Edit" asp-route-id="@item.QuestionId" class="buttonAjout ms-2">Edit</a>
 
-                <a asp-action="Details" asp-route-id="@item.QuestionId">Details</a> | 
+                            <a asp-action="Details" asp-route-id="@item.QuestionId" class="buttonAjout2 ms-2">Details</a>
 
-
-                <a asp-action="Delete" asp-route-id="@item.QuestionId">Supprimer</a>
+                            <a asp-action="Delete" asp-route-id="@item.QuestionId" class="buttonAjout3 ms-2">Supprimer</a>
 
             </td>
         </tr>
