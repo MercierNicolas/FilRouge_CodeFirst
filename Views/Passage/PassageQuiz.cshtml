@@ -18,7 +18,6 @@
 
 
 <h2> @Model.ContentQuestion</h2>
-
 @*<h3>@Model.QuestionId</h3>
 <h3>@Model.NextQuestionId</h3>*@
 
@@ -35,12 +34,10 @@
                     <label for="@reponse.CorrectionId" class="control-label">@reponse.ContentCorection</label>
                 </div>
             }
-
           <div class="form-group text-center">
                     <input type="hidden" name="@Model.NextQuestionId" value="@Model.NextQuestionId" />
                     <input type="submit" value="Suivant" class="buttonAjout m-4" />
                 </div>
-
         </form>
     </div>
 </div>
