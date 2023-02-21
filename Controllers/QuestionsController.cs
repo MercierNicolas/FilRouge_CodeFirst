@@ -98,7 +98,6 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
             var testListe = new List<string>();
 
-
             questionRepo.CreateQuestion(questionAdd, model.LevelId, model.sujetId, DictionaryChoix);
             return RedirectToAction("Index");
         }

@@ -1,0 +1,47 @@
+﻿@model List<QuizMakeViewModel>
+<h1>Quiz réalisez </h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nom du quiz
+            </th>
+            <th>
+                Level du Quiz
+            </th>
+            <th>
+                Sujet du Quiz
+            </th>
+            <th>
+                Nom du candidat
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+ @foreach (var oneQuiz in Model)
+        {
+                <tr>
+                    <td>
+                    @Html.DisplayFor(modelItem => oneQuiz.Quiz.Name)
+                    </td>
+                   <td>
+                    @Html.DisplayFor(modelItem => oneQuiz.Quiz.Level.LevelName)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => oneQuiz.Quiz.Sujet.SujetName)
+                    </td>
+                    <td>
+                   @* @Html.DisplayFor(modelItem => oneQuiz.Quiz.Questions.Count())*@
+                    </td>
+                    <td>
+                    <a asp-action="Details" asp-route-id="@oneQuiz.Quiz.QuizzId"> Voir resultat </a>
+                    </td>
+                </tr>
+            }    
+    </tbody>
+</table>

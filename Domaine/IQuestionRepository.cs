@@ -14,16 +14,14 @@ namespace FilRouge_Test_CodeFirst.Domaine
 {
     public interface IQuestionRepository
     {
-
         int CreateQuestion(Question question, int levelId, int sujetId, Dictionary<string, bool> DictionaryChoix);
         IEnumerable<Question> GetAllQuestions();
         IEnumerable<Question> GetOneQuestion(int id);
         int DeleteQuestion(int id);
+
         int UpdateQuestion(int id, Question question /*, Dictionary<string, bool> DictionaryChoix*/);
         List<Question> GetQuestionWithSujet(Sujet sujet);
         List<Question> GetQuestionWithIds(List<int> ids);
-
-
     }
 
     public class DbQuestionRepository : IQuestionRepository
