@@ -21,7 +21,6 @@ namespace FilRouge_Test_CodeFirst.Controllers
             this.questionRepo = questionRepo;
         }
 
-
         // GET: Questions
         public IActionResult Index()
         {

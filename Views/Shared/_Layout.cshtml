@@ -33,21 +33,22 @@
                                 </a>
                                 <ul class="collapse nav flex-column ms-5" id="submenu1" data-bs-parent="#menu">
 
-                                    @if(this.User.IsInRole(Roles.Administrator))
+                                    @if (this.User.IsInRole(Roles.Administrator))
                                     {
 
-                                    <li class="w-100">
-                                        <a href="#" class="nav-link px-0 p-3 "> <span class="d-none d-sm-inline text-white">Recruteurs</span> </a>
-                                    </li>
-                                    
+                                        <li class="w-100">
+                                            <a class="nav-link px-0 p-3 " asp-controller="User" asp-action="CreatUser"> <span class="d-none d-sm-inline text-white">Recruteurs</span> </a>
+                                        </li>
 
-                                    <li>
-                                        <a href="#" class="nav-link px-0 p-3 "> <span class="d-none d-sm-inline text-white">Candidats</span></a>
-                                    </li>
+                                        @if (this.User.IsInRole(Roles.Recruiter))
+                                        {
+                                            <li>
+                                                <a class="nav-link px-0 p-3 " asp-controller="User" asp-action="CreateUser"> <span class="d-none d-sm-inline text-white">Candidats</span></a>
+                                            </li>
+                                        }
+
 
                                     }
-
-
 
                                 </ul>
                             </li>
@@ -63,7 +64,7 @@
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Questions" asp-action="Create"><span class="d-none d-sm-inline text-white hover">Question</span></a>
                                     </li>
                                     <li>
-                                       <a class="nav-link text-dark" asp-area="" asp-controller="Quiz" asp-action="AddQuiz"><span class="d-none d-sm-inline text-white">Quiz</span></a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Quiz" asp-action="AddQuiz"><span class="d-none d-sm-inline text-white">Quiz</span></a>
                                     </li>
                                     <li>
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Level" asp-action="AddLevel"><span class="d-none d-sm-inline text-white">Level</span></a>
@@ -79,20 +80,20 @@
 
                                     @if (this.User.IsInRole(Roles.Administrator))
                                     {
-                                    <li class="w-100">
-                                        <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white hover">Recruteur</span> </a>
-                                    </li>
-                                    
+                                        <li class="w-100">
+                                            <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white hover">Recruteur</span> </a>
+                                        </li>
 
-                                    <li>
-                                        <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white hover">Candidats</span> </a>
-                                    </li>
+
+                                        <li>
+                                            <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white hover">Candidats</span> </a>
+                                        </li>
                                     }
 
                                     <li>
                                         <a class="nav-link px-0 p-3" asp-controller="Quiz" asp-action="index"> <span class="d-none d-sm-inline text-white hover">Quiz</span> </a>
                                     </li>
-      
+
                                 </ul>
                             </li>
 
@@ -101,7 +102,7 @@
                     </div>
                 </div>
                 <div class="col py-3">
-                    
+
                     @RenderBody()
                 </div>
             </div>

@@ -1,4 +1,8 @@
-﻿@model FilRouge_Test_CodeFirst.Data.Entity.Question
+﻿@using Microsoft.AspNetCore.Identity
+@using FilRouge_Test_CodeFirst.Data
+@using FilRouge_Test_CodeFirst.Models
+
+@model UserViewModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -19,7 +23,7 @@
         </dd>
 
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="QuestionId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |

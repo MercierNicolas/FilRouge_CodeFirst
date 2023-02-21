@@ -32,8 +32,6 @@ namespace FilRouge_Test_CodeFirst.Controllers
         }
 
 
-
-
         [HttpGet]
         [Route("/Passage/{id:int}")]
         public IActionResult Welcome(int id, int? questionId)

@@ -5,9 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 using FilRouge_Test_CodeFirst.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Collections;
-using System.Collections.Generic;
 
 
 namespace FilRouge_Test_CodeFirst.Domaine
@@ -24,7 +21,6 @@ namespace FilRouge_Test_CodeFirst.Domaine
         List<Question> GetQuestionWithSujet(Sujet sujet);
         List<Question> GetQuestionWithIds(List<int> ids);
 
-
     }
 
     public class DbQuestionRepository : IQuestionRepository
@@ -35,8 +31,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
             this._context = context;
         }
 
-
-        public int CreateQuestion(Question question, int levelId, int sujetId ,Dictionary<string,bool> DictionaryChoix)
+        public int CreateQuestion(Question question, int levelId, int sujetId, Dictionary<string, bool> DictionaryChoix)
 
         {
             // On recupére l'id de la vue a l'aide du controlleur et on appele de la BDD les level avec le where on recupere le bon id
@@ -57,7 +52,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
             foreach (var item in DictionaryChoix)
             {
-                var saveChoice = new AnswerChoice { ContentCorection = item.Key, IsCorrect = item.Value , questionId = lastIdQuestion };
+                var saveChoice = new AnswerChoice { ContentCorection = item.Key, IsCorrect = item.Value, questionId = lastIdQuestion };
                 _context.AnswerChoice.Add(saveChoice);
                 //  saveChoice.questionId = lastIdQuestion.QuestionId;
                 //_context.AnswerChoice.Add(saveChoice);
@@ -92,7 +87,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
             //    var saveChoice = new AnswerChoice { ContentCorection = rep.Key, IsCorrect = rep.Value, questionId = question };
             //    _context.AnswerChoice.Update(saveChoice);
             //}
-           
+
             _context.SaveChanges();
             return 0;
         }
@@ -102,7 +97,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
             return _context.Questions.Where(q => q.Sujet == sujet).Include(rep => rep.AnswerChoice).Include(s => s.Sujet).ToList();
         }
 
-        public List<Question> GetQuestionWithIds(List<int> ids) 
+        public List<Question> GetQuestionWithIds(List<int> ids)
 
         {
 
@@ -110,9 +105,9 @@ namespace FilRouge_Test_CodeFirst.Domaine
             List<Question> result = new List<Question>();
             foreach (var question in allQuestion)
             {
-                foreach(var id in ids)
+                foreach (var id in ids)
                 {
-                    if(id == question.QuestionId)
+                    if (id == question.QuestionId)
                     {
                         result.Add(question);
                     }

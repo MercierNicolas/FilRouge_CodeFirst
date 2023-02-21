@@ -80,15 +80,11 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
                PassageQuizViewModel.NextQuestionId = listQuestionId[indexID + 1];
                 
-
-              
-
                 return PassageQuizViewModel;
             }
             return PassageQuizViewModel;
 
         }
-
 
         public int CreateResalt(TheAnswer theAnswer)
         {
