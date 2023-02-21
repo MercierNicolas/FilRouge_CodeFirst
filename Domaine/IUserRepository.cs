@@ -8,7 +8,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
 {
     public interface IUserRepository
     {
-        string CreateUser(IdentityUser user);
+        string AddUser(IdentityUser user);
         string DeleteUser(string IdUser);
         IEnumerable<IdentityUser> GetAllUser();
         string Edit(string id, IdentityUser user);
@@ -23,7 +23,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
             this._context = context;
         }
 
-        public string CreateUser(IdentityUser user)
+        public string AddUser(IdentityUser user)
         {
             _context.Users.Add(user);
             _context.SaveChanges();
@@ -38,10 +38,12 @@ namespace FilRouge_Test_CodeFirst.Domaine
             _context.SaveChanges();
             return "";
         }
+
         public IEnumerable<IdentityUser> GetAllUser()
         {
             return _context.Users.ToList();
         }
+
 
         public IEnumerable<IdentityUser> GetOneUser(string IdUser)
         {

@@ -1,4 +1,7 @@
 ﻿using FilRouge_Test_CodeFirst.Data.Entity;
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace FilRouge_Test_CodeFirst.Models
 {
@@ -31,7 +34,8 @@ namespace FilRouge_Test_CodeFirst.Models
         public Sujet? Sujet { get; set; }
         public Level? Level { get; set; }
         public string Comment { get; set; }
-        public TheAnswer TheAnswer { get; set; }   
+        public TheAnswer TheAnswer { get; set; }
+        public IdentityUser IdentityCandidat { get; set; }
 
 
 

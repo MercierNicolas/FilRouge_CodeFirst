@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Identity
 @using FilRouge_Test_CodeFirst.Data
 @using FilRouge_Test_CodeFirst.Models
 
@@ -9,10 +9,10 @@
     ViewData["Title"] = "DetailUser";
 }
 
-<h1>DetailQuiz</h1>
+<h1>Detail Utlisateur</h1>
 
 <div>
-    <h4>Quiz</h4>
+    <h4>Utilisateur</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -34,7 +34,7 @@
             @Html.DisplayFor(model => model.PhoneNumber)
         </dd>
 
-        <dd class="col-sm-10">
+@*        <dd class="col-sm-10">
             @Model.Quiz.Count()
         </dd>
         <dt class="col-sm-2">
@@ -47,7 +47,7 @@
                 <li><a asp-controller="Quiz" asp-action="Index">Voir</a> |</li>
             }
         </ul>
-
+*@
 
     </dl>
 </div>

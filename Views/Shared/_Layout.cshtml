@@ -37,18 +37,15 @@
                                     {
 
                                         <li class="w-100">
-                                            <a class="nav-link px-0 p-3 " asp-controller="User" asp-action="CreatUser"> <span class="d-none d-sm-inline text-white">Recruteurs</span> </a>
+                                            <a class="nav-link px-0 p-3 " asp-controller="Users" asp-action="Index"> <span class="d-none d-sm-inline text-white">Recruteurs</span> </a>
                                         </li>
-
-                                        @if (this.User.IsInRole(Roles.Recruiter))
-                                        {
-                                            <li>
-                                                <a class="nav-link px-0 p-3 " asp-controller="User" asp-action="CreateUser"> <span class="d-none d-sm-inline text-white">Candidats</span></a>
-                                            </li>
-                                        }
+                                        <li>
+                                            <a class="nav-link px-0 p-3 " asp-controller="Users" asp-action="Index"> <span class="d-none d-sm-inline text-white">Candidats</span></a>
+                                        </li>
 
 
                                     }
+
 
                                 </ul>
                             </li>
@@ -81,17 +78,19 @@
                                     @if (this.User.IsInRole(Roles.Administrator))
                                     {
                                         <li class="w-100">
-                                            <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white hover">Recruteur</span> </a>
+                                            <a class="nav-link px-0 p-3" asp-controller="Users" asp-action="Index"> <span class="d-none d-sm-inline text-white hover">Recruteur</span> </a>
                                         </li>
 
 
                                         <li>
-                                            <a href="#" class="nav-link px-0 p-3"> <span class="d-none d-sm-inline text-white hover">Candidats</span> </a>
+                                            <a class="nav-link px-0 p-3" asp-controller="Users" asp-action="Index"> <span class="d-none d-sm-inline text-white hover">Candidats</span> </a>
                                         </li>
                                     }
-
+       
                                     <li>
+
                                         <a class="nav-link px-0 p-3" asp-controller="Quiz" asp-action="index"> <span class="d-none d-sm-inline text-white hover">Quiz</span> </a>
+
                                     </li>
 
                                 </ul>
