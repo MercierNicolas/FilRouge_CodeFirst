@@ -2,15 +2,16 @@
 using FilRouge_Test_CodeFirst.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
 
 namespace FilRouge_Test_CodeFirst.Controllers
 {
-    public class UserController : Controller
+    public class UsersController : Controller
     {
         private readonly IUserRepository userRepo;
 
 
-        public UserController(IUserRepository userRepo)
+        public UsersController(IUserRepository userRepo)
         {
             this.userRepo = userRepo;
         }
@@ -24,11 +25,12 @@ namespace FilRouge_Test_CodeFirst.Controllers
         [HttpPost]
         public ActionResult CreateUser(UserViewModel identity)
         {
+
             var AddUser = new IdentityUser
             {
-                Id = identity.Id,
+                Id = Guid.NewGuid().ToString(),
                 UserName = identity.UserName,
-                PasswordHash = identity.PasswordHash,
+                PasswordHash =  identity.PasswordHash/*Convert.ToBase64String(RandomNumberGenerator.GetBytes(128 / 8))*/,
                 Email = identity.Email,
                 EmailConfirmed = identity.EmailConfirmed,
                 PhoneNumber = identity.PhoneNumber,
@@ -38,7 +40,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
                 AccessFailedCount = identity.AccessFailedCount,
 
             };
-            userRepo.CreateUser(AddUser);
+            userRepo.AddUser(AddUser);
             return RedirectToAction("Index");
         }
 
@@ -46,7 +48,11 @@ namespace FilRouge_Test_CodeFirst.Controllers
         public ActionResult DeleteUser(string Id)
         {
             var cancellOneUser = userRepo.GetOneUser(Id);
-            return View(cancellOneUser.First());
+            var s = new UserViewModel
+            {
+                IdentityUser = cancellOneUser.ToList(),
+            };
+            return View(s);
         }
 
         [HttpPost]
@@ -60,25 +66,45 @@ namespace FilRouge_Test_CodeFirst.Controllers
         public ActionResult DetailUser(string Id)
         {
             var detailOneUser = userRepo.GetOneUser(Id);
-            return View(detailOneUser.First());
+            var d = new UserViewModel
+            {
+                IdentityUser = detailOneUser.ToList(),
+            };
+            foreach (var u in detailOneUser)
+            {
+                d.UserName= u.UserName;
+                d.Email= u.Email;
+                d.PhoneNumber= u.PhoneNumber;
+            };
+
+            return View(d);
         }
 
         public ActionResult EditUser(string Id)
         {
             var modifyOneUser = userRepo.GetOneUser(Id);
-            return View(modifyOneUser.First());
+            var e = new UserViewModel
+            {
+                IdentityUser = modifyOneUser.ToList(),
+            };
+            return View(e);
         }
         [HttpPost]
         public ActionResult EditUser(string id, IdentityUser user)
         {
+
             userRepo.Edit(user.Id , user);
-            return RedirectToAction("Manage");
+            return RedirectToAction("Index");
         }
 
         public IActionResult Index()
         {
             var listUser = userRepo.GetAllUser();
-            return View(listUser);
+            var u = new UserViewModel
+            {
+                IdentityUser = listUser.ToList(),
+            };
+            return View(u);
         }
     }
 }
