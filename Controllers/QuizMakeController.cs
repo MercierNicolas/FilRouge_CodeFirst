@@ -38,6 +38,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
         public IActionResult Details(int id)
         {
+            
             var oneQuizMake = quizMakeRepository.GetOneQuizMake(id);
             var note = 0;
             var nbQues = oneQuizMake.Quiz.Questions.Count();
