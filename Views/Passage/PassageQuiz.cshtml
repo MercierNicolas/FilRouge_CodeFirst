@@ -9,53 +9,35 @@
 @{
     ViewData["Title"] = "Passage";
 }
-<div class="d-flex vh-100" id="boxLogIn">
-    <div class="col-md-4">
-        <section id="bienvenuBorder" class="shadow-lg p-4">
 
 <div class="d-flex vh-100" id="boxLogIn">
     <div class="col-md-4">
         <section id="bienvenuBorder" class="shadow-lg p-4">
 
-<<<<<<< HEAD
-<h2> @Model.ContentQuestion</h2>
-@*<h3>@Model.QuestionId</h3>
-<h3>@Model.NextQuestionId</h3>*@
-=======
 
 
-<h2> @Model.ContentQuestion</h2>
->>>>>>> accbd03dd84854f1a95a4fcd20b65f4092f5a692
+            <h2> @Model.ContentQuestion</h2>
 
 
-<hr />
+            <hr />
 
-<div class="row">
+            <div class="row">
                 <div class="col-md-12">
-        <form asp-controller="Passage" asp-action="PassageQuiz" asp-route-id="@Model.QuizzId" asp-route-questionId="@Model.QuestionId">
-            @foreach(var reponse in Model.AnswerChoice)
-            {
-                <div class="form-group" style="font-size:25px">
-                    <input type="checkbox" name="@reponse.CorrectionId">
-                    <label for="@reponse.CorrectionId" class="control-label">@reponse.ContentCorection</label>
+                    <form asp-controller="Passage" asp-action="PassageQuiz" asp-route-id="@Model.QuizzId" asp-route-questionId="@Model.QuestionId">
+                        @foreach (var reponse in Model.AnswerChoice)
+                        {
+                            <div class="form-group" style="font-size:25px">
+                                <input type="checkbox" name="@reponse.CorrectionId">
+                                <label for="@reponse.CorrectionId" class="control-label">@reponse.ContentCorection</label>
+                            </div>
+                        }
+                        <div class="form-group text-center">
+                            <input type="submit" value="Suivant" class="btn btn-primary" />
+                        </div>
+
+                    </form>
                 </div>
-            }
-<<<<<<< HEAD
-=======
-
->>>>>>> accbd03dd84854f1a95a4fcd20b65f4092f5a692
-          <div class="form-group text-center">
-                    <input type="hidden" name="@Model.NextQuestionId" value="@Model.NextQuestionId" />
-                    <input type="submit" value="Suivant" class="buttonAjout m-4" />
-                </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> accbd03dd84854f1a95a4fcd20b65f4092f5a692
-        </form>
-    </div>
-</div>
-
+            </div>
         </section>
     </div>
 </div>
