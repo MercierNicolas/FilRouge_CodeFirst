@@ -34,11 +34,12 @@
             </dd>
         </dl>
 
-        <form asp-action="DeleteQuiz" class="text-center">
-            <input type="hidden" asp-for="QuizzId" />
-            <input type="submit" value="Delete" class="btn btn-danger" id="gros" /> |
-            <a asp-action="Index" class="btn btn-primary" id="gros">Back to List</a>
-        </form>
+        <form asp-action="DeleteQuiz" class="text-center d-flex justify-content-around">
+        <input type="hidden" asp-for="QuizzId" />
+            <input type="submit" value="Delete" class="btn btn-danger" id="gros" /> 
+            <a asp-action="Index" class="btn btn-primary" id="gros">Retour à la liste</a>
+    </form>
+    
+</div>
 
-    </div>
 </div>

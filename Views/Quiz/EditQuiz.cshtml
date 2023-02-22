@@ -4,12 +4,11 @@
     ViewData["Title"] = "EditQuiz";
 }
 
-<h1>EditQuiz</h1>
-
-<h4>Quiz</h4>
+<h1 style="text-align : center">EditQuiz</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="container w-50" style="margin-top: 100px;" id="addQ">
+        <div class="row align-items-center justify-content-center" >
+    @*<div class="col-md-4">*@
         <form asp-action="EditQuiz">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="QuizzId" />
@@ -34,19 +33,19 @@
 
             </div>
 
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="form-group d-flex justify-content-around">
+                <input type="submit" value="Save" class="saveButton" />
+           
+
+                <a asp-action="AddQuestionQuiz" asp-route-id="@Model?.QuizzId" class="ajoutButton">Ajouter des Questions</a>
+
+                <a asp-action="Index" class="backButton">Retour à la liste</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
 
-    <a asp-action="AddQuestionQuiz" asp-route-id="@Model?.QuizzId">Ajouter des Questions</a> |
-
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{
