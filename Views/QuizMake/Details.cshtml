@@ -1,9 +1,10 @@
 ﻿@model QuizMakeViewModel
 <div id="toPdf">
+
 <h1 style ="text-align : center">Résultat du quiz : @Model.Quiz.Name</h1>
 <h2 style ="text-align : center">Note obtenue : @Model.Note / 20</h2>
 <div class="container">
-    
+
 @foreach(var question in Model.Quiz.Questions)
 {
     <div id="quizReponse" class="m-3 p-3 row">
@@ -43,6 +44,7 @@
             }
         </div>
     </div>
+
 }
 
     </div>
@@ -51,6 +53,7 @@
 <div class="container d-flex justify-content-end">
 <button type="button" id="getMyPdf" class="buttonAjout">PDF </button>
 </div>
+
 <script>
     var toPdf = document.getElementById('toPdf');
     var monButton = document.getElementById('getMyPdf');
@@ -84,4 +87,5 @@
 
     }
 </script>
+
 
