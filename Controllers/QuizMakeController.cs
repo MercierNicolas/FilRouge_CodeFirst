@@ -1,7 +1,14 @@
 ﻿using FilRouge_Test_CodeFirst.Data.Entity;
 using FilRouge_Test_CodeFirst.Domaine;
 using FilRouge_Test_CodeFirst.Models;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
+
+using System;
+using System.IO;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
 
 namespace FilRouge_Test_CodeFirst.Controllers
 {
@@ -38,11 +45,11 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
         public IActionResult Details(int id)
         {
-            
+
             var oneQuizMake = quizMakeRepository.GetOneQuizMake(id);
             var note = 0;
             var nbQues = oneQuizMake.Quiz.Questions.Count();
-            foreach(var rep in oneQuizMake.answerUser)
+            foreach (var rep in oneQuizMake.answerUser)
             {
                 if (rep.IsBonnrep)
                 {
@@ -54,5 +61,6 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
             return View(oneQuizMake);
         }
+
     }
 }

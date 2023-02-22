@@ -4,7 +4,7 @@
 <h1 style="text-align : center">Page des Quiz</h1>
 
 
-<a asp-controller="QuizMake" asp-action="Index"><div class="buttonAjout">Test </div></a>
+<a asp-controller="QuizMake" asp-action="Index"><div class="buttonAjout">Voir les testes</div></a>
 
 
 <div class="container">
@@ -42,7 +42,7 @@
                 {
                     <tr class="table">
                         <td>
-                            <a asp-controller="Passage" asp-action="Validation" asp-route-id="@item.QuizzId">
+                            <a asp-controller="Passage" asp-action="Welcome" asp-route-id="@item.QuizzId">
                                 @Html.DisplayFor(modelItem => item.Name)
                             </a>
                         </td>

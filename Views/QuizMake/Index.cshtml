@@ -18,30 +18,44 @@
                 Nom du candidat
             </th>
             <th>
-
+                PDF
+            </th>
+            <th>
+               Resuktat
             </th>
         </tr>
     </thead>
     <tbody>
- @foreach (var oneQuiz in Model)
+        @foreach (var oneQuiz in Model)
         {
-                <tr>
-                    <td>
+            <tr>
+                <td>
                     @Html.DisplayFor(modelItem => oneQuiz.Quiz.Name)
-                    </td>
-                   <td>
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => oneQuiz.Quiz.Level.LevelName)
-                    </td>
-                    <td>
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => oneQuiz.Quiz.Sujet.SujetName)
-                    </td>
-                    <td>
-                   @* @Html.DisplayFor(modelItem => oneQuiz.Quiz.Questions.Count())*@
-                    </td>
-                    <td>
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => oneQuiz.Quiz.Sujet.SujetName)*@
+                </td>
+                <td>
+                    @{
+                        Html.BeginForm("CreateDocument", "QuizMake", FormMethod.Get);
+                        {
+                            <div>
+                                <input type="submit" style="width:200px;height:27px" />
+                            </div>
+                        }
+                        Html.EndForm();
+                    }
+                </td>
+                <td>
                     <a asp-action="Details" asp-route-id="@oneQuiz.Quiz.QuizzId"> Voir resultat </a>
-                    </td>
-                </tr>
-            }    
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

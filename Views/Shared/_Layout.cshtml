@@ -37,10 +37,10 @@
                                     {
 
                                         <li class="w-100">
-                                            <a class="nav-link px-0 p-3 " asp-controller="Users" asp-action="Index"> <span class="d-none d-sm-inline text-white">Recruteurs</span> </a>
+                                            <a class="nav-link px-0 p-3 " asp-controller="Users" asp-action="CreateUser"> <span class="d-none d-sm-inline text-white">Recruteurs</span> </a>
                                         </li>
                                         <li>
-                                            <a class="nav-link px-0 p-3 " asp-controller="Users" asp-action="Index"> <span class="d-none d-sm-inline text-white">Candidats</span></a>
+                                            <a class="nav-link px-0 p-3 " asp-controller="Users" asp-action="CreateUser"> <span class="d-none d-sm-inline text-white">Candidats</span></a>
                                         </li>
 
 
@@ -88,10 +88,12 @@
                                     }
        
                                     <li>
-
-                                        <a class="nav-link px-0 p-3" asp-controller="Quiz" asp-action="index"> <span class="d-none d-sm-inline text-white hover">Quiz</span> </a>
-
+                                        <a class="nav-link px-0 p-3" asp-controller="Quiz" asp-action="Index"> <span class="d-none d-sm-inline text-white hover">Quiz</span> </a>
                                     </li>
+                                    <li>
+                                        <a class="nav-link px-0 p-3" asp-controller="QuizMake" asp-action="Index"> <span class="d-none d-sm-inline text-white hover">Les testes</span> </a>
+                                    </li>
+
 
                                 </ul>
                             </li>

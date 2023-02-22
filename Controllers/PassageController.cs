@@ -108,7 +108,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
                 return View("Thank");
             }
 
-            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.QuestionId });
+            return RedirectToAction("PassageQuiz", new { id, questionId = dataAnswers.NextQuestionId });
         }
 
 
