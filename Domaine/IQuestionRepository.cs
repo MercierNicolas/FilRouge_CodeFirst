@@ -16,6 +16,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
         IEnumerable<Question> GetAllQuestions();
         IEnumerable<Question> GetOneQuestion(int id);
         int DeleteQuestion(int id);
+
         int UpdateQuestion(int id, Question question /*, Dictionary<string, bool> DictionaryChoix*/);
         List<Question> GetQuestionWithSujet(Sujet sujet);
         List<Question> GetQuestionWithIds(List<int> ids);
@@ -29,6 +30,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
         {
             this._context = context;
         }
+
 
         public int CreateQuestion(Question question, int levelId, int sujetId, Dictionary<string, bool> DictionaryChoix)
 
@@ -96,8 +98,9 @@ namespace FilRouge_Test_CodeFirst.Domaine
             return _context.Questions.Where(q => q.Sujet == sujet).Include(rep => rep.AnswerChoice).Include(s => s.Sujet).ToList();
         }
 
-        public List<Question> GetQuestionWithIds(List<int> ids)
 
+
+        public List<Question> GetQuestionWithIds(List<int> ids)
         {
 
             var allQuestion = GetAllQuestions();

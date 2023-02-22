@@ -85,10 +85,10 @@ namespace FilRouge_Test_CodeFirst.Controllers
             DictionaryChoix.Add(model.Choix4, model.IsCorrectChoix4);
 
             var testListe = new List<string>();
-
             questionRepo.CreateQuestion(questionAdd, model.LevelId, model.sujetId, DictionaryChoix);
             return RedirectToAction("Index");
         }
+
 
         public IActionResult Edit(int id)
         {

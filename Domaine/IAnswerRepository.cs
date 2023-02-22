@@ -1,10 +1,9 @@
-﻿using Azure.Core;
-using FilRouge_Test_CodeFirst.Data;
+﻿using FilRouge_Test_CodeFirst.Data;
 using FilRouge_Test_CodeFirst.Data.Entity;
 using FilRouge_Test_CodeFirst.Models;
+
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Xml.Linq;
+
 
 
 namespace FilRouge_Test_CodeFirst.Domaine
@@ -14,6 +13,8 @@ namespace FilRouge_Test_CodeFirst.Domaine
         int CreateResalt(TheAnswer theAnswer);
         QuizPassageViewModel GetQuizPassage(int quizzId, int? questionId);
         List<QuizPassageViewModel> GetAllId(int quizzId, int? questionIdControlleur);
+        int AddPassage(QuizPassageViewModel candidat);
+        int SaveBddAnswerUser (IEnumerable<int> IdCheck ,int questionIdControlleur, int quizId);
 
         int SaveBddAnswerUser (IEnumerable<int> IdCheck ,int questionIdControlleur, int quizId);
 
@@ -50,7 +51,6 @@ namespace FilRouge_Test_CodeFirst.Domaine
             return listId;
         }
 
-
         public QuizPassageViewModel GetQuizPassage(int quizzId, int? questionIdControlleur)
 
         {
@@ -65,12 +65,12 @@ namespace FilRouge_Test_CodeFirst.Domaine
                .FirstOrDefault(fq => fq.QuizzId == quizzId);
                
             List<int> listQuestionId = new List<int>();
-
             foreach(var question in quizPassage.Questions)
             {
                 listQuestionId.Add(question.QuestionId);
 
             }
+
             listQuestionId.Add(-1);
             if (listQuestionId.Contains((int)questionIdControlleur))
             {
@@ -99,8 +99,10 @@ namespace FilRouge_Test_CodeFirst.Domaine
             return theAnswer.TheAnswerId;
         }
 
+
         public int SaveBddAnswerUser(IEnumerable<int> IdCheck, int questionIdControlleur , int quizId)
         {
+
             var questionSelect = _context.Questions.Where(qId => qId.QuestionId == questionIdControlleur).Include(r => r.AnswerChoice).FirstOrDefault();  
             foreach(var idCheck in IdCheck)
             {
@@ -113,9 +115,18 @@ namespace FilRouge_Test_CodeFirst.Domaine
                     }
                 }
                 _context.theAnswers.Add(saveAnswer);   
+
             }
             _context.SaveChanges();
             return 0;
         }
+        public int AddPassage(QuizPassageViewModel candidat)
+        {
+            var CandidatId = candidat.IdentityCandidat.Id;
+            var t = _context.Users.Where(i => i.Id == CandidatId).FirstOrDefault();
+
+            return 0;
+        }
+
     }
 }
