@@ -1,57 +1,56 @@
 ﻿@model QuizViewModel
 
-
 @{
     ViewData["Title"] = "AddQuiz";
-    
 }
-
 
 <h1 style="text-align : center">Ajout d'un Quiz</h1>
 
 @*<h4 style="text-align : center">Quiz</h4>*@
 <hr />
 <div class="container w-50" style="margin-top: 100px;" id="addQ">
-    <div class="row align-items-center justify-content-center" >
-    <div @*class="col-md-4"*@>
-        <form asp-controller="Quiz" asp-action="AddQuiz">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="@Model.Quiz.Name" class="control-label"></label>
-                <input asp-for="@Model.Quiz.Name" class="form-control" />
-                <span asp-validation-for="@Model.Quiz.Name" class="text-danger"></span>
-            </div>
+    <div class="row align-items-center justify-content-center">
+        <div @*class="col-md-4"*@>
+            <form asp-controller="Quiz" asp-action="AddQuiz">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="@Model.Quiz.Name" class="control-label"></label>
+                    <input asp-for="@Model.Quiz.Name" class="form-control" />
+                    <span asp-validation-for="@Model.Quiz.Name" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="LevelId" class="control-label">Level</label>
-                <select asp-for="LevelId" asp-items="@Model.AllLevel" class="form-control">
-                    <option value="None" id="Quiz.Level">---- Choix Level ---- </option>
-                </select>
-                <span asp-validation-for="@Model.Quiz.Level" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="LevelId" class="control-label">Level</label>
+                    <select asp-for="LevelId" asp-items="@Model.AllLevel" class="form-control">
+                        <option value="None" id="Quiz.Level">---- Choix Level ---- </option>
+                    </select>
+                    <span asp-validation-for="@Model.Quiz.Level" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="sujetId" class="control-label">Sujet</label>
-                <select asp-for="sujetId" asp-items="@Model.AllSujet" class="form-control">
-                    <option value="None" id="Quiz.Sujet">---- Choix du Sujet ---- </option>
-                </select>
-                <span asp-validation-for="@Model.Quiz.Sujet" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="sujetId" class="control-label">Sujet</label>
+                    <select asp-for="sujetId" asp-items="@Model.AllSujet" class="form-control">
+                        <option value="None" id="Quiz.Sujet">---- Choix du Sujet ---- </option>
+                    </select>
+                    <span asp-validation-for="@Model.Quiz.Sujet" class="text-danger"></span>
+                </div>
                 <div class="form-group d-flex justify-content-between">
+ 
                     <input type="submit" asp-action="AddQuiz" class="buttonAjout" />
+
                     <div>
                         <a asp-action="Index" class="backButton">Retour à la liste</a>
                     </div>
-            </div>
-              
-        </form>
+                </div>
+
+            </form>
+        </div>
     </div>
-</div>
-
-
 
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

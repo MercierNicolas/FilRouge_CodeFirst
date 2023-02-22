@@ -1,10 +1,11 @@
 ﻿@model List<QuizMakeViewModel>
-<h1 style="text-align : center">Quiz réalisez </h1>
 
+<h1 style="text-align : center">Quiz réalisé </h1>
 
+<div class="container" style="margin-top: 100px;">
 <table class="table">
     <thead>
-        <tr>
+        <tr class="table table-primary">
             <th>
                 Nom du quiz
             </th>
@@ -39,9 +40,11 @@
                    @* @Html.DisplayFor(modelItem => oneQuiz.Quiz.Questions.Count())*@
                     </td>
                     <td>
-                    <a asp-action="Details" asp-route-id="@oneQuiz.Quiz.QuizzId"> Voir resultat </a>
+                        <a asp-action="Details" asp-route-id="@oneQuiz.Quiz.QuizzId" class="buttonAjout"> Voir résultat </a>
                     </td>
                 </tr>
             }    
     </tbody>
 </table>
+
+</div>

@@ -22,9 +22,9 @@
             </div>
 
             <input type="hidden" asp-for="@Model.AnswerChoice">
-            @foreach(var rep in Model.AnswerChoice)
+            @foreach (var rep in Model.AnswerChoice)
             {
-                
+
                 <div class="form-group">
                     <input type="hidden" asp-for="@rep.CorrectionId" />
 
@@ -32,8 +32,8 @@
                     <input asp-for="@rep.ContentCorection" class="form-control" />
                     <input asp-for="@rep.IsCorrect" class="form-controle" />
                     <span asp-validation-for="@rep.ContentCorection" class="text-danger"></span>
-                  
-            </div> 
+
+                </div>
             }
 
             <div class="form-group d-flex justify-content-around">
@@ -48,5 +48,7 @@
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

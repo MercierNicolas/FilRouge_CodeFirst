@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using FilRouge_Test_CodeFirst.Data
+@using FilRouge_Test_CodeFirst.Models
+
+@model QuizPassageViewModel;  
+<h3 style="text-align : center">VALIDATION</h3>
+<div class="container w-50" style="margin-top: 100px;" id="addQ">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-4">
+        <form asp-action="Validation" >
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                <label asp-for="@Model.IdentityCandidat.UserName" class="control-label">Votre nom</label>
+                <input asp-for="@Model.IdentityCandidat.UserName" class="form-control" required />
+                <span asp-validation-for="@Model.IdentityCandidat.UserName" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group">
+                <label asp-for="@Model.IdentityCandidat.Email" class="control-label">Votre email</label>
+                <input asp-for="@Model.IdentityCandidat.Email" class="form-control" type="email" required />
+                <span asp-validation-for="@Model.IdentityCandidat.Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Code" class="control-label">Votre code de validation</label>
+                    <input asp-for="Code" class="form-control" />
+                    <span asp-validation-for="Code" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+
+                    <input type="submit" class="buttonAjout" />
+               
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+    </div>
+
+

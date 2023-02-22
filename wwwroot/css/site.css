@@ -25,12 +25,13 @@ body {
 }
 
 
-footer {
+/*footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 60px; /* Hauteur du footer */
-}
+    height: 60px;*/ /* Hauteur du footer */
+/*}*/
+
 
 #sidebarB {
     position: fixed;
@@ -391,6 +392,23 @@ h3 {
     background: linear-gradient(to right, rgba(227,227,227,1) 0%, rgba(247,247,247,1) 34%, rgba(254,254,254,1) 66%, rgba(227,227,227,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e3e3e3', endColorstr='#e3e3e3', GradientType=1 );
 }
+
+
+#quizReponse {
+    border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    border: 1px solid #000000;
+    background: rgba(255,255,255,1);
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 47%, rgba(237,237,237,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(245,245,245,1)), color-stop(100%, rgba(237,237,237,1)));
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 47%, rgba(237,237,237,1) 100%);
+    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 47%, rgba(237,237,237,1) 100%);
+    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 47%, rgba(237,237,237,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 47%, rgba(237,237,237,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+}
+
 
 #gros{
     font-size:30px;

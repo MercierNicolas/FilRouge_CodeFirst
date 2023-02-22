@@ -8,7 +8,6 @@ namespace FilRouge_Test_CodeFirst.Models
         public Question question { get; set; }
         public List<TheAnswer> answerUser { get; set; }
         public double Note { get; set; }
-        
 
     }
 }

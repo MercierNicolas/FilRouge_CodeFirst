@@ -2,8 +2,7 @@
 @model AddQuestionQuizViewModel
 
 <h1 style="text-align : center">@Model.QuizAddQuestion.Name </h1>
-<h2 style="text-align : center">
-    Sujet : @Model.QuizAddQuestion.Sujet.SujetName</h2>
+<h2 style="text-align : center">Sujet : @Model.QuizAddQuestion.Sujet.SujetName</h2>
 
 <h2 style="text-align : center">Liste des question avec le sujet : @Model.QuizAddQuestion.Sujet.SujetName</h2>
 
@@ -37,11 +36,12 @@
                     @Html.DisplayFor(modelItem => ques.Level.LevelName)
                     </td>
 
-                    <td>
+
+                <td>
                     <input type="hidden" value="@Model.QuizAddQuestion.QuizzId" asp-for="@Model.QuizAddQuestion.QuizzId">
-                    <input type="checkbox" value="@ques.QuestionId" name="IsCheckedQuestionID" id="@ques.QuestionId"/>
-                    </td>
-                </tr>
+                    <input type="checkbox" value="@ques.QuestionId" name="IsCheckedQuestionID" id="@ques.QuestionId" />
+                </td>
+            </tr>
             }
      
          <input type="submit" value="Validée" class="myButton mb-6" style="width: auto;">

@@ -1,5 +1,13 @@
-﻿@using FilRouge_Test_CodeFirst.Models
 
+<<<<<<< HEAD
+=======
+﻿@using Microsoft.AspNetCore.Identity
+@using FilRouge_Test_CodeFirst.Data
+@using FilRouge_Test_CodeFirst.Models
+
+﻿
+
+>>>>>>> accbd03dd84854f1a95a4fcd20b65f4092f5a692
 @{
     Layout = "passageWelcome.cshtml";
 }
@@ -13,17 +21,30 @@
 <h1 style="text-align : center"> Bienvenue sur votre teste de compétence</h1>
     <br />
     <p>
-        L'évaluation SkillCheck est un outil de validation de vos connaissances de base des différents langages numérique. Participer à SkillCheck vous permettra de créer une base de référence de vos connaissances numérique actuelles, à partir de laquelle vous pourrez commencer à vous améliorer immédiatement. Il est gratuit et ne comprend aucune certification.
+
+
+        L'évaluation SkillCheck est un outil de validation de vos connaissances de base des différents langages numérique.
+        Participer à SkillCheck vous permettra de créer une base de référence de vos connaissances numérique actuelles,
+        à partir de laquelle vous pourrez commencer à vous améliorer immédiatement. Il est gratuit et ne comprend aucune certification.
     </p>
-
-
 
             <div class="form-group text-center">
 
 
+<<<<<<< HEAD
+            <div class="form-group text-center">
+
+=======
+>>>>>>> accbd03dd84854f1a95a4fcd20b65f4092f5a692
+
         <a asp-controller="Passage" asp-action="PassageQuiz" asp-route-id="@Model.QuizzId" asp-route-questionid="@Model.QuestionId">
+            <input type="button" value="Suivant" class="btn btn-primary" />
+        </a>
+    </div>
 
+                    <input type="button" value="Suivant" class="buttonAjout " />
 
+<<<<<<< HEAD
                     <input type="button" value="Suivant" class="buttonAjout " />
 
             </a>
@@ -32,6 +53,18 @@
         </div>
        
         </section>
+=======
+            
+
+
+        </div>
+
+
+    </section>
+
+>>>>>>> accbd03dd84854f1a95a4fcd20b65f4092f5a692
     </div>
 </div>
+
+
 

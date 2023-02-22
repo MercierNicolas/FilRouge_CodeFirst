@@ -36,10 +36,21 @@ namespace FilRouge_Test_CodeFirst.Domaine
         
         public int DeleteLevel(int id)
         {
-            var levelAdelete = _context.levels.Where(l => l.Id == id).ToList();
-            _context.levels.RemoveRange(levelAdelete);
-            _context.SaveChanges();
-            return 0;
+            var isInQuiz = _context.Quiz.Where(q => q.Level.Id == id).FirstOrDefault();
+            var isInQuestion = _context.Questions.Where(q => q.Level.Id== id).FirstOrDefault();
+            if(isInQuestion == null || isInQuiz == null)
+            {
+                var levelAdelete = _context.levels.Where(l => l.Id == id).ToList();
+                _context.levels.RemoveRange(levelAdelete);
+                _context.SaveChanges();
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+
+            
         }
 
     }

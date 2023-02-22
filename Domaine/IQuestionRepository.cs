@@ -5,15 +5,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 using FilRouge_Test_CodeFirst.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Collections;
-using System.Collections.Generic;
 
 
 namespace FilRouge_Test_CodeFirst.Domaine
 {
     public interface IQuestionRepository
     {
+
         int CreateQuestion(Question question, int levelId, int sujetId, Dictionary<string, bool> DictionaryChoix);
         IEnumerable<Question> GetAllQuestions();
         IEnumerable<Question> GetOneQuestion(int id);
@@ -33,7 +31,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
         }
 
 
-        public int CreateQuestion(Question question, int levelId, int sujetId ,Dictionary<string,bool> DictionaryChoix)
+        public int CreateQuestion(Question question, int levelId, int sujetId, Dictionary<string, bool> DictionaryChoix)
 
         {
             // On recupére l'id de la vue a l'aide du controlleur et on appele de la BDD les level avec le where on recupere le bon id
@@ -54,7 +52,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
             foreach (var item in DictionaryChoix)
             {
-                var saveChoice = new AnswerChoice { ContentCorection = item.Key, IsCorrect = item.Value , questionId = lastIdQuestion };
+                var saveChoice = new AnswerChoice { ContentCorection = item.Key, IsCorrect = item.Value, questionId = lastIdQuestion };
                 _context.AnswerChoice.Add(saveChoice);
                 //  saveChoice.questionId = lastIdQuestion.QuestionId;
                 //_context.AnswerChoice.Add(saveChoice);
@@ -67,7 +65,21 @@ namespace FilRouge_Test_CodeFirst.Domaine
         public int DeleteQuestion(int id)
 
         {
-            throw new NotImplementedException();
+            var question = GetOneQuestion(id).First();
+            var questionInQuiz = _context.Quiz.Include(q => q.Questions).Where(q => q.Questions.Contains(question)).FirstOrDefault();
+            
+            if(questionInQuiz == null) 
+            {
+                var QuestionlAdelete = _context.Questions.Where(l => l.QuestionId == id).ToList();
+                _context.Questions.RemoveRange(QuestionlAdelete);
+                _context.SaveChanges();
+                return 0;
+            }
+            else
+            {
+                return -1;
+            }
+
         }
 
 
@@ -89,7 +101,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
             //    var saveChoice = new AnswerChoice { ContentCorection = rep.Key, IsCorrect = rep.Value, questionId = question };
             //    _context.AnswerChoice.Update(saveChoice);
             //}
-           
+
             _context.SaveChanges();
             return 0;
         }
@@ -105,9 +117,9 @@ namespace FilRouge_Test_CodeFirst.Domaine
             List<Question> result = new List<Question>();
             foreach (var question in allQuestion)
             {
-                foreach(var id in ids)
+                foreach (var id in ids)
                 {
-                    if(id == question.QuestionId)
+                    if (id == question.QuestionId)
                     {
                         result.Add(question);
                     }
