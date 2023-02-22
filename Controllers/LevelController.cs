@@ -1,6 +1,7 @@
 ﻿using FilRouge_Test_CodeFirst.Data.Entity;
 using FilRouge_Test_CodeFirst.Domaine;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Common;
 
 namespace FilRouge_Test_CodeFirst.Controllers
 {

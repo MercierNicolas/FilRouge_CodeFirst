@@ -1,5 +1,4 @@
-﻿using FilRouge_Test_CodeFirst.Data;
-using FilRouge_Test_CodeFirst.Data.Entity;
+﻿using FilRouge_Test_CodeFirst.Data.Entity;
 using FilRouge_Test_CodeFirst.Domaine;
 using FilRouge_Test_CodeFirst.Models;
 using HashidsNet;
@@ -8,9 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FilRouge_Test_CodeFirst.Controllers
 {
-	public class QuizController : Controller
-	{
-        
+    public class QuizController : Controller
+    {
+
         private readonly IQuizRepository quizRepo;
         private readonly ILevelRepository levelRepo;
         private readonly ISujetRepository sujetRepo;
@@ -32,9 +31,9 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
         }
         public IActionResult Index()
-		{
+        {
             var listeQuiz = quizRepo.GetAllQuiz();
-            
+
             return View(listeQuiz);
         }
 
@@ -43,23 +42,22 @@ namespace FilRouge_Test_CodeFirst.Controllers
         public IActionResult GetCode([FromRoute] string id)
         {
             var rawId = _hashids.Decode(id);
-            if(rawId.Length == 0)
+            if (rawId.Length == 0)
             {
                 return NotFound();
             }
             return Ok(rawId);
         }
 
-
-		public IActionResult AddQuiz()
-		{
+        public IActionResult AddQuiz()
+        {
             // On crée un QuizViewModel qui comprend les contenue d'un quiz
             QuizViewModel QuizViewModel = new QuizViewModel();
             QuizViewModel.Quiz = new Quiz();
             // Recuper tout les sujet et level 
             var allLvl = levelRepo.GetAllLevel();
             var allSujet = sujetRepo.GetAllSujet();
-
+            
             List<SelectListItem> Listlevel = allLvl
                 .OrderBy(n => n.LevelName)
                 .Select(n =>
@@ -91,7 +89,7 @@ namespace FilRouge_Test_CodeFirst.Controllers
         [HttpPost]
         public IActionResult AddQuiz(QuizViewModel model)
         {
-           
+
             // On crée une variable de type quiz que stock le nom le code et l'Averrage
             var quizAdd = new Quiz()
             {
@@ -99,16 +97,20 @@ namespace FilRouge_Test_CodeFirst.Controllers
                 Average = model.Quiz.Average,
                 Code = generateGuid(),
             };
-            // On envoie la variable quizAdd et le level et sujet ID recupére dans le select a la méthode CreateQuiz de l'interface
-            quizRepo.CreateQuiz(quizAdd , model.LevelId , model.sujetId);
 
+            var httpContext = HttpContext;
+
+
+            // On envoie la variable quizAdd et le level et sujet ID recupére dans le select a la méthode CreateQuiz de l'interface
+            quizRepo.CreateQuiz(quizAdd, model.LevelId, model.sujetId, httpContext);
+            
             return RedirectToAction("Index");
         }
 
         public IActionResult DeleteQuiz(int id)
         {
             var OneQuiz = quizRepo.GetOneQuiz(id);
-            
+
             return View(OneQuiz.First());
         }
         [HttpPost]
@@ -124,19 +126,21 @@ namespace FilRouge_Test_CodeFirst.Controllers
             return guid;
         }
 
+
         public IActionResult EditQuiz(int id)
         {
             var editQuiz = quizRepo.GetOneQuiz(id);
-            
-            return View(editQuiz.First()); 
+
+            return View(editQuiz.First());
         }
 
-        public IActionResult DetailQuiz (int id)
+        public IActionResult DetailQuiz(int id)
         {
             var DetailQuiz = quizRepo.GetOneQuiz(id);
 
             return View(DetailQuiz.First());
         }
+
 
         public IActionResult AddQuestionQuiz(int id)
         {
@@ -159,12 +163,8 @@ namespace FilRouge_Test_CodeFirst.Controllers
 
             var questionList = questionRepo.GetQuestionWithIds(listQuestion);
 
-
-
-
             quizRepo.AddQuestionQuiz(idQuiz, questionList);
             return RedirectToAction("Index");
         }
-
     }
 }

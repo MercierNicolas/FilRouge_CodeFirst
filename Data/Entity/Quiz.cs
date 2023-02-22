@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace FilRouge_Test_CodeFirst.Data.Entity
 {
@@ -12,6 +13,8 @@ namespace FilRouge_Test_CodeFirst.Data.Entity
 		public virtual ICollection<Question> Questions { get; set; }
 		public Sujet? Sujet { get; set; }
 		public Level? Level { get; set; }
- 
+		public virtual ICollection<Tested>? Candidats { get; set; }
+		public IdentityUser? RecruterId { get; set; }
+
     }
 }
