@@ -1,11 +1,22 @@
+<<<<<<< HEAD
 ﻿@using Microsoft.AspNetCore.Identity
 @using FilRouge_Test_CodeFirst.Data
 @using FilRouge_Test_CodeFirst.Models
+=======
+﻿@using FilRouge_Test_CodeFirst.Models
+
+@{
+    Layout = "passageWelcome.cshtml";
+}
+>>>>>>> 2ccbc57 (Passage front commencer)
 
 @model QuizPassageViewModel;
+<div class="d-flex vh-100" id="boxLogIn">
+    <div class="col-md-4">
+        <section id="bienvenuBorder" class="shadow-lg p-4">
+            
 
-<div>
-    <h2>Bienvenue sur votre teste de compétence</h2>
+<h1 style="text-align : center"> Bienvenue sur votre teste de compétence</h1>
     <br />
     <p>
 
@@ -15,12 +26,24 @@
         à partir de laquelle vous pourrez commencer à vous améliorer immédiatement. Il est gratuit et ne comprend aucune certification.
     </p>
 
-    <div class="form-group">
+            <div class="form-group text-center">
+
+
+
         <a asp-controller="Passage" asp-action="PassageQuiz" asp-route-id="@Model.QuizzId" asp-route-questionid="@Model.QuestionId">
             <input type="button" value="Suivant" class="btn btn-primary" />
         </a>
     </div>
 
+                    <input type="button" value="Suivant" class="buttonAjout " />
 
-</div>
+            
+
+
+        </div>
+
+    </section>
+    </div>
+
+
 
