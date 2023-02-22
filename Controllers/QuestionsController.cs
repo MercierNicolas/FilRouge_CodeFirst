@@ -109,5 +109,17 @@ namespace FilRouge_Test_CodeFirst.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Delete(int id)
+        { 
+            var questionAdelet = questionRepo.GetOneQuestion(id);
+            return View(questionAdelet.First());
+        }
+        [HttpPost]
+        public IActionResult Delete(Question model)
+        {
+            questionRepo.DeleteQuestion(model.QuestionId);
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -72,6 +72,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
         public int DeleteQuiz(int Id)
         {
             var quizADelete = _context.Quiz.Where(q => q.QuizzId == Id).ToList();
+            //quizADelete.
             _context.Quiz.RemoveRange(quizADelete);
             _context.SaveChanges();
             return 0;

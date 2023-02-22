@@ -16,7 +16,7 @@ namespace FilRouge_Test_CodeFirst.Domaine
         int AddPassage(QuizPassageViewModel candidat);
         int SaveBddAnswerUser (IEnumerable<int> IdCheck ,int questionIdControlleur, int quizId);
 
-        int SaveBddAnswerUser (IEnumerable<int> IdCheck ,int questionIdControlleur, int quizId);
+       
 
     }
 

@@ -36,10 +36,23 @@ namespace FilRouge_Test_CodeFirst.Domaine
 
         public int DeleteSujet(int id)
         {
-            var SujetlAdelete = _context.sujets.Where(l => l.id == id).ToList();
-            _context.sujets.RemoveRange(SujetlAdelete);
-            _context.SaveChanges();
-            return 0;
+            var IsInQuestion = _context.Questions.Where(s => s.Sujet.id == id).FirstOrDefault();
+            var IsInQuiz = _context.Quiz.Where(q => q.Sujet.id == id);
+
+            if(IsInQuestion == null || IsInQuiz == null)
+            {
+                var SujetlAdelete = _context.sujets.Where(l => l.id == id).ToList();
+                _context.sujets.RemoveRange(SujetlAdelete);
+                _context.SaveChanges();
+                return 0;
+            }
+            else
+            {
+                return -1;
+            }
+
+
+           
         }
 
     }

@@ -54,12 +54,6 @@ namespace FilRouge_Test_CodeFirst.Domaine
             var quizMake = new QuizMakeViewModel();
             var rep = _context.theAnswers.Where(q => q.QuizId == id);
             var quiz = _context.Quiz.Where(q => q.QuizzId == id).Include(ques => ques.Questions).ThenInclude(a => a.AnswerChoice);
-<<<<<<< HEAD
-            
-            
-=======
-
->>>>>>> 82c7831c1ca01a7333267e1c1ee3eba7cb4f99e4
             quizMake.answerUser = rep.ToList();
             quizMake.Quiz = quiz.ToList().First();
             return quizMake;

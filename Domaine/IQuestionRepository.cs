@@ -66,7 +66,21 @@ namespace FilRouge_Test_CodeFirst.Domaine
         public int DeleteQuestion(int id)
 
         {
-            throw new NotImplementedException();
+            var question = GetOneQuestion(id).First();
+            var questionInQuiz = _context.Quiz.Include(q => q.Questions).Where(q => q.Questions.Contains(question)).FirstOrDefault();
+            
+            if(questionInQuiz == null) 
+            {
+                var QuestionlAdelete = _context.Questions.Where(l => l.QuestionId == id).ToList();
+                _context.Questions.RemoveRange(QuestionlAdelete);
+                _context.SaveChanges();
+                return 0;
+            }
+            else
+            {
+                return -1;
+            }
+
         }
 
 
