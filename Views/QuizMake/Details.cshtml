@@ -1,6 +1,6 @@
 ﻿@model QuizMakeViewModel
-
-<h1 style ="text-align : center">Resulat du quiz : @Model.Quiz.Name</h1>
+<div id="toPdf">
+<h1 style ="text-align : center">Résultat du quiz : @Model.Quiz.Name</h1>
 <h2 style ="text-align : center">Note obtenue : @Model.Note / 20</h2>
 <div class="container">
     
@@ -45,5 +45,42 @@
     </div>
 }
 
+    </div>
+
 </div>
+
+<button type="button" id="getMyPdf">PDF </button>
+<script>
+    var toPdf = document.getElementById('toPdf');
+    var monButton = document.getElementById('getMyPdf');
+
+    monButton.onclick = () => {
+        window.jsPDF = window.jspdf.jsPDF;
+
+        html2canvas(document.getElementById('toPdf')).then(function (canvas) {
+            let newCanvasImg = canvas.toDataURL('image/PNG', 1.0);
+            let doc = new jsPDF('landscape');
+            doc.setFontSize(20);
+            // doc.internal.scaleFactor = 30;
+            let width = doc.internal.pageSize.getWidth();
+            let height = doc.internal.pageSize.getHeight();
+            let imageWidth = width - 50;
+            let imageHeight = height;
+            let x = (width - imageWidth) / 2;
+            let y = (height - imageHeight) / -100;
+            doc.addImage(
+                newCanvasImg,
+                'PNG',
+                x,
+                y,
+                imageWidth,
+                imageHeight,
+                'NONE',
+                'NONE'
+            );
+            doc.save(`monpdf.pdf`)
+        })
+
+    }
+</script>
 

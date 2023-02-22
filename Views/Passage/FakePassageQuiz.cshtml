@@ -1,29 +1,44 @@
 ﻿@using FilRouge_Test_CodeFirst.Models
 
+@{
+    Layout = "passageWelcome.cshtml";
+}
+
 @model QuizPassageViewModel;
 
 @{
     ViewData["Title"] = "Passage";
 }
 
-<h3>Questions @Model.ContentQuestion</h3>
-<hr />
+<div class="d-flex vh-100" id="boxLogIn">
+    <div class="col-md-4">
+        <section id="bienvenuBorder" class="shadow-lg p-4">
+
+
+
+            <h2> @Model.ContentQuestion</h2>
+
+
+            <hr />
 
 <div class="row">
-    <div class="col-md-4">
+                <div class="col-md-12">
         <form asp-controller="Passage" asp-action="FakePassageQuiz" asp-route-id="@Model.QuizzId" asp-route-questionId="@Model.QuestionId">
             @foreach(var reponse in Model.AnswerChoice)
             {
-                <div class="form-group">
+                            <div class="form-group" style="font-size:25px">
                     <input type="checkbox" name="@reponse.CorrectionId">
                     <label for="@reponse.CorrectionId" class="control-label">@reponse.ContentCorection</label>
                 </div>
             }
-            <div class="form-group">
+                        <div class="form-group text-center">
                 <input type="submit" value="Suivant" class="btn btn-primary" />
             </div>
 
         </form>
+    </div>
+</div>
+        </section>
     </div>
 </div>
 
