@@ -56,16 +56,19 @@
                     @Html.DisplayFor(modelItem => item.Sujet.SujetName)
                 </td>
                 <td >
+
                                 <a asp-controller="Passage" asp-action="FakeWelcome" asp-route-id="@item.QuizzId"><div class="buttonAjout2">Fake Passage</div></a> |
                         <a asp-action="EditQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout ms-2">Edit </div></a> 
                             <a asp-action="DetailQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout2 ms-2">Détails</div></a> 
                             <a asp-action="DeleteQuiz" asp-route-id="@item.QuizzId"><div class="buttonAjout3 ms-2">Supprimer</div></a>
+
 
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
+
 
     </div>
 </div>
