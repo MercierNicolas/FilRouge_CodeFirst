@@ -12,14 +12,14 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="LevelId" class="control-label">Level du ID</label>
+                <label asp-for="LevelId" class="control-label">Level de la question</label>
                 <select asp-for="LevelId" asp-items="@Model.AllLevel" class="form-control">
                     
                 </select>
                 <span asp-validation-for="@Model.question.Level" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="sujetId" class="control-label">ID du sujet</label>
+                <label asp-for="sujetId" class="control-label">Sujet de la question</label>
                 <select asp-for="sujetId" asp-items="@Model.AllSujet" class="form-control">
                   
                 </select>
@@ -60,7 +60,7 @@
             </div>
     
             <div class="form-group d-flex justify-content-between pt-4">
-                <input type="submit" value="Create" class="buttonAjout mb-3" />
+                <input type="submit" value="Ajouter" class="buttonAjout mb-3" />
             <div>
                     <a asp-action="Index" class="backButton mb-3">Retour à la liste</a>
 
